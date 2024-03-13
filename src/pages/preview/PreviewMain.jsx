@@ -1,5 +1,6 @@
 import React from "react";
 import lenseImg from "~/assets/lense.png";
+
 import "./PreviewMain.css";
 import style from "./PreviewMain.module.css";
 
