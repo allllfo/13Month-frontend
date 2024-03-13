@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser, removeUser } from '../../store/reducers/user';
 
 export default function MainPage() {
+  useEffect(() => {}, []);
+
   const userState = useSelector((state) => state.user);
   console.log(userState);
 
