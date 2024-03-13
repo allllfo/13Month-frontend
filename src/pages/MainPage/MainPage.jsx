@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, removeUser } from '../../store/reducers/user';
+import { getKakaoToken } from '../../lib/apis/user';
 
 export default function MainPage() {
-  useEffect(() => {}, []);
+  const code = new URL(window.location.href).searchParams.get('code');
+
+  useEffect(() => {
+    if (code !== null) {
+      getKakaoToken(code).then((resp) => {
+        console.log('token: ', resp);
+      });
+    }
+  }, [code]);
 
   const userState = useSelector((state) => state.user);
   console.log(userState);

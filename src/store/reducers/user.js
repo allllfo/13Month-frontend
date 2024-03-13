@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: 'none',
+  kakaoToken: '',
+  userId: '',
 };
 
 const userSlice = createSlice({
