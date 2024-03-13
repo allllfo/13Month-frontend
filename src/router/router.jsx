@@ -11,6 +11,10 @@ export const mainRoutes = [
     path: '/login',
     element: <Login />,
   },
+  {
+    path: "/preview/main",
+    element: <PreviewMain></PreviewMain>,
+  },
 ];
 
 const router = createBrowserRouter(mainRoutes);
