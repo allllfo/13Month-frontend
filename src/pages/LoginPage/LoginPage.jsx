@@ -1,12 +1,37 @@
 import React, { useEffect } from 'react';
+import {
+  getCodeWithKakaoLogin,
+  getKakaoToken,
+  getKakaoInfo,
+} from '../../lib/apis/user';
 
 export default function LoginPage() {
-  const clickLoginBtn = async () => {
-    const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
-    const REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI_MAIN;
-    const kakaoCodeUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+  useEffect(() => {
+    const code = new URL(window.location.href).searchParams.get('code');
+    console.log('code: ', code);
 
-    window.location.href = kakaoCodeUrl;
+    // 유저 찾기, id 반환
+    // 없으면 생성, id 반환
+    // 토큰, userId 리덕스 저장
+    // /main으로 이동
+    if (code !== null) {
+      getKakaoToken(code)
+        .then((token) => {
+          console.log('token: ', token);
+
+          return getKakaoInfo(token);
+        })
+        .then((info) => {
+          console.log('info: ', info);
+        })
+        .catch((err) => {
+          console.log('err: ', err);
+        });
+    }
+  }, []);
+
+  const clickLoginBtn = async () => {
+    getCodeWithKakaoLogin();
   };
 
   return (
