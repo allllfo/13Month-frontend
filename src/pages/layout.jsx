@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 export default function MainLayout() {
   return (
     <div
+      className="font-['Pretendard-Regular'] tracking-wide"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -14,20 +15,20 @@ export default function MainLayout() {
       <div
         style={{
           height: "100vh",
-          width: "450px",
-          maxWidth: "450px",
+          width: "400px",
+          maxWidth: "400px",
           overflowY: "auto",
           overflowX: "hidden",
         }}
       >
         <div
           className="container"
-          style={{
-            height: "90vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          // style={{
+          //   height: "90vh",
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          // }}
         >
           <Outlet />
         </div>

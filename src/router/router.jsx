@@ -1,20 +1,71 @@
-import { createBrowserRouter } from 'react-router-dom';
+import React from "react";
+import { createBrowserRouter } from "react-router-dom";
+
+import FindOutPage from "~/pages/products/findout/page";
+import IndexPage from "~/pages/Main/IndexPage";
 import LoginPage from '~/pages/LoginPage/LoginPage';
 import MainPage from '~/pages/MainPage/MainPage';
-import PreviewMain from '../pages/preview/PreviewMain';
+import MyPage from "~/pages/Main/MyPage";
+import EasyETF from "~/pages/EasySeries/EasyETF";
+import EasyFound from "~/pages/EasySeries/EasyFound";
+import EasyMain from "~/pages/EasySeries/EasyMain";
+import EasyTax from "~/pages/EasySeries/EasyTax";
+import PreviewMain from "../pages/preview/PreviewMain";
+import PreviewLoading from "../pages/preview/PreviewLoading";
+import MainLayout from "~/pages/layout";
+import PreviewResult from "~/pages/preview/PreviewResult";
 
 export const mainRoutes = [
   {
-    path: '/',
-    element: <LoginPage />,
-  },
-  {
-    path: '/main',
-    element: <MainPage />,
-  },
-  {
-    path: '/preview/main',
-    element: <PreviewMain></PreviewMain>,
+    path: "",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Login />,
+      },
+      {
+        path: "/main",
+        element: <MainPage />,
+      },
+      {
+        path: "/mypage",
+        element: <MyPage />,
+      },
+      {
+        path: "/EasyETF",
+        element: <EasyETF />,
+      },
+      {
+        path: "/EasyFound",
+        element: <EasyFound />,
+      },
+      {
+        path: "/EasyMain",
+        element: <EasyMain />,
+      },
+      {
+        path: "/EasyTax",
+        element: <EasyTax />,
+      },
+
+      {
+        path: "/product/findout",
+        element: <FindOutPage />,
+      },
+      {
+        path: "/preview/main",
+        element: <PreviewMain />,
+      },
+      {
+        path: "/preview/loading",
+        element: <PreviewLoading />,
+      },
+      {
+        path: "/preview/result",
+        element: <PreviewResult />,
+      },
+    ],
   },
 ];
 
