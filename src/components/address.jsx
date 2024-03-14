@@ -1,6 +1,7 @@
 import React from "react";
 import DaumPostCode from "react-daum-postcode";
 import { useDaumPostcodePopup } from "react-daum-postcode";
+import { Button } from "flowbite-react";
 
 function Address(props) {
   const postcodeScriptUrl =
@@ -20,9 +21,9 @@ function Address(props) {
   };
 
   return (
-    <button type="button" onClick={handleClick}>
+    <Button color="light" pill onClick={handleClick}>
       주소 찾기
-    </button>
+    </Button>
   );
 }
 
