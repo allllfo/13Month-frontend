@@ -2,8 +2,8 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import FindOutPage from "~/pages/products/findout/page";
 import IndexPage from "~/pages/Main/IndexPage";
-import Login from "~/pages/Main/Login";
-import MainPage from "~/pages/Main/MainPage";
+import LoginPage from '~/pages/LoginPage/LoginPage';
+import MainPage from '~/pages/MainPage/MainPage';
 import MyPage from "~/pages/Main/MyPage";
 import EasyETF from "~/pages/EasySeries/EasyETF";
 import EasyFound from "~/pages/EasySeries/EasyFound";
@@ -22,10 +22,6 @@ export const mainRoutes = [
     children: [
       {
         path: "/",
-        element: <IndexPage />,
-      },
-      {
-        path: "/login",
         element: <Login />,
       },
       {
