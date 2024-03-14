@@ -8,8 +8,8 @@ export default function TabBar(props) {
   const setCurrentTab = props.setCurrentTab;
 
   return (
-    <div className="fixed bottom-0 h-20 w-full">
-      <div className="flex justify-between h-full rounded-tl-lg rounded-tr-lg shadow-inner">
+    <div className="fixed bottom-0 h-14" style={{ width: '400px' }}>
+      <div className="flex justify-between h-full rounded-tl-lg rounded-tr-lg shadow-inner w-full">
         {tabs.map((ele, idx) => {
           let textColor = 'text-gray-500';
 
@@ -22,11 +22,11 @@ export default function TabBar(props) {
 
           return (
             <div
-              className="w-1/4 flex flex-col justify-center items-center"
+              className="w-1/4 flex flex-col justify-center items-center text-xs"
               key={ele}
               onClick={() => setCurrentTab(idx)}
             >
-              <img className="max-h-full h-12" src={src}></img>
+              <img className="max-h-full h-8" src={src}></img>
               <p className={textColor}>{tabNames[idx]}</p>
             </div>
           );
