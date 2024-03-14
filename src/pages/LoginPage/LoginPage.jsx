@@ -21,15 +21,10 @@ export default function LoginPage() {
 
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get('code');
-    console.log('code: ', code);
 
-    // 없으면 생성, id 반환
-    // userId 리덕스 저장
-    // /main으로 이동
     if (code !== null) {
       getKakaoToken(code)
         .then((token) => {
-          console.log('token: ', token);
           dispatch(setkakaoToken(token));
 
           return getKakaoInfo(token);
