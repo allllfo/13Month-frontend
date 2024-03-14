@@ -47,3 +47,14 @@ export const getKakaoInfo = async (token) => {
     console.log(err);
   }
 };
+
+export const findUserWithNickname = async (nickname) => {
+  const findUserUrl = '/api/user/find';
+  const body = {
+    nickname: nickname,
+  };
+
+  const resp = await axios.post(findUserUrl, body);
+
+  return resp.data;
+};
