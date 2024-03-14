@@ -57,9 +57,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-    >
+    <div class="flex flex-col items-center">
       <div className="mt-20 mb-10" style={{ width: '40%' }}>
         <img src="src/assets/images/cloud.png"></img>
       </div>
