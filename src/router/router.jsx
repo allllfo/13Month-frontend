@@ -1,71 +1,45 @@
-import React from "react";
-import { createBrowserRouter } from "react-router-dom";
-import FindOutPage from "~/pages/products/findout/page";
-import IndexPage from "~/pages/Main/IndexPage";
+import React from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import FindOutPage from '~/pages/products/findout/page';
 import LoginPage from '~/pages/LoginPage/LoginPage';
 import MainPage from '~/pages/MainPage/MainPage';
-import MyPage from "~/pages/Main/MyPage";
-import EasyETF from "~/pages/EasySeries/EasyETF";
-import EasyFound from "~/pages/EasySeries/EasyFound";
-import EasyMain from "~/pages/EasySeries/EasyMain";
-import EasyTax from "~/pages/EasySeries/EasyTax";
-import PreviewMain from "~/pages/preview/PreviewMain";
-import MainLayout from "~/pages/layout";
-import HousingFundLoan from "../components/HousingFundLoan";
-import DaumPost from "~/components/address";
-import PreviewResult from "~/pages/preview/PreviewResult";
+import PreviewMain from '~/pages/preview/PreviewMain';
+import MainLayout from '~/pages/layout';
+import HousingFundLoan from '../components/HousingFundLoan';
+import DaumPost from '~/components/address';
+import PreviewResult from '~/pages/preview/PreviewResult';
 
 export const mainRoutes = [
   {
-    path: "",
+    path: '',
     element: <MainLayout />,
     children: [
       {
-        path: "/",
-        element: <Login />,
+        path: '/',
+        element: <LoginPage />,
       },
       {
-        path: "/main",
+        path: '/main',
         element: <MainPage />,
       },
       {
-        path: "/mypage",
-        element: <MyPage />,
-      },
-      {
-        path: "/EasyETF",
-        element: <EasyETF />,
-      },
-      {
-        path: "/EasyFound",
-        element: <EasyFound />,
-      },
-      {
-        path: "/EasyMain",
-        element: <EasyMain />,
-      },
-      {
-        path: "/EasyTax",
-        element: <EasyTax />,
-      },
-      {
-        path: "/product/findout",
+        path: '/product/findout',
         element: <FindOutPage />,
       },
       {
-        path: "/preview/main",
+        path: '/preview/main',
         element: <PreviewMain></PreviewMain>,
       },
       {
-        path: "/preview/housing",
+        path: '/preview/housing',
         element: <HousingFundLoan />,
       },
       {
-        path: "/preview/housing/address",
+        path: '/preview/housing/address',
         element: <DaumPost />,
       },
       {
-        path: "/preview/result",
+        path: '/preview/result',
         element: <PreviewResult />,
       },
     ],
