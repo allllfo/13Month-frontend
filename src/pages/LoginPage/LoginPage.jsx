@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setUserId,
@@ -57,9 +57,24 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <p>LoginPage</p>
-      <button onClick={() => clickLoginBtn()}>kakao login</button>
+    <div
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
+      <div className="mt-20 mb-10" style={{ width: '40%' }}>
+        <img src="src/assets/images/cloud.png"></img>
+      </div>
+
+      <div>
+        <p className="font-mono">13월에도 월급을 받을 수 있다면?</p>
+      </div>
+
+      <p className="font-medium mt-20 mb-3">카카오 계정으로 로그인</p>
+      <div>
+        <img
+          src="src/components/Login/kakao_login_medium_wide.png"
+          onClick={() => clickLoginBtn()}
+        ></img>
+      </div>
     </div>
   );
 }
