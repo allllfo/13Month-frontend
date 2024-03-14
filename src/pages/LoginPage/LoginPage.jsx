@@ -1,4 +1,10 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setUserId,
+  setkakaoToken,
+  removeUser,
+} from '../../store/reducers/user';
 import {
   getCodeWithKakaoLogin,
   getKakaoToken,
@@ -6,6 +12,10 @@ import {
 } from '../../lib/apis/user';
 
 export default function LoginPage() {
+  const userState = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  console.log('state: ', userState);
+
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get('code');
     console.log('code: ', code);
@@ -18,6 +28,7 @@ export default function LoginPage() {
       getKakaoToken(code)
         .then((token) => {
           console.log('token: ', token);
+          dispatch(setkakaoToken(token));
 
           return getKakaoInfo(token);
         })
@@ -26,6 +37,7 @@ export default function LoginPage() {
         })
         .catch((err) => {
           console.log('err: ', err);
+          dispatch(removeUser());
         });
     }
   }, []);

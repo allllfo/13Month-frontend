@@ -9,15 +9,21 @@ const userSlice = createSlice({
   name: 'user',
   initialState: initialState,
   reducers: {
-    setUser(state, action) {
-      state.user = action.payload;
+    setUserId(state, action) {
+      state.userId = action.payload;
+      console.log('setUserId', state);
+    },
+    setkakaoToken(state, action) {
+      state.kakaoToken = action.payload;
+      console.log('setkakaoToken', state);
     },
     removeUser(state, action) {
+      console.log('Init');
       return initialState;
     },
   },
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUserId, setkakaoToken, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;
