@@ -13,6 +13,7 @@ import PreviewMain from "~/pages/preview/PreviewMain";
 import MainLayout from "~/pages/layout";
 import HousingFundLoan from "../components/HousingFundLoan";
 import DaumPost from "~/components/address";
+import PreviewResult from "~/pages/preview/PreviewResult";
 
 export const mainRoutes = [
   {
@@ -66,6 +67,10 @@ export const mainRoutes = [
       {
         path: "/preview/housing/address",
         element: <DaumPost />,
+      },
+      {
+        path: "/preview/result",
+        element: <PreviewResult />,
       },
     ],
   },
