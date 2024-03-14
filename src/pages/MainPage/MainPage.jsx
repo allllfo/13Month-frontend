@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function MainPage() {
   const userState = useSelector((state) => state.user);
-  const dispatch = useDispatch();
   console.log('state: ', userState);
 
   return (

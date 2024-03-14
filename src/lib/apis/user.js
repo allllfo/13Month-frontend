@@ -55,6 +55,16 @@ export const findUserWithNickname = async (nickname) => {
   };
 
   const resp = await axios.post(findUserUrl, body);
+  return resp.data;
+};
 
+export const createUser = async (nickname, profile_image_url) => {
+  const createUserUrl = '/api/user/create';
+  const body = {
+    nickname: nickname,
+    profile_image_url: profile_image_url,
+  };
+
+  const resp = await axios.post(createUserUrl, body);
   return resp.data;
 };

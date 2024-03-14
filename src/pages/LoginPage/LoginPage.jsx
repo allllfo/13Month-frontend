@@ -9,15 +9,15 @@ import {
   getCodeWithKakaoLogin,
   getKakaoToken,
   getKakaoInfo,
+  findUserWithNickname,
+  createUser,
 } from '../../lib/apis/user';
-import { findUserWithNickname } from '../../lib/apis/user';
 import { useNavigate } from 'react-router';
 
 export default function LoginPage() {
   const userState = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log('state: ', userState);
 
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get('code');
@@ -36,16 +36,19 @@ export default function LoginPage() {
         })
         .then(async (info) => {
           const kakaoProfile = info.kakao_account.profile;
-          const nickname = kakaoProfile.nickname;
+          const foundUser = await findUserWithNickname(kakaoProfile.nickname);
+          let userId = foundUser._id;
 
-          console.log('nickname: ', nickname);
-          const user = await findUserWithNickname(nickname);
-
-          if (user._id != undefined) {
-            dispatch(setUserId(user._id));
-            navigate('/main');
-            return;
+          if (foundUser._id === undefined) {
+            const createdUser = await createUser(
+              kakaoProfile.nickname,
+              kakaoProfile.profile_image_url
+            );
+            userId = createdUser._id;
           }
+
+          dispatch(setUserId(userId));
+          navigate('/main');
         })
         .catch((err) => {
           console.log('err: ', err);

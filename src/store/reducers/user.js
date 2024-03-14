@@ -11,11 +11,11 @@ const userSlice = createSlice({
   reducers: {
     setUserId(state, action) {
       state.userId = action.payload;
-      console.log('setUserId', state);
+      console.log('setUserId');
     },
     setkakaoToken(state, action) {
       state.kakaoToken = action.payload;
-      console.log('setkakaoToken', state);
+      console.log('setkakaoToken');
     },
     removeUser(state, action) {
       console.log('Init');
