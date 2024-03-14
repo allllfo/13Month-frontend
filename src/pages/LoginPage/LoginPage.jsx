@@ -64,12 +64,14 @@ export default function LoginPage() {
         <img src="src/assets/images/cloud.png"></img>
       </div>
 
-      <div>
-        <p className="font-mono">13월에도 월급을 받을 수 있다면?</p>
+      <div className="text-center">
+        <p className="font-mono">
+          13월에도<br></br> 월급을 받을 수 있다면?
+        </p>
       </div>
 
-      <p className="font-medium mt-20 mb-3">카카오 계정으로 로그인</p>
-      <div>
+      <div className="text-center">
+        <p className="font-medium mt-20 mb-3">카카오 계정으로 로그인</p>
         <img
           src="src/components/Login/kakao_login_medium_wide.png"
           onClick={() => clickLoginBtn()}
