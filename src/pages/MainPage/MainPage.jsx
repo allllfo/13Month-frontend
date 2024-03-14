@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Header from '~/components/Main/Header/Header';
 import TabBar from '~/components/Main/TabBar/TabBar';
 
 import TaxAdjustment from '~/components/Main/TaxAdjustment/TaxAdjustment';
@@ -21,11 +22,11 @@ export default function MainPage() {
 
   return (
     <div>
+      <Header></Header>
+
       {tabs[currentTab]}
 
-      <div className="fixed bottom-0 h-20 w-full">
-        <TabBar currentTab={currentTab} setCurrentTab={setCurrentTab}></TabBar>
-      </div>
+      <TabBar currentTab={currentTab} setCurrentTab={setCurrentTab}></TabBar>
     </div>
   );
 }

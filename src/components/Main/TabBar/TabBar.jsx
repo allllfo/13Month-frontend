@@ -8,28 +8,30 @@ export default function TabBar(props) {
   const setCurrentTab = props.setCurrentTab;
 
   return (
-    <div className="flex justify-between h-full rounded-tl-lg rounded-tr-lg shadow-inner">
-      {tabs.map((ele, idx) => {
-        let textColor = 'text-gray-500';
+    <div className="fixed bottom-0 h-20 w-full">
+      <div className="flex justify-between h-full rounded-tl-lg rounded-tr-lg shadow-inner">
+        {tabs.map((ele, idx) => {
+          let textColor = 'text-gray-500';
 
-        if (idx == currentTab) {
-          ele += 'Black';
-          textColor = 'text-gray-950';
-        }
+          if (idx == currentTab) {
+            ele += 'Black';
+            textColor = 'text-gray-950';
+          }
 
-        const src = 'src/components/Main/TabBar/icons/' + ele + '.png';
+          const src = 'src/components/Main/TabBar/icons/' + ele + '.png';
 
-        return (
-          <div
-            className="w-1/4 flex flex-col justify-center items-center"
-            key={ele}
-            onClick={() => setCurrentTab(idx)}
-          >
-            <img className="max-h-full h-12" src={src}></img>
-            <p className={textColor}>{tabNames[idx]}</p>
-          </div>
-        );
-      })}
+          return (
+            <div
+              className="w-1/4 flex flex-col justify-center items-center"
+              key={ele}
+              onClick={() => setCurrentTab(idx)}
+            >
+              <img className="max-h-full h-12" src={src}></img>
+              <p className={textColor}>{tabNames[idx]}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
