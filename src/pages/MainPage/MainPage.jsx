@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import TabBar from '~/components/Main/TabBar/TabBar';
+
 export default function MainPage() {
   // const userState = useSelector((state) => state.user);
   // console.log('state: ', userState);
 
-  const [page, setPage] = useState(0);
+  const [currentTab, setCurrentTab] = useState(0);
 
-  return <div>MainPage</div>;
+  return (
+    <div className="fixed bottom-0 h-20 w-full">
+      <TabBar currentTab={currentTab} setCurrentTab={setCurrentTab}></TabBar>
+    </div>
+  );
 }
