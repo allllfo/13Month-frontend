@@ -7,8 +7,6 @@ export default function TabBar(props) {
   const currentTab = props.currentTab;
   const setCurrentTab = props.setCurrentTab;
 
-  console.log('current: ', currentTab);
-
   return (
     <div className="flex justify-between h-full rounded-tl-lg rounded-tr-lg shadow-inner">
       {tabs.map((ele, idx) => {
