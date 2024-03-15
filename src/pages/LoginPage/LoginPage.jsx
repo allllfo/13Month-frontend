@@ -76,7 +76,8 @@ export default function LoginPage() {
       <div className="text-center">
         <p className="text-xs mt-20 mb-3">카카오 계정으로 로그인</p>
         <img
-          src="src/components/Login/kakao_login_medium_wide.png"
+          className="h-8"
+          src="src/components/Login/kakao_login_large_wide.png"
           onClick={() => clickLoginBtn()}
         ></img>
       </div>
