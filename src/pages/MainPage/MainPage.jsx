@@ -9,16 +9,16 @@ import FindOut from '~/components/Main/FindOut/FindOut';
 import Quiz from '~/components/Main/Quiz/Quiz';
 import MyPage from '~/components/Main/MyPage/MyPage';
 
-const tabs = [
-  <TaxAdjustment></TaxAdjustment>,
-  <FindOut></FindOut>,
-  <Quiz></Quiz>,
-  <MyPage></MyPage>,
-];
-
 export default function MainPage() {
   const [currentTab, setCurrentTab] = useState(0);
   const userState = useSelector((state) => state.user);
+
+  const tabs = [
+    <TaxAdjustment></TaxAdjustment>,
+    <FindOut></FindOut>,
+    <Quiz></Quiz>,
+    <MyPage></MyPage>,
+  ];
 
   return (
     <div>

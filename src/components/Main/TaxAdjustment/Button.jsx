@@ -14,7 +14,7 @@ export default function Button(props) {
       className="bg-white border rounded-xl p-4 relative"
       style={{ width: '100%', height: '100%' }}
     >
-      <p className="text-xl font-bold mb-2">
+      <p className="text-xl font-bold mb-1">
         {firstOfTitle}
         <br></br>
         {secondOfTitle}
