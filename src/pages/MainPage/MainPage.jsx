@@ -11,9 +11,6 @@ import MyPage from '~/components/Main/MyPage/MyPage';
 
 export default function MainPage() {
   const [currentTab, setCurrentTab] = useState(0);
-  const userState = useSelector((state) => state.user);
-
-  console.log('state: ', userState);
 
   const tabs = [
     <TaxAdjustment></TaxAdjustment>,
