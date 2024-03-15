@@ -7,7 +7,7 @@ import chartImg from "~/assets/images/preview/chart.png";
 import lenseImg from "~/assets/images/preview/lense.png";
 import moneyBagImg from "~/assets/images/preview/moneyBag.png";
 
-export default function TaxAdjustment() {
+export default function Services() {
   const userState = useSelector((state) => state.user);
 
   const firstOfTitle1 = userState.nickname + "님은 13월의 강도일까요,";
