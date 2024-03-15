@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Accordion, Checkbox, Label, TextInput, Radio } from "flowbite-react";
 import Address from "./address"; // Import Address component
+import houseImg from "~/assets/images/house.png";
 
 const HousingFundLoan = () => {
   const [checkLoan, setCheckLoan] = useState(false);
@@ -21,7 +22,12 @@ const HousingFundLoan = () => {
       <div>
         <Accordion className="m-5">
           <Accordion.Panel>
-            <Accordion.Title>🏠 주택 대출 상환 공제 추가하기</Accordion.Title>
+            <Accordion.Title>
+              <div className="flex flex-row">
+                <img src={houseImg} className="w-10 h-10" />
+                <h2 className="ml-2 mt-2">주택 대출 상환 공제 추가하기</h2>
+              </div>
+            </Accordion.Title>
             <Accordion.Content className="mb-2 text-gray-500 dark:text-gray-400">
               <div>
                 <div className="flex gap-2">
