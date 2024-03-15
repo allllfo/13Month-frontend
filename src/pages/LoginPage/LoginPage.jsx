@@ -73,14 +73,11 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <div className="text-center">
-        <p className="text-xs mt-20 mb-3">카카오 계정으로 로그인</p>
-        <img
-          className="h-8"
-          src="src/components/Login/kakao_login_large_wide.png"
-          onClick={() => clickLoginBtn()}
-        ></img>
-      </div>
+      <img
+        className="h-8 mt-40"
+        src="src/components/Login/kakao_login_large_wide_2.png"
+        onClick={() => clickLoginBtn()}
+      ></img>
     </div>
   );
 }
