@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React, { useState } from 'react';
 import Header from '~/components/Main/Header/Header';
 import TabBar from '~/components/Main/TabBar/TabBar';
 

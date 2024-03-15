@@ -42,6 +42,10 @@ export const mainRoutes = [
         path: '/preview/result',
         element: <PreviewResult />,
       },
+      {
+        path: '/preview/loading',
+        element: <PreviewLoading />,
+      },
     ],
   },
 ];
