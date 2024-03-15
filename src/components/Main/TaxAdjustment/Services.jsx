@@ -13,7 +13,6 @@ export default function Services() {
   const firstOfTitle1 = userState.nickname + "님은 13월의 강도일까요,";
   const secondOfTitle1 = "13월의 월급일까요?";
   const subTitle1 = "지금 연말정산 미리보기";
-  const imageSrc1 = "/src/assets/images/lense.png";
   const link1 = "/preview/main";
 
   const title2 = "ETF 추천";
@@ -36,7 +35,7 @@ export default function Services() {
           firstOfTitle={firstOfTitle1}
           secondOfTitle={secondOfTitle1}
           firstOfSubTitle={subTitle1}
-          imageSrc={imageSrc1}
+          imageSrc={lenseImg}
           link={link1}
         ></Button>
       </div>
