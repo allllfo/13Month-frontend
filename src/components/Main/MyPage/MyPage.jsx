@@ -1,7 +1,7 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeUser } from '~/store/reducers/user';
-import { useNavigate } from 'react-router';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser } from "~/store/reducers/user";
+import { useNavigate } from "react-router";
 
 export default function MyPage() {
   const userState = useSelector((state) => state.user);
@@ -14,7 +14,7 @@ export default function MyPage() {
 
   const clickLogoutBtn = () => {
     dispatch(removeUser());
-    navigate('/');
+    navigate("/");
   };
 
   return (

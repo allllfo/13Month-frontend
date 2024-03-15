@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setUserId,
   setkakaoToken,
   setNickname,
   setProfileImageUrl,
   removeUser,
-} from '../../store/reducers/user';
+} from "../../store/reducers/user";
 import {
   getCodeWithKakaoLogin,
   getKakaoToken,
   getKakaoInfo,
   findUserWithNickname,
   createUser,
-} from '../../lib/apis/user';
-import { useNavigate } from 'react-router';
+} from "../../lib/apis/user";
+import { useNavigate } from "react-router";
 
 export default function LoginPage() {
   const userState = useSelector((state) => state.user);
@@ -22,11 +22,11 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userState.nickname !== '') {
-      navigate('/main');
+    if (userState.nickname !== "") {
+      navigate("/main");
     }
 
-    const code = new URL(window.location.href).searchParams.get('code');
+    const code = new URL(window.location.href).searchParams.get("code");
 
     if (code !== null) {
       getKakaoToken(code)
@@ -48,10 +48,10 @@ export default function LoginPage() {
           dispatch(setNickname(kakaoProfile.nickname));
           dispatch(setProfileImageUrl(kakaoProfile.profile_image_url));
           dispatch(setUserId(userId));
-          navigate('/main');
+          navigate("/main");
         })
         .catch((err) => {
-          console.log('err: ', err);
+          console.log("err: ", err);
           dispatch(removeUser());
         });
     }
@@ -63,7 +63,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="mt-20 mb-10" style={{ width: '40%' }}>
+      <div className="mt-20 mb-10" style={{ width: "40%" }}>
         <img src="src/assets/images/logo.png"></img>
       </div>
 

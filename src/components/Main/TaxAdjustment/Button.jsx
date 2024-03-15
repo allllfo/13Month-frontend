@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function Button(props) {
   const firstOfTitle = props.firstOfTitle;
@@ -12,7 +12,7 @@ export default function Button(props) {
   return (
     <div
       className="bg-white border rounded-xl p-4 relative"
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: "100%", height: "100%" }}
     >
       <p className="text-xl font-bold mb-1">
         {firstOfTitle}

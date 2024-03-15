@@ -1,24 +1,24 @@
-import React from 'react';
+import React from "react";
 
-const tabs = ['taxAdjustment', 'findOut', 'quiz', 'myPage'];
-const tabNames = ['연말정산', '알아보기', '퀴즈', '마이페이지'];
+const tabs = ["taxAdjustment", "findOut", "quiz", "myPage"];
+const tabNames = ["연말정산", "알아보기", "퀴즈", "마이페이지"];
 
 export default function TabBar(props) {
   const currentTab = props.currentTab;
   const setCurrentTab = props.setCurrentTab;
 
   return (
-    <div className="fixed bottom-0 h-14" style={{ width: '400px' }}>
+    <div className="fixed bottom-0 h-14" style={{ width: "400px" }}>
       <div className="flex justify-between h-full rounded-tl-lg rounded-tr-lg shadow-inner w-full bg-white">
         {tabs.map((ele, idx) => {
-          let textColor = 'text-gray-500';
+          let textColor = "text-gray-500";
 
           if (idx == currentTab) {
-            ele += 'Black';
-            textColor = 'text-gray-950';
+            ele += "Black";
+            textColor = "text-gray-950";
           }
 
-          const src = 'src/components/Main/TabBar/icons/' + ele + '.png';
+          const src = "src/components/Main/TabBar/icons/" + ele + ".png";
 
           return (
             <div
