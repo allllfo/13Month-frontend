@@ -17,10 +17,15 @@ import {
 import { useNavigate } from 'react-router';
 
 export default function LoginPage() {
+  const userState = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (userState.nickname !== '') {
+      navigate('/main');
+    }
+
     const code = new URL(window.location.href).searchParams.get('code');
 
     if (code !== null) {
