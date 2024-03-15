@@ -64,17 +64,17 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col items-center">
       <div className="mt-20 mb-10" style={{ width: '40%' }}>
-        <img src="src/assets/images/cloud.png"></img>
+        <img src="src/assets/images/logo.png"></img>
       </div>
 
       <div className="text-center">
         <p className="font-mono">
-          13월에도<br></br> 월급을 받을 수 있다면?
+          13월에도<br></br>월급을 받을 수 있다면?
         </p>
       </div>
 
       <div className="text-center">
-        <p className="font-medium mt-20 mb-3">카카오 계정으로 로그인</p>
+        <p className="text-xs mt-20 mb-3">카카오 계정으로 로그인</p>
         <img
           src="src/components/Login/kakao_login_medium_wide.png"
           onClick={() => clickLoginBtn()}

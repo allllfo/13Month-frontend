@@ -8,6 +8,7 @@ import MainLayout from '~/pages/layout';
 import HousingFundLoan from '../components/HousingFundLoan';
 import DaumPost from '~/components/address';
 import PreviewResult from '~/pages/preview/PreviewResult';
+import PreviewLoading from '~/pages/preview/PreviewLoading';
 
 export const mainRoutes = [
   {
