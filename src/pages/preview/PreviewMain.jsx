@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 const PreviewMain = () => {
   return (
     <div className="bg-white h-screen p-4">
-      <div className="flex flex-col items-center mt-28">
+      <div className="flex flex-col items-center mt-20">
         <div>
           <p className="text-center text-4xl font-bold">연말정산 미리보기</p>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-14">
           {/* Hover scale effect added here */}
           <img
             src={lenseImg}
@@ -20,7 +20,7 @@ const PreviewMain = () => {
             className={style.img3}
           />
         </div>
-        <div className="text-center mt-5">
+        <div className="text-center mt-4">
           <p className="text-xl font-semibold mt-4">
             13월의 강도에서 13일의 월급으로
           </p>
