@@ -7,12 +7,13 @@ import chartImg from "~/assets/images/preview/chart.png";
 import lenseImg from "~/assets/images/preview/lense.png";
 import moneyBagImg from "~/assets/images/preview/moneyBag.png";
 
-export default function TaxAdjustment() {
+export default function Services() {
   const userState = useSelector((state) => state.user);
 
   const firstOfTitle1 = userState.nickname + "님은 13월의 강도일까요,";
   const secondOfTitle1 = "13월의 월급일까요?";
   const subTitle1 = "지금 연말정산 미리보기";
+  const link1 = "/preview/main";
 
   const title2 = "ETF 추천";
   const firstOfSubTitle2 = "나에게 꼭 맞는";
@@ -35,6 +36,7 @@ export default function TaxAdjustment() {
           secondOfTitle={secondOfTitle1}
           firstOfSubTitle={subTitle1}
           imageSrc={lenseImg}
+          link={link1}
         ></Button>
       </div>
 

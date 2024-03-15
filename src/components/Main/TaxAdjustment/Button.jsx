@@ -1,8 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 export default function Button(props) {
+  const navigate = useNavigate();
+
   const firstOfTitle = props.firstOfTitle;
   const secondOfTitle = props.secondOfTitle;
+  const link = props.link;
 
   const firstOfSubTitle = props.firstOfSubTitle;
   const secondOfSubTitle = props.secondOfSubTitle;
@@ -11,8 +15,9 @@ export default function Button(props) {
 
   return (
     <div
-      className="bg-white border rounded-xl p-4 relative"
+      className="bg-white border rounded-xl p-4 relative drop-shadow-lg"
       style={{ width: "100%", height: "100%" }}
+      onClick={() => navigate(link)}
     >
       <p className="text-xl font-bold mb-1">
         {firstOfTitle}
