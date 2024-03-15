@@ -37,7 +37,7 @@ const HousingFundLoan = () => {
                 <div>
                   <div className="mt-3">
                     <div className="max-w-md">
-                      <fieldset className="flex max-w-md flex-row gap-4">
+                      <fieldset className="flex max-w-md flex-row gap-4 items-center justify-center">
                         <div className="flex items-center gap-2">
                           <Radio id="monthly" name="type" value="monthly" />
                           <Label htmlFor="monthly">월세</Label>
@@ -67,13 +67,15 @@ const HousingFundLoan = () => {
                         type="text"
                         value={addressDetail}
                         placeholder="상세주소"
-                        className="mt-2"
+                        className="mt-2 mb-2"
                         onChange={(e) => setAddressDetail(e.target.value)}
                       />
                     </div>
 
-                    {/* Replace Button with Address Component */}
-                    <Address setAddressObj={setAddressObj} />
+                    <Address
+                      className="items-end justify-end"
+                      setAddressObj={setAddressObj}
+                    />
                   </div>
                 </div>
               )}
