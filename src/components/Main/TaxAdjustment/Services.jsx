@@ -10,6 +10,7 @@ export default function TaxAdjustment() {
   const secondOfTitle1 = "13월의 월급일까요?";
   const subTitle1 = "지금 연말정산 미리보기";
   const imageSrc1 = "/src/assets/images/lense.png";
+  const link1 = "/preview/main";
 
   const title2 = "ETF 추천";
   const firstOfSubTitle2 = "나에게 꼭 맞는";
@@ -34,6 +35,7 @@ export default function TaxAdjustment() {
           secondOfTitle={secondOfTitle1}
           firstOfSubTitle={subTitle1}
           imageSrc={imageSrc1}
+          link={link1}
         ></Button>
       </div>
 
