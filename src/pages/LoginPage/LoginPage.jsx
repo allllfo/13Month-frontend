@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setUserId,
   setkakaoToken,
+  setNickname,
+  setProfileImageUrl,
   removeUser,
 } from '../../store/reducers/user';
 import {
@@ -15,7 +17,6 @@ import {
 import { useNavigate } from 'react-router';
 
 export default function LoginPage() {
-  const userState = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -35,13 +36,12 @@ export default function LoginPage() {
           let userId = foundUser._id;
 
           if (foundUser._id === undefined) {
-            const createdUser = await createUser(
-              kakaoProfile.nickname,
-              kakaoProfile.profile_image_url
-            );
+            const createdUser = await createUser(kakaoProfile.nickname);
             userId = createdUser._id;
           }
 
+          dispatch(setNickname(kakaoProfile.nickname));
+          dispatch(setProfileImageUrl(kakaoProfile.profile_image_url));
           dispatch(setUserId(userId));
           navigate('/main');
         })
@@ -57,7 +57,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div class="flex flex-col items-center">
+    <div className="flex flex-col items-center">
       <div className="mt-20 mb-10" style={{ width: '40%' }}>
         <img src="src/assets/images/cloud.png"></img>
       </div>

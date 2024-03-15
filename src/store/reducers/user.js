@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  kakaoToken: '',
   userId: '',
+  kakaoToken: '',
+  nickname: '',
+  profileImageUrl: '',
 };
 
 const userSlice = createSlice({
@@ -17,6 +19,14 @@ const userSlice = createSlice({
       state.kakaoToken = action.payload;
       console.log('setkakaoToken');
     },
+    setNickname(state, action) {
+      state.nickname = action.payload;
+      console.log('setNickname');
+    },
+    setProfileImageUrl(state, action) {
+      state.profileImageUrl = action.payload;
+      console.log('setProfileImageUrl');
+    },
     removeUser(state, action) {
       console.log('Init');
       return initialState;
@@ -24,6 +34,12 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUserId, setkakaoToken, removeUser } = userSlice.actions;
+export const {
+  setUserId,
+  setkakaoToken,
+  setNickname,
+  setProfileImageUrl,
+  removeUser,
+} = userSlice.actions;
 
 export default userSlice.reducer;
