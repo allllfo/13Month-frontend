@@ -19,7 +19,7 @@ import loginImg from "~/assets/images/login/kakao_login_large_wide_2.png";
 import logoImg from "~/assets/images/logo.png";
 
 export default function LoginPage() {
-  const userState = useSelector((state) => state.user);
+  const userState = useSelector((state) => state.user13th);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -65,7 +65,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="mt-20 mb-10" style={{ width: "40%" }}>
+      <div className="mt-20 mb-10" style={{ width: "50%" }}>
         <img src={logoImg}></img>
       </div>
 
@@ -76,7 +76,7 @@ export default function LoginPage() {
       </div>
 
       <img
-        className="h-8 mt-40"
+        className="h-10 mt-40"
         src={loginImg}
         onClick={() => clickLoginBtn()}
       ></img>

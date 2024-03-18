@@ -8,7 +8,7 @@ import lenseImg from "~/assets/images/preview/lense.png";
 import moneyBagImg from "~/assets/images/preview/moneyBag.png";
 
 export default function Services() {
-  const userState = useSelector((state) => state.user);
+  const userState = useSelector((state) => state.user13th);
 
   const firstOfTitle1 = userState.nickname + "님은 13월의 강도일까요,";
   const secondOfTitle1 = "13월의 월급일까요?";
