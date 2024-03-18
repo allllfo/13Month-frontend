@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 export default function Hello() {
-  const userState = useSelector((state) => state.user);
+  const userState = useSelector((state) => state.user13th);
 
   return (
     <div className="flex mt-2">

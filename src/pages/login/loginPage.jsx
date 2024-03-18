@@ -19,7 +19,7 @@ import loginImg from "~/assets/images/login/kakao_login_large_wide_2.png";
 import logoImg from "~/assets/images/logo.png";
 
 export default function LoginPage() {
-  const userState = useSelector((state) => state.user);
+  const userState = useSelector((state) => state.user13th);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
