@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import FindOutPage from "~/pages/products/findout/findOutPage";
+
 import LoginPage from "~/pages/login/loginPage";
 import MainPage from "~/pages/main/mainPage";
 import PreviewMain from "~/pages/preview/previewMainPage";
@@ -23,10 +23,6 @@ export const mainRoutes = [
       {
         path: "/main",
         element: <MainPage />,
-      },
-      {
-        path: "/product/findout",
-        element: <FindOutPage />,
       },
       {
         path: "/preview/main",
