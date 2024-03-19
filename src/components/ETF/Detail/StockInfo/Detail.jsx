@@ -1,11 +1,9 @@
 import React from "react";
 
-export default function DetailInfo(props) {
+export default function Detail(props) {
   const code = props.code;
 
-  // get info with code
-
-  // test data
+  //test data
   const infos = {
     설명: "국내 유가증권시장 및 코스닥 시장에 상장되어 있는 종목 중, 의료기기 소부장 관련 키워드와 종목 유사도를 스코어링 후 상위 종목을 선정하여 산출한 지수",
     "순자산 총액": 305,
@@ -24,9 +22,9 @@ export default function DetailInfo(props) {
     <div className="pt-4">
       <div className="font-thin text-sm">{infos["설명"]}</div>
 
-      <hr className="mt-10 border-black" />
+      <hr className="mt-8 border-black" />
 
-      <div className="flex grid grid-cols-2 mb-20">
+      <div className="flex grid grid-cols-2 mb-16">
         {Object.keys(infos).map((key) => {
           if (key === "설명") {
             return;

@@ -21,7 +21,7 @@ export default function CommonInfo(props) {
   }
 
   return (
-    <div className="ml-2 mt-2">
+    <div className="ml-2 mt-2 mb-8">
       <Risk riskDegree={riskDegree} />
 
       <div className="flex justify-between">

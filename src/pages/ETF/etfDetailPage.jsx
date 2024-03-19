@@ -7,7 +7,7 @@ import CommonInfo from "~/components/ETF/Detail/CommonInfo";
 
 import Chart from "~/components/ETF/Detail/Chart/Chart";
 import DailyPrice from "~/components/ETF/Detail/DailyPrice/DailyPrice";
-import DetailInfo from "~/components/ETF/Detail/DetailInfo/DetailInfo";
+import StockInfo from "~/components/ETF/Detail/StockInfo/StockInfo";
 import Community from "~/components/ETF/Detail/Community/Community";
 
 export default function etfDetailPage(props) {
@@ -21,7 +21,7 @@ export default function etfDetailPage(props) {
   const detailComponents = [
     <Chart code={code} />,
     <DailyPrice code={code} />,
-    <DetailInfo code={code} />,
+    <StockInfo code={code} />,
     <Community code={code} />,
   ];
 
