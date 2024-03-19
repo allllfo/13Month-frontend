@@ -1,6 +1,6 @@
 import React from "react";
 
-import Dangerous from "../Dangerous/Dangerous";
+import Risk from "~/components/ETF/Risk/Risk";
 
 import heart from "~/assets/images/detail/heart.png";
 import heartRed from "~/assets/images/detail/heartRed.png";
@@ -14,6 +14,7 @@ export default function CommonInfo(props) {
   const description = "국내 반도체 후공정 핵심 기업에 투자하는 ETF";
   const dangerous = 3;
   const isLiked = false;
+  const riskDegree = 2;
 
   if (isLiked === true) {
     heartImg = heartRed;
@@ -21,6 +22,8 @@ export default function CommonInfo(props) {
 
   return (
     <div className="ml-2 mt-2">
+      <Risk riskDegree={riskDegree} />
+
       <div className="flex justify-between">
         <div className="flex items-center left-div">
           <p className="text-3xl mr-3 font-bold">{title}</p>
