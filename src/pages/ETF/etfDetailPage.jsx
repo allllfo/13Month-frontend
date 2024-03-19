@@ -1,8 +1,7 @@
-import React from "react";
-import { useLocation } from "react-router";
+import React, { useState } from "react";
 
 import TopBackBar from "~/components/TopBackBar/TopBackBar";
-import DetailTabBar from "~/components/ETF/Detail/detailTabBar";
+import DetailTabBar from "~/components/ETF/Detail/DetailTabBar";
 
 import CommonInfo from "~/components/ETF/Detail/CommonInfo";
 
@@ -12,6 +11,8 @@ import DetailInfo from "~/components/ETF/Detail/DetailInfo/DetailInfo";
 import Community from "~/components/ETF/Detail/Community/Community";
 
 export default function etfDetailPage(props) {
+  const [currentTab, setCurrentTab] = useState(0);
+
   // const code = props.code;
   const code = 47531;
 
@@ -29,7 +30,13 @@ export default function etfDetailPage(props) {
 
       <CommonInfo code={code} />
 
-      <div>etfDetailPage</div>
+      <DetailTabBar
+        detailTabs={detailTabs}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
+      />
+
+      {detailComponents[currentTab]}
     </div>
   );
 }
