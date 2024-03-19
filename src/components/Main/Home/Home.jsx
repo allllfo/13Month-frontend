@@ -6,8 +6,8 @@ import Hello from "./Hello";
 export default function TaxAdjustment() {
   return (
     <div>
-      <Hello></Hello>
-      <Services></Services>
+      <Hello />
+      <Services />
     </div>
   );
 }
