@@ -1,5 +1,13 @@
 import React from "react";
 
-export default function Chart() {
-  return <div>Chart</div>;
+import Graph from "./Graph";
+
+export default function Chart(props) {
+  const code = props.code;
+
+  return (
+    <div className="pt-2">
+      <Graph code={code} />
+    </div>
+  );
 }

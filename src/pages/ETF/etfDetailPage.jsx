@@ -14,14 +14,15 @@ export default function etfDetailPage(props) {
   const [currentTab, setCurrentTab] = useState(0);
 
   // const code = props.code;
+  // test
   const code = 47531;
 
   const detailTabs = ["차트", "일별 시세", "종목 정보", "커뮤니티"];
   const detailComponents = [
-    <Chart />,
-    <DailyPrice />,
-    <DetailInfo />,
-    <Community />,
+    <Chart code={code} />,
+    <DailyPrice code={code} />,
+    <DetailInfo code={code} />,
+    <Community code={code} />,
   ];
 
   return (
