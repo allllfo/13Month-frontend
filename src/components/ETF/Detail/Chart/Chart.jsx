@@ -6,7 +6,7 @@ export default function Chart(props) {
   const code = props.code;
 
   return (
-    <div className="pt-2">
+    <div className="pt-4">
       <Graph code={code} />
     </div>
   );

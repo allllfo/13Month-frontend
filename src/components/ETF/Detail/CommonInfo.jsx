@@ -35,7 +35,7 @@ export default function CommonInfo(props) {
         </div>
       </div>
 
-      <p className="text-gray-900 mt-2">{description}</p>
+      <p className="text-gray-900 mt-2 text-lg">{description}</p>
     </div>
   );
 }
