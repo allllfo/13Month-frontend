@@ -11,6 +11,13 @@ import Community from "~/components/ETF/Detail/Community/Community";
 
 export default function etfDetailPage(props) {
   // const code = props.code;
+  const detailTabs = ["차트", "일별 시세", "종목 정보", "커뮤니티"];
+  const detailComponents = [
+    <Chart />,
+    <DailyPrice />,
+    <DetailInfo />,
+    <Community />,
+  ];
 
   // test
   const code = 47531;
