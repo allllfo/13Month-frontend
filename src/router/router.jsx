@@ -10,6 +10,7 @@ import DaumPost from "~/components/Preview/Address";
 import PreviewResult from "~/pages/preview/previewResultPage";
 import PreviewLoading from "~/pages/preview/previewLoadingPage";
 import PreviewSolutionPage from "~/pages/preview/previewSolutionPage";
+import EtfDetailPage from "~/pages/ETF/etfDetailPage";
 
 export const mainRoutes = [
   {
@@ -47,6 +48,10 @@ export const mainRoutes = [
       {
         path: "/preview/solution",
         element: <PreviewSolutionPage />,
+      },
+      {
+        path: "/etf/detail/:code",
+        element: <EtfDetailPage />,
       },
     ],
   },
