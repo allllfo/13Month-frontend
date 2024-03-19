@@ -2,28 +2,24 @@ import React, { useState } from "react";
 import Header from "~/components/Main/Header/Header";
 import TabBar from "~/components/Main/TabBar/TabBar";
 
-import TaxAdjustment from "~/components/Main/TaxAdjustment/TaxAdjustment";
 import FindOut from "~/components/Main/FindOut/FindOut";
 import Quiz from "~/components/Main/Quiz/Quiz";
+import Home from "~/components/Main/Home/Home";
 import MyPage from "~/components/Main/MyPage/MyPage";
+import EntireMenu from "~/components/Main/EntireMenu/EntireMenu";
 
 export default function MainPage() {
   const [currentTab, setCurrentTab] = useState(0);
 
-  const tabs = [
-    <TaxAdjustment></TaxAdjustment>,
-    <FindOut></FindOut>,
-    <Quiz></Quiz>,
-    <MyPage></MyPage>,
-  ];
+  const tabs = [<FindOut />, <Quiz />, <Home />, <MyPage />, <EntireMenu />];
 
   return (
     <div>
-      <Header></Header>
+      <Header />
 
       {tabs[currentTab]}
 
-      <TabBar currentTab={currentTab} setCurrentTab={setCurrentTab}></TabBar>
+      <TabBar currentTab={currentTab} setCurrentTab={setCurrentTab} />
     </div>
   );
 }

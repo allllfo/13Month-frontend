@@ -24,7 +24,7 @@ export default function Services() {
   const secondOfSubTitle3 = "펀드 찾기!";
 
   return (
-    <div className="mt-3 mb-10 p-6">
+    <div className="mt-6 mb-10 p-6">
       <div className="flex items-center justify-start gap-2 mb-2 ml-1">
         <p className="text-2xl font-bold">돈 버는 서비스</p>
         <img className="h-10" src={coinImg}></img>
