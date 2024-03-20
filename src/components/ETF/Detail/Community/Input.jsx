@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
+import WriterInfo from "./WriterInfo";
+
 export default function Input(props) {
   const code = props.code;
   const userState = useSelector((state) => state.user13th);
@@ -20,10 +22,10 @@ export default function Input(props) {
 
   return (
     <div className="border p-2 rounded-md">
-      <div className="flex items-center justify-start gap-2 mb-2">
-        <img className="h-6 rounded-full" src={userState.profileImageUrl}></img>
-        <p className="text-md font-bold"> {userState.nickname}</p>
-      </div>
+      <WriterInfo
+        nickname={userState.nickname}
+        profileImageUrl={userState.profileImageUrl}
+      />
 
       <textarea
         className="w-full h-16 p-1 mb-2 text-top rounded-md border-gray-200"
