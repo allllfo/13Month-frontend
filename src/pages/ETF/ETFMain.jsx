@@ -2,8 +2,18 @@ import React from "react";
 import { Card, Tabs } from "flowbite-react";
 import ETFDangerFilter from "./ETFDangerFilter";
 import ETFAssetFilter from "./ETFAssetFilter";
-import ETFChart from "./ETFChart";
+import MyResponsiveLine from "./MyResponsiveLine";
+
 const ETFMain = () => {
+  const data = [
+    {
+      id: "series1", // 시리즈 ID
+      data: [
+        { x: "plane", y: 194 },
+        { x: "helicopter", y: 290 },
+      ],
+    },
+  ];
   return (
     <div className="bg-blue-100">
       <div className="bg-white mt-28 text-3xl font-extrabold">
@@ -14,12 +24,12 @@ const ETFMain = () => {
         <p className="font-bold mr-1 ml-2">신한금융지주</p> 포함 ETF
       </div>
       <Card className="max-w-sm mb-4">
-        {" "}
-        {/* Adjust the margin as needed */}
         <h5 className="font-bold tracking-tight text-gray-900 dark:text-white">
           SOL 미국S&P500
+          <div className="h-96">
+            <MyResponsiveLine data={data} />
+          </div>
         </h5>
-        <ETFChart />
       </Card>
 
       <div className="bg-white">
@@ -42,9 +52,11 @@ const ETFMain = () => {
           </Tabs.Item>
           <Tabs.Item title="거래량">
             <div className="mb-4">
+              <h1 className="text-center font-bold m  ">유형</h1>
               <ETFAssetFilter />
             </div>
             <div className="mb-4">
+              <h1 className="text-center font-bold">위험도</h1>
               <ETFDangerFilter />
             </div>
             <span className="font-medium text-gray-800 dark:text-white">
@@ -54,9 +66,11 @@ const ETFMain = () => {
           </Tabs.Item>
           <Tabs.Item title="시가총액">
             <div className="mb-4">
+              <h1 className="text-center font-bold m  ">유형</h1>
               <ETFAssetFilter />
             </div>
             <div className="mb-4">
+              <h1 className="text-center font-bold">위험도</h1>
               <ETFDangerFilter />
             </div>
             <span className="font-medium text-gray-800 dark:text-white">
@@ -66,9 +80,11 @@ const ETFMain = () => {
           </Tabs.Item>
           <Tabs.Item title="관심">
             <div className="mb-4">
+              <h1 className="text-center font-bold m  ">유형</h1>
               <ETFAssetFilter />
             </div>
             <div className="mb-4">
+              <h1 className="text-center font-bold">위험도</h1>
               <ETFDangerFilter />
             </div>
             <span className="font-medium text-gray-800 dark:text-white">
@@ -78,9 +94,11 @@ const ETFMain = () => {
           </Tabs.Item>
           <Tabs.Item title="최근">
             <div className="mb-4">
+              <h1 className="text-center font-bold m  ">유형</h1>
               <ETFAssetFilter />
             </div>
             <div className="mb-4">
+              <h1 className="text-center font-bold">위험도</h1>
               <ETFDangerFilter />
             </div>
             <span className="font-medium text-gray-800 dark:text-white">
