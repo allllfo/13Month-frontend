@@ -15,7 +15,7 @@
     "@heroicons/react": "^2.1.1",
     "@nivo/line": "^0.85.1",
     "@reduxjs/toolkit": "^2.2.1",
-    "apexcharts": "^3.47.0",
+    "apexcharts": "^3.48.0",
     "axios": "^1.6.7",
     "flowbite-react": "^0.7.3",
     "patch-package": "^8.0.0",

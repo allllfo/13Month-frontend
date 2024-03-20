@@ -3,6 +3,7 @@ import { Card, Tabs } from "flowbite-react";
 import ETFDangerFilter from "./ETFDangerFilter";
 import ETFAssetFilter from "./ETFAssetFilter";
 import MyResponsiveLine from "./MyResponsiveLine";
+import Chart from "./Chart";
 
 const ETFMain = () => {
   const data = [
@@ -16,20 +17,21 @@ const ETFMain = () => {
   ];
   return (
     <div className="bg-blue-100">
-      <div className="bg-white mt-28 text-3xl font-extrabold">
+      <div className="bg-white mt-8  mb-2 text-3xl font-extrabold">
         <p className="ml-1">인기 종목 포함 ETF</p>
       </div>
 
-      <div className="flex flex-row mt-3 font-medium text-lg">
+      <div className="flex flex-row mt-3 mb-3 font-medium text-lg">
         <p className="font-bold mr-1 ml-2">신한금융지주</p> 포함 ETF
       </div>
-      <Card className="max-w-sm mb-4">
-        <h5 className="font-bold tracking-tight text-gray-900 dark:text-white">
+      <Card className="max-w-sm m-4">
+        <h5 className="font-bold text-gray-900 dark:text-white">
           SOL 미국S&P500
-          <div className="h-96">
-            <MyResponsiveLine data={data} />
-          </div>
         </h5>
+        <div className="h-96">
+          {/* <MyResponsiveLine data={data} /> */}
+          <Chart />
+        </div>
       </Card>
 
       <div className="bg-white">
