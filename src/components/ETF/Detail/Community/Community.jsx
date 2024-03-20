@@ -92,7 +92,7 @@ export default function Community(props) {
       <Input code={code} />
 
       {writings.map((ele, idx) => {
-        return <Writing key={idx} writing={ele} />;
+        return <Writing key={idx} writing={ele} code={code} />;
       })}
     </div>
   );

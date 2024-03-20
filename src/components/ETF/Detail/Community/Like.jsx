@@ -5,6 +5,7 @@ import redLikeIcon from "~/assets/images/community/redLikeIcon.png";
 import commentIcon from "~/assets/images/community/commentIcon.png";
 
 export default function Like(props) {
+  const writingId = props.writingId;
   const totalLike = props.totalLike;
   const setTotalLike = props.setTotalLike;
   const isLiked = props.isLiked;

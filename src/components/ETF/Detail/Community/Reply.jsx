@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import WriterInfo from "./WriterInfo";
 import Like from "./Like";
@@ -17,7 +18,7 @@ export default function Reply(props) {
   }, []);
 
   return (
-    <div className="mt-3 border p-2 rounded-md">
+    <div className="mt-3 border-t p-2 rounded-md">
       <WriterInfo
         nickname={writing.nickname}
         profileImageUrl={writing.profileImageUrl}

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import WriterInfo from "./WriterInfo";
 import Like from "./Like";
 import Comment from "./Comment";
+import Reply from "./Reply";
 
 export default function Writing(props) {
   const writing = props.writing;
@@ -38,6 +39,7 @@ export default function Writing(props) {
             setTotalLike={setTotalLike}
             isLiked={isLiked}
             setIsLiked={setIsLiked}
+            writingId={writing._id}
           />
           <Comment
             totalComment={writing.replyIds.length}
@@ -47,7 +49,15 @@ export default function Writing(props) {
         </div>
       </div>
 
-      {openComment ? writing.replyIds : <></>}
+      <div className="ml-10">
+        {openComment ? (
+          writing.replyIds.map((ele, idx) => {
+            return <Reply key={ele} writing={ele} />;
+          })
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 }
