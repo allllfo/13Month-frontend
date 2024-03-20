@@ -5,7 +5,6 @@ import moment from "moment";
 import WriterInfo from "./WriterInfo";
 import Like from "./Like";
 import Comment from "./Comment";
-import Reply from "./Reply";
 import Input from "./Input";
 
 export default function Writing(props) {
