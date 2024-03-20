@@ -1,24 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import Risk from "~/components/ETF/Risk/Risk";
 
-import heart from "~/assets/images/detail/heart.png";
-import heartRed from "~/assets/images/detail/heartRed.png";
+import blankLikeIcon from "~/assets/images/detail/blankLikeIcon.png";
+import redLikeIcon from "~/assets/images/detail/redLikeIcon.png";
 
 export default function CommonInfo(props) {
+  const userState = useSelector((state) => state.user13th);
   const code = props.code;
-  let heartImg = heart;
+
+  const [isLiked, setIsLiked] = useState(false);
+  let heartImg = blankLikeIcon;
+  if (isLiked) {
+    heartImg = redLikeIcon;
+  }
 
   // get info
   const title = "SOL 반도체후공정";
   const description = "국내 반도체 후공정 핵심 기업에 투자하는 ETF";
-  const dangerous = 3;
-  const isLiked = false;
-  const riskDegree = 2;
+  const riskDegree = 1;
 
-  if (isLiked === true) {
-    heartImg = heartRed;
-  }
+  useEffect(() => {
+    // 리덕스 userID 비교해서 좋아요 누른 ETF인지 확인, set
+  });
+
+  const clickEtfLike = () => {
+    console.log("click");
+    if (isLiked) {
+      setIsLiked(false);
+      // user 좋아요 ETF 목록에 저장
+      return;
+    }
+    setIsLiked(true);
+    // user 좋아요 ETF 목록에서 제외
+  };
 
   return (
     <div className="ml-2 mt-2 mb-8">
@@ -31,7 +47,13 @@ export default function CommonInfo(props) {
         </div>
 
         <div className="right-div">
-          <img src={heartImg} className="h-8" />
+          <img
+            src={heartImg}
+            className="h-8"
+            onClick={() => {
+              clickEtfLike();
+            }}
+          />
         </div>
       </div>
 

@@ -6,6 +6,10 @@ import Writing from "./Writing";
 export default function Community(props) {
   const code = props.code;
 
+  //const [writings, setWritings] = useState([]);
+  // useEffect로 한번 writing 불러오기.
+  // 댓글이나 대댓글 등록까지 props로 setWritings 전해주고, 등록후 다시 데이터 불러와서 setWriting해주면 댓글 최신화 될듯!
+
   // sample
   const writings = [
     {

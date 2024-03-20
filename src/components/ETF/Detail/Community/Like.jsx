@@ -1,8 +1,7 @@
 import React from "react";
 
-import blankLikeIcon from "~/assets/images/community/blankLikeIcon.png";
-import redLikeIcon from "~/assets/images/community/redLikeIcon.png";
-import commentIcon from "~/assets/images/community/commentIcon.png";
+import blankLikeIcon from "~/assets/images/detail/blankLikeIcon.png";
+import redLikeIcon from "~/assets/images/detail/redLikeIcon.png";
 
 export default function Like(props) {
   const writingId = props.writingId;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import commentIcon from "~/assets/images/community/commentIcon.png";
+import commentIcon from "~/assets/images/detail/commentIcon.png";
 
 export default function Comment(props) {
   const openComment = props.openComment;
