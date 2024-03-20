@@ -10,22 +10,30 @@ export default function Community(props) {
 
   const [writings, setWritings] = useState([]);
 
-  useEffect(() => {
+  const getAndSetComment = () => {
     getComment(code).then((resp) => {
       setWritings(resp);
-      console.log("resp: ", resp);
     });
+  };
+
+  useEffect(() => {
+    getAndSetComment();
   }, []);
 
   return (
-    <div className="pt-4 mb-20">
+    <div className="pt-2 mb-20 m-2">
       <p className="text-md m-1">
         <span className="font-bold">{writings.length}</span>개의 댓글
       </p>
-      <Input code={code} depth={0} />
+      <Input code={code} depth={0} getAndSetComment={getAndSetComment} />
 
       {writings.map((ele, idx) => (
-        <Writing key={idx} writing={ele} code={code} />
+        <Writing
+          key={idx}
+          writing={ele}
+          code={code}
+          getAndSetComment={getAndSetComment}
+        />
       ))}
     </div>
   );

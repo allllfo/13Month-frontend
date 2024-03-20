@@ -11,10 +11,32 @@ export const getComment = async (code) => {
   }
 };
 
-export const publishComment = (code) => {};
+export const publishComment = async (body) => {
+  try {
+    const publishCommentUrl = "/api/comment";
+    const resp = await axios.post(publishCommentUrl, body);
 
-export const publishReply = (code, commentId) => {};
+    return resp.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-export const likeComment = () => {};
+export const pushReplyIds = async (commentId, replyId) => {
+  try {
+    const pushReplyIdsUrl = "/api/comment/reply";
+    const body = {
+      commentId: commentId,
+      replyId: replyId,
+    };
+    const resp = await axios.put(pushReplyIdsUrl, body);
 
-export const dislikeComment = () => {};
+    return resp.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const likeComment = async () => {};
+
+export const dislikeComment = async () => {};

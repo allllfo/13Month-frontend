@@ -3,14 +3,19 @@ import { useSelector } from "react-redux";
 
 import WriterInfo from "./WriterInfo";
 
+import { publishComment, pushReplyIds } from "~/lib/apis/comment";
+
 export default function Input(props) {
   const code = props.code;
   const depth = props.depth;
+  const getAndSetComment = props.getAndSetComment;
+  const commentId = props.commentId;
+
   const userState = useSelector((state) => state.user13th);
 
   const [content, setContent] = useState("");
 
-  const clickPublishBtn = () => {
+  const clickPublishBtn = async () => {
     const newWriting = {
       code: code,
       depth: depth,
@@ -19,9 +24,14 @@ export default function Input(props) {
       content: content,
     };
 
-    console.log("click: ", newWriting);
+    const resp = await publishComment(newWriting);
 
-    // writing 등록 API 연결
+    if (depth === 1) {
+      pushReplyIds(commentId, resp._id);
+    }
+
+    setContent("");
+    getAndSetComment();
   };
 
   return (
@@ -35,6 +45,12 @@ export default function Input(props) {
         className="w-full h-16 p-1 mb-2 text-top rounded-md border-gray-200"
         onChange={(e) => {
           setContent(e.target.value);
+        }}
+        value={content}
+        onKeyDown={(e) => {
+          if (event.key === "Enter") {
+            clickPublishBtn();
+          }
         }}
       />
 
