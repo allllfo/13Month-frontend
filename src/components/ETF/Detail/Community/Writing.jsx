@@ -13,6 +13,7 @@ export default function Writing(props) {
   const writing = props.writing;
   const userState = useSelector((state) => state.user13th);
   const getAndSetComment = props.getAndSetComment;
+  const depth = props.depth;
 
   const [isLiked, setIsLiked] = useState(false);
   const [totalLike, setTotalLike] = useState(writing.likeIds.length);
@@ -25,8 +26,16 @@ export default function Writing(props) {
     }
   }, []);
 
+  const borderClass = "mt-3 border p-2 rounded-md";
+  const topBorderClass = "mt-3 border-t p-2 rounded-md";
+
+  let currentClass = borderClass;
+  if (depth > 0) {
+    currentClass = topBorderClass;
+  }
+
   return (
-    <div className="mt-3 border p-2 rounded-md">
+    <div className={currentClass}>
       <WriterInfo
         nickname={writing.nickname}
         profileImageUrl={writing.profileImageUrl}
@@ -47,11 +56,16 @@ export default function Writing(props) {
             setIsLiked={setIsLiked}
             commentId={writing._id}
           />
-          <Comment
-            totalComment={writing.replyIds.length}
-            setOpenComment={setOpenComment}
-            openComment={openComment}
-          />
+
+          {depth === 0 ? (
+            <Comment
+              totalComment={writing.replyIds.length}
+              setOpenComment={setOpenComment}
+              openComment={openComment}
+            />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
 
@@ -59,7 +73,7 @@ export default function Writing(props) {
         {openComment ? (
           <div>
             {writing.replyIds.map((ele, idx) => {
-              return <Reply key={idx} writing={ele} />;
+              return <Writing key={idx} writing={ele} depth={1} />;
             })}
 
             <Input
