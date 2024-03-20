@@ -4,7 +4,7 @@ import { removeUser } from "~/store/reducers/user";
 import { useNavigate } from "react-router";
 
 export default function MyPage() {
-  const userState = useSelector((state) => state.user);
+  const userState = useSelector((state) => state.user13th);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
