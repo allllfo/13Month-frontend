@@ -1,11 +1,17 @@
 import React from "react";
 
-import commentIcon from "~/assets/images/detail/commentIcon.png";
+import blankcommentIcon from "~/assets/images/detail/blankCommentIcon.png";
+import graycommentIcon from "~/assets/images/detail/grayCommentIcon.png";
 
 export default function Comment(props) {
   const openComment = props.openComment;
   const setOpenComment = props.setOpenComment;
   const totalComment = props.totalComment;
+
+  let icon = blankcommentIcon;
+  if (openComment) {
+    icon = graycommentIcon;
+  }
 
   const clickCommentBtn = () => {
     if (openComment) {
@@ -17,11 +23,7 @@ export default function Comment(props) {
 
   return (
     <div className="flex items-center gap-1">
-      <img
-        src={commentIcon}
-        className="h-8"
-        onClick={() => clickCommentBtn()}
-      />
+      <img src={icon} className="h-8" onClick={() => clickCommentBtn()} />
       <p>{totalComment}</p>
     </div>
   );
