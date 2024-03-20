@@ -6,8 +6,6 @@ import Writing from "./Writing";
 export default function Community(props) {
   const code = props.code;
 
-  const [isWriting, setIsWriting] = useState(false);
-
   // sample
   const writings = [
     {
@@ -32,6 +30,9 @@ export default function Community(props) {
 
   return (
     <div className="pt-4">
+      <p className="text-md m-1">
+        <span className="font-bold">{writings.length}</span>개의 댓글
+      </p>
       <Input code={code} />
     </div>
   );
