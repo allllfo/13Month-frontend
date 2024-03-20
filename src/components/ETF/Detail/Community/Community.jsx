@@ -89,7 +89,7 @@ export default function Community(props) {
       <p className="text-md m-1">
         <span className="font-bold">{writings.length}</span>개의 댓글
       </p>
-      <Input code={code} />
+      <Input code={code} depth={0} />
 
       {writings.map((ele, idx) => {
         return <Writing key={idx} writing={ele} code={code} />;

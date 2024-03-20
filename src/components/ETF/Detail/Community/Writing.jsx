@@ -5,8 +5,10 @@ import WriterInfo from "./WriterInfo";
 import Like from "./Like";
 import Comment from "./Comment";
 import Reply from "./Reply";
+import Input from "./Input";
 
 export default function Writing(props) {
+  const code = props.code;
   const writing = props.writing;
   const userState = useSelector((state) => state.user13th);
 
@@ -51,9 +53,13 @@ export default function Writing(props) {
 
       <div className="ml-10">
         {openComment ? (
-          writing.replyIds.map((ele, idx) => {
-            return <Reply key={ele} writing={ele} />;
-          })
+          <div>
+            {writing.replyIds.map((ele, idx) => {
+              return <Reply key={ele} writing={ele} />;
+            })}
+
+            <Input code={code} depth={1} />
+          </div>
         ) : (
           <></>
         )}

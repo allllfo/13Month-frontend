@@ -5,6 +5,7 @@ import WriterInfo from "./WriterInfo";
 
 export default function Input(props) {
   const code = props.code;
+  const depth = props.depth;
   const userState = useSelector((state) => state.user13th);
 
   const [content, setContent] = useState("");
@@ -12,6 +13,7 @@ export default function Input(props) {
   const clickPublishBtn = () => {
     const newWriting = {
       code: code,
+      depth: depth,
       nickname: userState.nickname,
       profileImageUrl: userState.profileImageUrl,
       content: content,
@@ -23,7 +25,7 @@ export default function Input(props) {
   };
 
   return (
-    <div className="border p-2 rounded-md">
+    <div className="p-2 rounded-md border ">
       <WriterInfo
         nickname={userState.nickname}
         profileImageUrl={userState.profileImageUrl}
