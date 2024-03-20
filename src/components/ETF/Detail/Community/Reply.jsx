@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import moment from "moment";
 
 import WriterInfo from "./WriterInfo";
 import Like from "./Like";
@@ -27,7 +28,9 @@ export default function Reply(props) {
       <p className="ml-12 mb-4">{writing.content}</p>
 
       <div className="flex justify-between">
-        <p className="ml-12 text-sm">{writing.createdDate}</p>
+        <p className="ml-12 text-sm">
+          {moment(writing.createdDate).format("YY.MM.DD, hh:mm a")}
+        </p>
 
         <div className="flex gap-4 h-8">
           <Like
