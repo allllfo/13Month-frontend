@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 
 import WriterInfo from "./WriterInfo";
 import Like from "./Like";
-import Comment from "./Comment";
 
-export default function Writing(props) {
+export default function Reply(props) {
   const writing = props.writing;
   const userState = useSelector((state) => state.user13th);
 
   const [isLiked, setIsLiked] = useState(false);
   const [totalLike, setTotalLike] = useState(writing.likeIds.length);
-
-  const [openComment, setOpenComment] = useState(false);
 
   useEffect(() => {
     if (writing.likeIds.includes(userState.userId)) {
@@ -39,15 +35,8 @@ export default function Writing(props) {
             isLiked={isLiked}
             setIsLiked={setIsLiked}
           />
-          <Comment
-            totalComment={writing.replyIds.length}
-            setOpenComment={setOpenComment}
-            openComment={openComment}
-          />
         </div>
       </div>
-
-      {openComment ? writing.replyIds : <></>}
     </div>
   );
 }

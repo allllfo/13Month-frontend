@@ -18,6 +18,8 @@ export default function Input(props) {
     };
 
     console.log("click: ", newWriting);
+
+    // writing 등록 API 연결
   };
 
   return (
