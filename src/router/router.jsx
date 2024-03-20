@@ -1,6 +1,5 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-
 import LoginPage from "~/pages/login/loginPage";
 import MainPage from "~/pages/main/mainPage";
 import PreviewMain from "~/pages/preview/previewMainPage";
@@ -10,6 +9,7 @@ import DaumPost from "~/components/Preview/Address";
 import PreviewResult from "~/pages/preview/previewResultPage";
 import PreviewLoading from "~/pages/preview/previewLoadingPage";
 import PreviewSolutionPage from "~/pages/preview/previewSolutionPage";
+import ETFMain from "~/pages/ETF/ETFMain";
 import EtfDetailPage from "~/pages/ETF/etfDetailPage";
 
 export const mainRoutes = [
@@ -48,6 +48,10 @@ export const mainRoutes = [
       {
         path: "/preview/solution",
         element: <PreviewSolutionPage />,
+      },
+      {
+        path: "/etf/main",
+        element: <ETFMain />,
       },
       {
         path: "/etf/detail/:code",
