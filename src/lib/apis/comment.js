@@ -37,6 +37,32 @@ export const pushReplyIds = async (commentId, replyId) => {
   }
 };
 
-export const likeComment = async () => {};
+export const likeComment = async (commentId, userId) => {
+  try {
+    const likeCommentUrl = "/api/comment/like";
+    const body = {
+      commentId: commentId,
+      userId: userId,
+    };
+    const resp = await axios.put(likeCommentUrl, body);
 
-export const dislikeComment = async () => {};
+    return resp.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const dislikeComment = async (commentId, userId) => {
+  try {
+    const dislikeCommentUrl = "/api/comment/dislike";
+    const body = {
+      commentId: commentId,
+      userId: userId,
+    };
+    const resp = await axios.put(dislikeCommentUrl, body);
+
+    return resp.data;
+  } catch (err) {
+    console.log(err);
+  }
+};

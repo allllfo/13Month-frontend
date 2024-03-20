@@ -32,6 +32,7 @@ export default function Community(props) {
           key={idx}
           writing={ele}
           code={code}
+          depth={0}
           getAndSetComment={getAndSetComment}
         />
       ))}
