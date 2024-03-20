@@ -15,7 +15,6 @@ export default function CommonInfo(props) {
   if (isLiked) {
     heartImg = redLikeIcon;
   }
-
   // get info
   const title = "SOL 반도체후공정";
   const description = "국내 반도체 후공정 핵심 기업에 투자하는 ETF";
