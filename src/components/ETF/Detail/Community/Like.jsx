@@ -1,14 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import blankLikeIcon from "~/assets/images/detail/blankLikeIcon.png";
 import redLikeIcon from "~/assets/images/detail/redLikeIcon.png";
 
+import { likeComment, dislikeComment } from "~/lib/apis/comment";
+
 export default function Like(props) {
-  const writingId = props.writingId;
+  const commentId = props.commentId;
   const totalLike = props.totalLike;
   const setTotalLike = props.setTotalLike;
   const isLiked = props.isLiked;
   const setIsLiked = props.setIsLiked;
+
+  const userState = useSelector((state) => state.user13th);
 
   let icon = blankLikeIcon;
   if (isLiked) {
@@ -21,6 +26,7 @@ export default function Like(props) {
       setTotalLike(totalLike - 1);
 
       // like - 1 요청
+      dislikeComment(commentId, userState.userId);
 
       return;
     }
@@ -28,6 +34,7 @@ export default function Like(props) {
     setTotalLike(totalLike + 1);
 
     // like + 1 요청
+    likeComment(commentId, userState.userId);
   };
 
   return (

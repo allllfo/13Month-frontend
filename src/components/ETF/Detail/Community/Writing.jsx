@@ -45,7 +45,7 @@ export default function Writing(props) {
             setTotalLike={setTotalLike}
             isLiked={isLiked}
             setIsLiked={setIsLiked}
-            writingId={writing._id}
+            commentId={writing._id}
           />
           <Comment
             totalComment={writing.replyIds.length}
