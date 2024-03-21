@@ -11,9 +11,11 @@ import React from "react";
 const MyResponsiveLine = (props) => {
   return (
     <ResponsiveLine
+      // eslint-disable-next-line react/prop-types
       data={props.data}
-      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+      margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
       xScale={{ type: "point" }}
+      xFormat=" >-"
       yScale={{
         type: "linear",
         min: "auto",
@@ -21,9 +23,25 @@ const MyResponsiveLine = (props) => {
         stacked: true,
         reverse: false,
       }}
+      yFormat=" >-.2f"
+      curve="cardinal"
+      axisTop={null}
+      axisRight={null}
+      axisBottom={null}
+      axisLeft={null}
+      enableGridX={false}
+      enableGridY={false}
       colors={{ scheme: "set1" }}
+      lineWidth={4}
       enablePoints={false}
+      pointSize={10}
+      pointColor={{ from: "color", modifiers: [] }}
+      pointBorderWidth={2}
+      pointBorderColor={{ from: "serieColor", modifiers: [] }}
+      pointLabelYOffset={-12}
+      enableTouchCrosshair={true}
       useMesh={true}
+      legends={[]}
     />
   );
 };
