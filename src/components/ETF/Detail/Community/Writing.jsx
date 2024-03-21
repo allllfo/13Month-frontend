@@ -7,6 +7,8 @@ import Like from "./Like";
 import Comment from "./Comment";
 import Input from "./Input";
 
+import { deleteComment } from "~/lib/apis/comment";
+
 export default function Writing(props) {
   const code = props.code;
   const writing = props.writing;
@@ -18,7 +20,6 @@ export default function Writing(props) {
   const [totalLike, setTotalLike] = useState(writing.likeIds.length);
 
   const [openComment, setOpenComment] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (writing.likeIds.includes(userState.userId)) {
@@ -34,13 +35,33 @@ export default function Writing(props) {
     currentClass = topBorderClass;
   }
 
+  const clickDeleteBtn = () => {
+    console.log("click");
+    deleteComment(writing._id);
+    getAndSetComment();
+  };
+
   return (
     <div className={currentClass}>
-      <WriterInfo
-        nickname={writing.nickname}
-        profileImageUrl={writing.profileImageUrl}
-        isEditing={isEditing}
-      />
+      <div className="flex justify-between">
+        <WriterInfo
+          nickname={writing.nickname}
+          profileImageUrl={writing.profileImageUrl}
+        />
+
+        {writing.nickname === userState.nickname ? (
+          <p
+            className="text-sm"
+            onClick={() => {
+              clickDeleteBtn();
+            }}
+          >
+            삭제
+          </p>
+        ) : (
+          <></>
+        )}
+      </div>
 
       <p className="ml-12 mb-4">{writing.content}</p>
 

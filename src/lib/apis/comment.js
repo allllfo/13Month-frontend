@@ -22,31 +22,13 @@ export const publishComment = async (body) => {
   }
 };
 
-export const updateComment = async (commentId, content) => {
-  try {
-    const updateCommentUrl = "/api/comment";
-    const body = {
-      commentId: commentId,
-      content: content,
-    };
-
-    const resp = await axios.put(updateCommentUrl, body);
-
-    return resp.data;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 export const deleteComment = async (commentId) => {
   try {
-    const deleteCommentUrl = "/api/comment";
-    const body = {
-      commentId: commentId,
-    };
+    const deleteCommentUrl = "/api/comment/" + commentId;
 
-    const resp = await axios.delete(deleteCommentUrl, body);
+    const resp = await axios.delete(deleteCommentUrl);
 
+    console.log("delete: ", deleteCommentUrl);
     return resp.data;
   } catch (err) {
     console.log(err);

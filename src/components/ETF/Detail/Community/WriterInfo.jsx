@@ -12,16 +12,6 @@ export default function WriterInfo(props) {
         <img className="h-10 w-10 rounded-full" src={profileImageUrl}></img>
         <p className="text-md font-bold"> {nickname}</p>
       </div>
-
-      {userState.nickname === nickname ? (
-        <div className="flex text-sm mr-2">
-          <p>수정</p>
-          <p> / </p>
-          <p>삭제</p>
-        </div>
-      ) : (
-        <></>
-      )}
     </div>
   );
 }
