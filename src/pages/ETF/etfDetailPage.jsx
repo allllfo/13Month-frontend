@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import TopBackBar from "~/components/TopBackBar/TopBackBar";
-import DetailTabBar from "~/components/ETF/Detail/DetailTabBar";
+import DetailTabBar from "~/components/ETF/Detail/detailTabBar";
 
 import CommonInfo from "~/components/ETF/Detail/CommonInfo";
 
