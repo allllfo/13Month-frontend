@@ -5,10 +5,11 @@ import Prossesion from "./Prossesion";
 
 export default function StockInfo(props) {
   const code = props.code;
+  const stockInfo = props.stockInfo;
 
   return (
     <div className="mb-32">
-      <Detail code={code} />
+      <Detail code={code} stockInfo={stockInfo} />
 
       <Prossesion code={code} />
     </div>

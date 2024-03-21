@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import TopBackBar from "~/components/TopBackBar/TopBackBar";
 import DetailTabBar from "~/components/ETF/Detail/DetailTabBar";
@@ -11,8 +11,11 @@ import StockInfo from "~/components/ETF/Detail/StockInfo/StockInfo";
 import Community from "~/components/ETF/Detail/Community/Community";
 import { useParams } from "react-router";
 
+import { getEtfInfo } from "~/lib/apis/etfDetail";
+
 export default function etfDetailPage() {
   const [currentTab, setCurrentTab] = useState(0);
+  const [stockInfo, setStockInfo] = useState();
 
   const { code } = useParams();
 
@@ -20,15 +23,32 @@ export default function etfDetailPage() {
   const detailComponents = [
     <Chart code={code} />,
     <DailyPrice code={code} />,
-    <StockInfo code={code} />,
+    <StockInfo code={code} stockInfo={stockInfo} />,
     <Community code={code} />,
   ];
+
+  useEffect(() => {
+    getEtfInfo(code).then((resp) => {
+      setStockInfo(resp[0].data);
+      console.log("resp: ", resp[0].data);
+    });
+
+    // 리덕스 userID 비교해서 좋아요 누른 ETF인지 확인, set
+  }, []);
 
   return (
     <div>
       <TopBackBar />
 
-      <CommonInfo code={code} />
+      {stockInfo ? (
+        <CommonInfo
+          code={code}
+          title={stockInfo.basicInfo.종목이름.split(" (")[0]}
+          riskDegree={stockInfo.dangerDegree}
+        />
+      ) : (
+        <></>
+      )}
 
       <DetailTabBar
         detailTabs={detailTabs}
@@ -36,7 +56,7 @@ export default function etfDetailPage() {
         setCurrentTab={setCurrentTab}
       />
 
-      {detailComponents[currentTab]}
+      {stockInfo ? detailComponents[currentTab] : <></>}
     </div>
   );
 }
