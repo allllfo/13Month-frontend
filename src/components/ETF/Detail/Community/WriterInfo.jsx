@@ -1,13 +1,27 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function WriterInfo(props) {
   const profileImageUrl = props.profileImageUrl;
   const nickname = props.nickname;
+  const userState = useSelector((state) => state.user13th);
 
   return (
-    <div className="flex items-center justify-start gap-2 mb-2">
-      <img className="h-10 w-10 rounded-full" src={profileImageUrl}></img>
-      <p className="text-md font-bold"> {nickname}</p>
+    <div className="flex justify-between mb-2">
+      <div className="flex items-center  gap-2 ">
+        <img className="h-10 w-10 rounded-full" src={profileImageUrl}></img>
+        <p className="text-md font-bold"> {nickname}</p>
+      </div>
+
+      {userState.nickname === nickname ? (
+        <div className="flex text-sm mr-2">
+          <p>수정</p>
+          <p> / </p>
+          <p>삭제</p>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

@@ -10,14 +10,15 @@ import Input from "./Input";
 export default function Writing(props) {
   const code = props.code;
   const writing = props.writing;
-  const userState = useSelector((state) => state.user13th);
   const getAndSetComment = props.getAndSetComment;
   const depth = props.depth;
+  const userState = useSelector((state) => state.user13th);
 
   const [isLiked, setIsLiked] = useState(false);
   const [totalLike, setTotalLike] = useState(writing.likeIds.length);
 
   const [openComment, setOpenComment] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (writing.likeIds.includes(userState.userId)) {
@@ -38,6 +39,7 @@ export default function Writing(props) {
       <WriterInfo
         nickname={writing.nickname}
         profileImageUrl={writing.profileImageUrl}
+        isEditing={isEditing}
       />
 
       <p className="ml-12 mb-4">{writing.content}</p>

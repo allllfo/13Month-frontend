@@ -25,7 +25,6 @@ export default function Like(props) {
       setIsLiked(false);
       setTotalLike(totalLike - 1);
 
-      // like - 1 요청
       dislikeComment(commentId, userState.userId);
 
       return;

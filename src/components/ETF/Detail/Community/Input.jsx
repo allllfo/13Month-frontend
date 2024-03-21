@@ -48,14 +48,16 @@ export default function Input(props) {
         }}
         value={content}
         onKeyDown={(e) => {
-          if (event.key === "Enter") {
-            clickPublishBtn();
+          if (e.key === "Enter") {
+            e.preventDefault(); // Enter 키 기본 동작 방지
+            document.getElementById("publishBtn").click();
           }
         }}
       />
 
       <div className="flex justify-end border-t">
         <button
+          id="publishBtn"
           className="bg-blue-500 text-white text-sm w-20 h-8 rounded-md font-semibold mt-2"
           onClick={() => {
             clickPublishBtn();
