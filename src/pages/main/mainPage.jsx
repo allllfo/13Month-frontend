@@ -11,11 +11,17 @@ import EntireMenu from "~/components/Main/EntireMenu/EntireMenu";
 export default function MainPage() {
   const [currentTab, setCurrentTab] = useState(2);
 
-  const tabs = [<FindOut />, <Quiz />, <Home />, <MyPage />, <EntireMenu />];
+  const tabs = [
+    <FindOut />,
+    <Quiz />,
+    <Home setCurrentTab={setCurrentTab} />,
+    <MyPage />,
+    <EntireMenu />,
+  ];
 
   return (
     <div>
-      <Header />
+      <Header setCurrentTab={setCurrentTab} />
 
       {tabs[currentTab]}
 

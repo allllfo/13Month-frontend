@@ -22,8 +22,12 @@ export default function Comment(props) {
   };
 
   return (
-    <div className="flex items-center gap-1">
-      <img src={icon} className="h-8" onClick={() => clickCommentBtn()} />
+    <div
+      className="flex items-center gap-1"
+      onClick={() => clickCommentBtn()}
+      style={{ cursor: "pointer" }}
+    >
+      <img src={icon} className="h-8" />
       <p>{totalComment}</p>
     </div>
   );

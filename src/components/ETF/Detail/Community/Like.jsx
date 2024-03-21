@@ -37,8 +37,12 @@ export default function Like(props) {
   };
 
   return (
-    <div className="flex gap-1 items-center">
-      <img src={icon} className="h-8" onClick={() => clickLikeBtn()} />
+    <div
+      className="flex gap-1 items-center"
+      style={{ cursor: "pointer" }}
+      onClick={() => clickLikeBtn()}
+    >
+      <img src={icon} className="h-8" />
       <p>{totalLike}</p>
     </div>
   );

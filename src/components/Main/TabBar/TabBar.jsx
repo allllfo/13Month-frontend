@@ -31,6 +31,7 @@ export default function TabBar(props) {
               className="w-1/5 flex flex-col justify-center items-center text-xs"
               key={ele}
               onClick={() => setCurrentTab(idx)}
+              style={{ cursor: "pointer" }}
             >
               <img className={tabClassName} src={src}></img>
               <p className={textColor}>{tabNames[idx]}</p>

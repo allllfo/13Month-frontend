@@ -1,4 +1,3 @@
-import { current } from "@reduxjs/toolkit";
 import React from "react";
 
 export default function detailTabBar(props) {
@@ -24,6 +23,7 @@ export default function detailTabBar(props) {
             onClick={() => {
               setCurrentTab(idx);
             }}
+            style={{ cursor: "pointer" }}
           >
             {ele}
           </div>
