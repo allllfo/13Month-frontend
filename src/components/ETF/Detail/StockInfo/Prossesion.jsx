@@ -24,8 +24,22 @@ export default function Prossesion(props) {
       <div className="w-full h-96">
         <ResponsivePie
           data={data}
+          tooltip={(point) => {
+            const id = point.datum.data.id;
+            const value = point.datum.data.value;
+            const color = point.datum.color;
+            return (
+              <div
+                className="bg-white border rounded-md text-xs p-1 text-center"
+                style={{ borderColor: color }}
+              >
+                <p className="text-xs">{id}</p>
+                <p className="text-sm font-bold">{value}%</p>
+              </div>
+            );
+          }}
           arcLabel={(item) => `${item.value}%`}
-          margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+          margin={{ top: 20, right: 70, bottom: 80, left: 70 }}
           innerRadius={0.5}
           padAngle={0.7}
           cornerRadius={3}
@@ -36,11 +50,14 @@ export default function Prossesion(props) {
             from: "color",
             modifiers: [["darker", 0.2]],
           }}
+          arcLinkLabelsStraightLength={6}
           arcLinkLabelsSkipAngle={10}
           arcLinkLabelsTextColor="#333333"
           arcLinkLabelsThickness={2}
           arcLinkLabelsColor={{ from: "color" }}
           arcLabelsSkipAngle={10}
+          arcLinkLabelsDiagonalLength={6}
+          arcLinkLabelsTextOffset={2}
           arcLabelsTextColor={{
             from: "color",
             modifiers: [["darker", 2]],

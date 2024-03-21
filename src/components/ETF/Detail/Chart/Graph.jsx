@@ -52,10 +52,10 @@ export default function Graph(props) {
 
           return (
             <div
-              className="bg-white border rounded-md text-xs p-1 text-center"
+              className="bg-white border rounded-md p-1 text-center"
               style={{ borderColor: color }}
             >
-              <p>{formattedDate}</p>
+              <p className="text-xs">{formattedDate}</p>
               <p className="text-sm">{point.data.y}원</p>
             </div>
           );
