@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+
 import moment from "moment";
+import "moment/locale/ko";
 
 import WriterInfo from "./WriterInfo";
 import Like from "./Like";
@@ -8,6 +10,8 @@ import Comment from "./Comment";
 import Input from "./Input";
 
 import { deleteComment } from "~/lib/apis/comment";
+
+moment.locale("ko");
 
 export default function Writing(props) {
   const code = props.code;
@@ -34,6 +38,8 @@ export default function Writing(props) {
   if (depth > 0) {
     currentClass = topBorderClass;
   }
+
+  console.log(moment().fromNow());
 
   const clickDeleteBtn = () => {
     console.log("click");
@@ -66,9 +72,7 @@ export default function Writing(props) {
       <p className="ml-12 mb-4">{writing.content}</p>
 
       <div className="flex justify-between">
-        <p className="ml-12 text-sm">
-          {moment(writing.createdDate).format("YY.MM.DD, hh:mm a")}
-        </p>
+        <p className="ml-12 text-sm">{moment(writing.createdDate).fromNow()}</p>
 
         <div className="flex gap-4 h-8">
           <Like
