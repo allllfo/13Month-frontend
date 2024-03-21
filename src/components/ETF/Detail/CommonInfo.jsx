@@ -6,6 +6,12 @@ import Risk from "~/components/ETF/Risk/Risk";
 import blankLikeIcon from "~/assets/images/detail/blankLikeIcon.png";
 import redLikeIcon from "~/assets/images/detail/redLikeIcon.png";
 
+import {
+  pushLikedEtf,
+  pullLikedEtf,
+  findUserWithNickname,
+} from "~/lib/apis/user";
+
 export default function CommonInfo(props) {
   const userState = useSelector((state) => state.user13th);
   const code = props.code;
@@ -20,18 +26,23 @@ export default function CommonInfo(props) {
   }
 
   useEffect(() => {
-    // 리덕스 userID 비교해서 좋아요 누른 ETF인지 확인, set
+    findUserWithNickname(userState.nickname).then((resp) => {
+      console.log("resp: ", resp);
+      if (resp.likedEtf.includes(code)) {
+        setIsLiked(true);
+      }
+    });
   }, []);
 
   const clickEtfLike = () => {
-    console.log("click");
     if (isLiked) {
       setIsLiked(false);
-      // user 좋아요 ETF 목록에 저장
+      pullLikedEtf(userState.userId, code);
       return;
     }
+
     setIsLiked(true);
-    // user 좋아요 ETF 목록에서 제외
+    pushLikedEtf(userState.userId, code);
   };
 
   return (

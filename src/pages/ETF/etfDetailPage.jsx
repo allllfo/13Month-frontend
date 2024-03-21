@@ -30,7 +30,6 @@ export default function etfDetailPage() {
   useEffect(() => {
     getEtfInfo(code).then((resp) => {
       setStockInfo(resp[0].data);
-      console.log("resp: ", resp[0].data);
     });
 
     // 리덕스 userID 비교해서 좋아요 누른 ETF인지 확인, set

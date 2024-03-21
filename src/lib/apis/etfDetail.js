@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getEtfInfo = async (code) => {
   try {
-    const getEtfInfoUrl = "/api/etf/info/" + code;
+    const getEtfInfoUrl = "/api/etf/" + code + "/info";
 
     const resp = await axios.get(getEtfInfoUrl);
 
