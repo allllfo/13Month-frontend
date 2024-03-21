@@ -22,7 +22,7 @@ export default function CommonInfo(props) {
 
   useEffect(() => {
     // 리덕스 userID 비교해서 좋아요 누른 ETF인지 확인, set
-  });
+  }, []);
 
   const clickEtfLike = () => {
     console.log("click");
