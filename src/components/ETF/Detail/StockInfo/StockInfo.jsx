@@ -11,7 +11,7 @@ export default function StockInfo(props) {
     <div className="mb-32">
       <Detail code={code} stockInfo={stockInfo} />
 
-      <Prossesion code={code} />
+      <Prossesion code={code} ratio={stockInfo.ratio} />
     </div>
   );
 }

@@ -2,13 +2,20 @@ import React from "react";
 
 import { ResponsivePie } from "@nivo/pie";
 
-export default function Prossesion() {
-  const data = [
-    { id: "samsung", value: 10 },
-    { id: "LG", value: 8 },
-    { id: "shinhan", value: 70 },
-    { id: "SK", value: 2 },
-  ];
+export default function Prossesion(props) {
+  const ratio = props.ratio;
+
+  const data = [];
+
+  for (let i = 0; i < Math.min(10, ratio.length); i++) {
+    const ele = ratio[i];
+    const formattedEle = {
+      id: ele.companyName,
+      value: parseFloat(ele.percentage.replace("%", "")),
+    };
+
+    data.push(formattedEle);
+  }
 
   return (
     <div className="mb-16">
