@@ -11,3 +11,15 @@ export const getEtfInfo = async (code) => {
     console.log(err);
   }
 };
+
+export const getEtfChartData = async (code) => {
+  try {
+    const getEtfChartDataUrl = "/api/etf/" + code + "/chart";
+
+    const resp = await axios.get(getEtfChartDataUrl);
+
+    return resp.data;
+  } catch (err) {
+    console.log(err);
+  }
+};

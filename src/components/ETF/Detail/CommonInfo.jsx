@@ -27,7 +27,6 @@ export default function CommonInfo(props) {
 
   useEffect(() => {
     findUserWithNickname(userState.nickname).then((resp) => {
-      console.log("resp: ", resp);
       if (resp.likedEtf.includes(code)) {
         setIsLiked(true);
       }
