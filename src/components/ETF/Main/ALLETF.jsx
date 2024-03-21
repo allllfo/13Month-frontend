@@ -3,10 +3,19 @@ import { Card } from "flowbite-react";
 import MyResponsiveLine from "~/components/ETF/Main/MyResponsiveLine";
 import riskIconImg1 from "~/assets/images/riskIcons/riskIcon1.png";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ALLETF = () => {
+  const [risk1, setRisk1] = useState([]);
+  const [risk2, setRisk2] = useState([]);
+  const [risk3, setRisk3] = useState([]);
+  const [risk4, setRisk4] = useState([]);
+  const [risk5, setRisk5] = useState([]);
   const [etf, setEtf] = useState({});
-  useEffect(async () => {
+  const code = 12;
+  const detailLink = `/etf/detail/12`;
+
+  const updateEtfHistory = async () => {
     for (let i = 0; i < risk1.length; i++) {
       const code = risk1[i].code;
       const history = await axios.get(`~~~~/${code}/chart`);
@@ -17,6 +26,10 @@ const ALLETF = () => {
         };
       });
     }
+  };
+
+  useEffect(() => {
+    updateEtfHistory();
   }, [risk1]);
 
   // const [etf,setEtf] = useState({'<etfKey>': [
@@ -50,13 +63,6 @@ const ALLETF = () => {
   //       "prdy_vrss": "220",
   //       "revl_issu_reas": ""
   //   },]})
-
-  const [risk1, setRisk1] = useState([]);
-  const [risk2, setRisk2] = useState([]);
-  const [risk3, setRisk3] = useState([]);
-  const [risk4, setRisk4] = useState([]);
-  const [risk5, setRisk5] = useState([]);
-
   useEffect(() => {
     const getData = async () => {
       const infoResponse = await axios.get(
@@ -144,17 +150,19 @@ const ALLETF = () => {
         },
       }}
     >
-      <div className="flex flex-row">
-        <div className="relative h-8 w-24">
-          <MyResponsiveLine data={data} />
-        </div>
-        <div className="flex flex-col ml-3">
-          <div>
-            <img src={riskIconImg1} />
+      <Link to="/etf/detail/12">
+        <div className="flex flex-row">
+          <div className="relative h-8 w-24">
+            <MyResponsiveLine data={data} />
           </div>
-          <div className="font-bold text-sm">SOL 반도체후공정</div>
+          <div className="flex flex-col ml-3">
+            <div>
+              <img src={riskIconImg1} />
+            </div>
+            <div className="font-bold text-sm">SOL 반도체후공정</div>
+          </div>
         </div>
-      </div>
+      </Link>
     </Card>
   );
 };

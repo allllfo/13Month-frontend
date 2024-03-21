@@ -52,9 +52,6 @@ const ETFMain = () => {
           x: "10",
           y: 104,
         },
-      data: [
-        { x: "plane", y: 194 },
-        { x: "helicopter", y: 290 },
       ],
     },
   ];
@@ -95,7 +92,6 @@ const ETFMain = () => {
             <div className="mb-4">
               <ALLETF />
             </div>
-
           </Tabs.Item>
           <Tabs.Item title="거래량">
             <div className="mb-4">
