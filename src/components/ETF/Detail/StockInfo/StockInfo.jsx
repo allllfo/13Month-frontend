@@ -7,7 +7,7 @@ export default function StockInfo(props) {
   const code = props.code;
 
   return (
-    <div>
+    <div className="mb-32">
       <Detail code={code} />
 
       <Prossesion code={code} />

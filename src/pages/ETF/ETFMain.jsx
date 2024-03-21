@@ -4,6 +4,7 @@ import ETFDangerFilter from "../../components/ETF/Filter/ETFDangerFilter";
 import ETFAssetFilter from "../../components/ETF/Filter/ETFAssetFilter";
 import MyResponsiveLine from "../../components/ETF/Main/MyResponsiveLine";
 import ALLETF from "~/components/ETF/Main/ALLETF";
+import Chart from "./Chart";
 
 const ETFMain = () => {
   const data = [
@@ -51,6 +52,9 @@ const ETFMain = () => {
           x: "10",
           y: 104,
         },
+      data: [
+        { x: "plane", y: 194 },
+        { x: "helicopter", y: 290 },
       ],
     },
   ];
@@ -91,7 +95,7 @@ const ETFMain = () => {
             <div className="mb-4">
               <ALLETF />
             </div>
-            {/* ... other content ... */}
+
           </Tabs.Item>
           <Tabs.Item title="거래량">
             <div className="mb-4">
@@ -102,7 +106,6 @@ const ETFMain = () => {
               <h1 className="text-center font-bold">위험도</h1>
               <ETFDangerFilter />
             </div>
-
             <span className="font-medium text-gray-800 dark:text-white">
               Dashboard associated content
             </span>

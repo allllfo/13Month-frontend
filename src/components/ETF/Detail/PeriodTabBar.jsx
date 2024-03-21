@@ -23,6 +23,7 @@ export default function PeriodTabBar(props) {
             onClick={() => {
               setCurrentPeriod(idx);
             }}
+            style={{ cursor: "pointer" }}
           >
             {ele}
           </div>

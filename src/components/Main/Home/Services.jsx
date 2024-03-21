@@ -18,6 +18,7 @@ export default function Services() {
   const title2 = "ETF 추천";
   const firstOfSubTitle2 = "나에게 꼭 맞는";
   const secondOfSubTitle2 = "ETF 찾기!";
+  const link2 = "/etf/detail/12";
 
   const title3 = "펀드 추천";
   const firstOfSubTitle3 = "나에게 꼭 맞는";
@@ -47,6 +48,7 @@ export default function Services() {
             firstOfSubTitle={firstOfSubTitle2}
             secondOfSubTitle={secondOfSubTitle2}
             imageSrc={chartImg}
+            link={link2}
           ></Button>
         </div>
 
