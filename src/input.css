@@ -1,15 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
+  font-family: "SUITE-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
+    format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 
-body {
+@font-face {
+  font-family: "YOON-Gothic";
+  src: url("./font/윤고딕320.ttf");
+}
+
+.h1 {
+  /* text-4xl */
+  font-size: 2.25rem; /* 36px */
+  line-height: 2.5rem; /* 40px */
+
+  /* font-bold*/
+  font-weight: 700;
+}
+
+.h2 {
+  /* text-2xl*/
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+
+  /* font-bold */
+  font-weight: 700;
+}
+
+.h3 {
+  /* text-xl*/
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+
+  /* font-semibold */
+  font-weight: 600;
+}
+
+.mediumGreyText {
+  /* text-medium */
+  font-weight: 500;
+
+  /* text-slate-500 */
+  color: rgb(100 116 139);
+}
+
+.h body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
