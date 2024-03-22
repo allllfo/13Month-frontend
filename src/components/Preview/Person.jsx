@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Accordion } from "flowbite-react";
+import { Accordion, Card } from "flowbite-react";
 import peopleImg from "~/assets/images/preview/Group 43.png";
 function PersonComponent() {
   const [spouseNum, setSpouseNum] = useState(0); //배우자 수
@@ -13,7 +13,7 @@ function PersonComponent() {
     return (
       <button
         type="button"
-        className="flex-shrink-0 py-2.5 px-5 me-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        className="flex-shrink-0 py-1.5 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-blue-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         onClick={() => {
           handlePlusButton(plusFunc);
         }}
@@ -28,7 +28,7 @@ function PersonComponent() {
     return (
       <button
         type="button"
-        className="flex-shrink-0 py-2.5 px-5 me-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        className="flex-shrink-0 py-1.5 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-blue-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         onClick={() => {
           handleMinusButton(minusFunc);
         }}
@@ -56,66 +56,69 @@ function PersonComponent() {
     });
   };
   return (
-    <Accordion>
+    <Accordion collapseAll className="m-5">
       <Accordion.Panel>
-        <Accordion.Title className="text-xl font-bold">
-          {/* hover:bg-blue-200 */}
-          <div className="flex items-center">
-            <img src={peopleImg} alt="card" className="w-12 h-15 mr-2 mb-1" />
-            <span className="text-xl text-black font-bold">
-              인적공제 추가하기
-            </span>
+        <Accordion.Title className="flex w-full items-center justify-between first:rounded-t-lg last:rounded-b-lg py-5 px-5 text-left text-xl text-black-500 dark:text-gray-400 hover:bg-blue-100 focus:ring-4 focus:ring-blue-200 dark:hover:bg-gray-800 dark:focus:ring-gray-800">
+          <div className="flex flex-row align-center">
+            <img src={peopleImg} className="w-13 h-10 mt-1" />
+            <h2 className="ml-1 mt-2">인적 공제 추가하기</h2>
           </div>
         </Accordion.Title>
-        <Accordion.Content>
-          <div className="flex items-center justify-between mb-3">
-            <p className="mb-2 text-black dark:text-black-400">배우자</p>
-            <div className="flex items-center">
-              <PlusButton plusFunc={setSpouseNum} />
-              <p className="mr-4 ml-3">{spouseNum}</p>
-              <MinusButton minusFunc={setSpouseNum} />
-            </div>
-          </div>
-          <div className="flex items-center justify-between mb-3">
-            <p className="mb-2 text-black dark:text-gray-400">
-              8세 미만의 자녀
-            </p>
-            <div className="flex items-center">
-              <PlusButton plusFunc={setBabyNum} />
-              <p className="mr-4 ml-3">{babyNum}</p>
-              <MinusButton minusFunc={setBabyNum} />
-            </div>
-          </div>
-          <div className="flex items-center justify-between mb-3">
-            <p className="mb-2 text-black dark:text-gray-400">
-              8세 이상 20세 이하의 자녀
-            </p>
-            <div className="flex items-center">
-              <PlusButton plusFunc={setChildNum} />
-              <p className="mr-4 ml-3">{childNum}</p>
-              <MinusButton minusFunc={setChildNum} />
-            </div>
-          </div>
-          <div className="flex items-center justify-between mb-3">
-            <p className="mb-2 text-black dark:text-gray-400">
-              60세 이상 70세 미만의 부모님
-            </p>
-            <div className="flex items-center">
-              <PlusButton plusFunc={setYoungParentNum} />
-              <p className="mr-4 ml-3">{youngParentNum}</p>
-              <MinusButton minusFunc={setYoungParentNum} />
-            </div>
-          </div>
-          <div className="flex items-center justify-between">
-            <p className="mb-2 text-black dark:text-gray-400">
-              70세 이상의 부모님
-            </p>
-            <div className="flex items-center">
-              <PlusButton plusFunc={setOldParentNum} />
-              <p className="mr-4 ml-3">{oldParentNum}</p>
-              <MinusButton minusFunc={setOldParentNum} />
-            </div>
-          </div>
+        <Accordion.Content className="bg-gray-100">
+          <Card>
+            <>
+              <div className="flex items-center justify-between mb-3">
+                <p className="mb-2 text-black dark:text-black-400">배우자</p>
+                <div className="flex items-center">
+                  <PlusButton plusFunc={setSpouseNum} />
+                  <p className="mr-2 ml-2">{spouseNum}</p>
+                  <MinusButton minusFunc={setSpouseNum} />
+                </div>
+              </div>
+              <div className="flex items-center justify-between mb-3">
+                <p className="mb-2 text-black dark:text-gray-400">
+                  8세 미만의 자녀
+                </p>
+                <div className="flex items-center">
+                  <PlusButton plusFunc={setBabyNum} />
+                  <p className="mr-2 ml-2">{babyNum}</p>
+                  <MinusButton minusFunc={setBabyNum} />
+                </div>
+              </div>
+              <div className="flex items-center justify-between mb-3">
+                <p className="mb-2 text-black dark:text-gray-400">
+                  8세 이상 20세 이하의 <br />
+                  자녀
+                </p>
+                <div className="flex items-center">
+                  <PlusButton plusFunc={setChildNum} />
+                  <p className="mr-2 ml-2">{childNum}</p>
+                  <MinusButton minusFunc={setChildNum} />
+                </div>
+              </div>
+              <div className="flex items-center justify-between mb-3">
+                <p className="mb-2 text-black dark:text-gray-400">
+                  60세 이상 70세 미만의 <br />
+                  부모님
+                </p>
+                <div className="flex items-center">
+                  <PlusButton plusFunc={setYoungParentNum} />
+                  <p className="mr-2 ml-2">{youngParentNum}</p>
+                  <MinusButton minusFunc={setYoungParentNum} />
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <p className="mb-2 text-black dark:text-gray-400 ">
+                  70세 이상의 부모님
+                </p>
+                <div className="flex items-center">
+                  <PlusButton plusFunc={setOldParentNum} />
+                  <p className="mr-2 ml-2">{oldParentNum}</p>
+                  <MinusButton minusFunc={setOldParentNum} />
+                </div>
+              </div>
+            </>
+          </Card>
         </Accordion.Content>
       </Accordion.Panel>
     </Accordion>
