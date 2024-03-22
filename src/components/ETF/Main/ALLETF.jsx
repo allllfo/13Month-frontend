@@ -44,7 +44,7 @@ const ALLETF = () => {
       setRisk4(risks[3]);
       setRisk5(risks[4]);
       setRisk6(risks[5]);
-      setRisk0(risk0.concat(risk1, risk2, risk3, risk4, risk5, risk6));
+      setRisk0(risk0.concat(risk1, risk2, risk3));
 
       console.log(risks[3]);
       return [
