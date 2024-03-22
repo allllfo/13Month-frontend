@@ -9,6 +9,17 @@ import Chart from "./Chart";
 const ETFMain = () => {
   const [dangerDegree, setDangerDegree] = useState(0);
 
+  const data = [
+    { x: "plane", y: 21 },
+    { x: "helicopter", y: 37 },
+    { x: "boat", y: 127 },
+    { x: "train", y: 82 },
+    { x: "subway", y: 3 },
+    { x: "bus", y: 275 },
+    { x: "car", y: 92 },
+    { x: "moto", y: 137 },
+  ];
+
   return (
     <div className="bg-blue-100">
       <div className="bg-white mt-8  mb-2 text-3xl font-extrabold">
