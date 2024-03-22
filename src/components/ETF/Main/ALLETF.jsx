@@ -100,8 +100,6 @@ const ALLETF = () => {
       })),
     };
 
-    // "stck_bsop_date": "20240319",
-    //     "stck_clpr": "9710",
     return {
       stck_bsop_date,
       stck_clpr,
