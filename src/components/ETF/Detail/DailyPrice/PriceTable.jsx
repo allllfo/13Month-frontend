@@ -34,7 +34,7 @@ export default function PriceTable(props) {
                     let dateStyle = "font-xs";
 
                     return (
-                      <td className={dateStyle}>
+                      <td key={idx} className={dateStyle}>
                         {moment(ele, "YYYYMMDD").format("YY.MM.DD")}
                       </td>
                     );
@@ -42,7 +42,7 @@ export default function PriceTable(props) {
 
                   if (idx == 1) {
                     return (
-                      <td className="font-bold">
+                      <td key={idx} className="font-bold">
                         {Number(ele).toLocaleString()}
                       </td>
                     );
@@ -50,12 +50,20 @@ export default function PriceTable(props) {
 
                   if (idx == 2) {
                     if (ele[0] === "-") {
-                      return <td className="text-blue-500">{ele}%</td>;
+                      return (
+                        <td key={idx} className="text-blue-500">
+                          {ele}%
+                        </td>
+                      );
                     }
-                    return <td className="text-red-500">+{ele}%</td>;
+                    return (
+                      <td key={idx} className="text-red-500">
+                        +{ele}%
+                      </td>
+                    );
                   }
 
-                  return <td>{Number(ele).toLocaleString()}</td>;
+                  return <td key={idx}>{Number(ele).toLocaleString()}</td>;
                 })}
               </tr>
             );
