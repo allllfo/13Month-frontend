@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Tabs } from "flowbite-react";
 import ETFDangerFilter from "../../components/ETF/Filter/ETFDangerFilter";
 import ETFAssetFilter from "../../components/ETF/Filter/ETFAssetFilter";
@@ -7,6 +7,7 @@ import ALLETF from "~/components/ETF/Main/ALLETF";
 import Chart from "./Chart";
 
 const ETFMain = () => {
+<<<<<<< Updated upstream
   const [dangerDegree, setDangerDegree] = useState(0);
 
   const data = [
@@ -18,6 +19,55 @@ const ETFMain = () => {
     { x: "bus", y: 275 },
     { x: "car", y: 92 },
     { x: "moto", y: 137 },
+=======
+  const data = [
+    {
+      id: "series1", // 시리즈 ID
+
+      data: [
+        {
+          x: "1",
+          y: 55,
+        },
+        {
+          x: "2",
+          y: 262,
+        },
+        {
+          x: "3",
+          y: 73,
+        },
+        {
+          x: "4",
+          y: 77,
+        },
+        {
+          x: "5",
+          y: 104,
+        },
+        {
+          x: "6",
+          y: 217,
+        },
+        {
+          x: "7",
+          y: 85,
+        },
+        {
+          x: "8",
+          y: 9,
+        },
+        {
+          x: "9",
+          y: 203,
+        },
+        {
+          x: "10",
+          y: 104,
+        },
+      ],
+    },
+>>>>>>> Stashed changes
   ];
 
   return (
