@@ -11,12 +11,6 @@ export default function Graph(props) {
   const periodSizes = [7, 30, 90, 180, 365];
   const size = periodSizes[currentPeriod];
 
-  let data = [
-    {
-      id: "loading",
-      data: [{ x: 1, y: 1 }],
-    },
-  ];
   let formattedData = [];
 
   for (
@@ -32,13 +26,12 @@ export default function Graph(props) {
     });
   }
 
-  data = [
+  const data = [
     {
       id: code,
       data: formattedData,
     },
   ];
-  console.log("data: ", data);
 
   return (
     <div className="w-full h-96">

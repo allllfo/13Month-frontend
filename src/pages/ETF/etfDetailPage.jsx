@@ -11,29 +11,32 @@ import StockInfo from "~/components/ETF/Detail/StockInfo/StockInfo";
 import Community from "~/components/ETF/Detail/Community/Community";
 import { useParams } from "react-router";
 
-import { getEtfInfo } from "~/lib/apis/etfDetail";
+import { getEtfInfo, getEtfPriceData } from "~/lib/apis/etfDetail";
 
 export default function etfDetailPage() {
   const [currentTab, setCurrentTab] = useState(0);
   const [stockInfo, setStockInfo] = useState();
-
+  const [priceData, setPriceData] = useState([]);
   const { code } = useParams();
 
-  const detailTabs = ["차트", "일별 시세", "종목 정보", "커뮤니티"];
-  const detailComponents = [
-    <Chart code={code} />,
-    <DailyPrice code={code} />,
-    <StockInfo code={code} stockInfo={stockInfo} />,
-    <Community code={code} />,
-  ];
-
   useEffect(() => {
+    getEtfPriceData(code).then((resp) => {
+      const prices = resp[0].chart.output2;
+      setPriceData(prices);
+    });
+
     getEtfInfo(code).then((resp) => {
       setStockInfo(resp[0].data);
     });
-
-    // 리덕스 userID 비교해서 좋아요 누른 ETF인지 확인, set
   }, []);
+
+  const detailTabs = ["차트", "일별 시세", "종목 정보", "커뮤니티"];
+  const detailComponents = [
+    <Chart code={code} priceData={priceData} />,
+    <DailyPrice code={code} priceData={priceData} />,
+    <StockInfo code={code} stockInfo={stockInfo} />,
+    <Community code={code} />,
+  ];
 
   return (
     <div>
