@@ -41,7 +41,11 @@ export default function PriceTable(props) {
                   }
 
                   if (idx == 1) {
-                    return <td className="font-bold">{ele}</td>;
+                    return (
+                      <td className="font-bold">
+                        {Number(ele).toLocaleString()}
+                      </td>
+                    );
                   }
 
                   if (idx == 2) {
@@ -51,7 +55,7 @@ export default function PriceTable(props) {
                     return <td className="text-red-500">+{ele}%</td>;
                   }
 
-                  return <td>{ele}</td>;
+                  return <td>{Number(ele).toLocaleString()}</td>;
                 })}
               </tr>
             );

@@ -49,11 +49,11 @@ export default function Graph(props) {
               style={{ borderColor: color }}
             >
               <p className="text-xs">{formattedDate}</p>
-              <p className="text-sm">{point.data.y}원</p>
+              <p className="text-sm">{point.data.y.toLocaleString()}원</p>
             </div>
           );
         }}
-        margin={{ top: 40, right: 40, bottom: 20, left: 40 }}
+        margin={{ top: 10, right: 40, bottom: 20, left: 48 }}
         xScale={{ type: "point" }}
         yScale={{
           type: "linear",
@@ -76,6 +76,7 @@ export default function Graph(props) {
           legendOffset: -40,
           legendPosition: "middle",
           truncateTickAt: 0,
+          format: (value) => value.toLocaleString(),
         }}
         colors={{ scheme: "accent" }}
         enablePoints={false}
