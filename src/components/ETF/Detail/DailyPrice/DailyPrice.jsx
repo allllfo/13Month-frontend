@@ -37,9 +37,9 @@ export default function DailyPrice(props) {
     formattedData.push({
       기준일자: date,
       종가: stck_clpr,
-      최고가: stck_hgpr,
+      증감: variation,
       최저가: stck_lwpr,
-      "증감(%)": variation,
+      최고가: stck_hgpr,
     });
   }
 

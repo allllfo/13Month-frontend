@@ -6,10 +6,12 @@ export default function PriceTable(props) {
 
   const keys = Object.keys(priceData[0]);
 
+  let month = 0;
+
   return (
-    <div>
+    <div className="mb-36">
       <table className="table-auto text-center">
-        <thead className="h-12">
+        <thead className="h-12 border-b">
           <tr>
             {keys.map((ele, idx) => (
               <th className="w-20">{ele}</th>
@@ -18,30 +20,42 @@ export default function PriceTable(props) {
         </thead>
 
         <tbody>
-          {priceData.map((obj, idx) => (
-            <tr className="h-10">
-              {Object.values(obj).map((ele, idx) => {
-                let style;
+          {priceData.map((obj, idx) => {
+            let style = "h-12";
 
-                if (idx == 0) {
-                  return (
-                    <td className="font-xm">
-                      {moment(ele, "YYYYMMDD").format("YY.MM.DD")}
-                    </td>
-                  );
-                }
+            if (idx % 10 === 0) {
+              style += " border-t";
+            }
 
-                if (idx == 4) {
-                  if (ele[0] === "-") {
-                    return <td className="text-blue-500">{ele}</td>;
+            return (
+              <tr className={style}>
+                {Object.values(obj).map((ele, idx) => {
+                  if (idx == 0) {
+                    let dateStyle = "font-xs";
+
+                    return (
+                      <td className={dateStyle}>
+                        {moment(ele, "YYYYMMDD").format("YY.MM.DD")}
+                      </td>
+                    );
                   }
-                  return <td className="text-red-500">{ele}</td>;
-                }
 
-                return <td>{ele}</td>;
-              })}
-            </tr>
-          ))}
+                  if (idx == 1) {
+                    return <td className="font-bold">{ele}</td>;
+                  }
+
+                  if (idx == 2) {
+                    if (ele[0] === "-") {
+                      return <td className="text-blue-500">{ele}%</td>;
+                    }
+                    return <td className="text-red-500">+{ele}%</td>;
+                  }
+
+                  return <td>{ele}</td>;
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
