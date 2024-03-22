@@ -1,9 +1,12 @@
 import { Card } from "flowbite-react";
 import React from "react";
+import { useSelector } from "react-redux";
 
 import BlueButton from "~/components/BlueButton/BlueButton";
 
 const PreviewResultDetailPage = () => {
+  const userState = useSelector((state) => state.user13th);
+
   const totalPay = 23018432;
   const returnMoney = 381160;
 
@@ -18,7 +21,8 @@ const PreviewResultDetailPage = () => {
         <div className="flex flex-col items-center mt-9">
           <div>
             <p className="h2 text-center mb-10">
-              {"정우성"}님의 연말정산 내역이 <br /> 새롭게 업데이트 됐어요 ✨
+              {userState.nickname}님의 연말정산 내역이 <br /> 새롭게 업데이트
+              됐어요 ✨
             </p>
           </div>
 
