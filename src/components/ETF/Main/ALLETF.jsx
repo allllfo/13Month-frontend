@@ -11,6 +11,7 @@ import axios from "axios";
 
 const ALLETF = () => {
   const [risk0, setRisk0] = useState([]);
+
   const [risk1, setRisk1] = useState([]);
   const [risk2, setRisk2] = useState([]);
   const [risk3, setRisk3] = useState([]);

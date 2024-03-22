@@ -8,57 +8,7 @@ import Chart from "./Chart";
 
 const ETFMain = () => {
   const [dangerDegree, setDangerDegree] = useState(0);
-  const data = [
-    {
-      id: "series1", // 시리즈 ID
 
-      data: [
-        {
-          x: "1",
-          y: 55,
-        },
-        {
-          x: "2",
-          y: 262,
-        },
-        {
-          x: "3",
-          y: 73,
-        },
-        {
-          x: "4",
-          y: 77,
-        },
-        {
-          x: "5",
-          y: 104,
-        },
-        {
-          x: "6",
-          y: 217,
-        },
-        {
-          x: "7",
-          y: 85,
-        },
-        {
-          x: "8",
-          y: 9,
-        },
-        {
-          x: "9",
-          y: 203,
-        },
-        {
-          x: "10",
-          y: 104,
-        },
-      data: [
-        { x: "plane", y: 194 },
-        { x: "helicopter", y: 290 },
-      ],
-    },
-  ];
   return (
     <div className="bg-blue-100">
       <div className="bg-white mt-8  mb-2 text-3xl font-extrabold">
@@ -96,7 +46,6 @@ const ETFMain = () => {
             <div className="mb-4">
               <ALLETF />
             </div>
-
           </Tabs.Item>
           <Tabs.Item title="거래량">
             <div className="mb-4">

@@ -19,20 +19,20 @@ export default function Button(props) {
       style={{ width: "100%", height: "100%", cursor: "pointer" }}
       onClick={() => navigate(link)}
     >
-      <p className="text-xl font-bold mb-1">
+      <p className="h3 mb-1" style={{ whiteSpace: "pre-line" }}>
         {firstOfTitle}
         <br></br>
         {secondOfTitle}
       </p>
 
-      <p className="text-medium text-slate-500">
+      <p className="mediumGreyText">
         {firstOfSubTitle}
         <br></br>
         {secondOfSubTitle}
       </p>
 
       <div className="absolute right-3 bottom-3">
-        <img className="h-8" src={imageSrc}></img>
+        {props.icon && <props.icon size="40" />}
       </div>
     </div>
   );
