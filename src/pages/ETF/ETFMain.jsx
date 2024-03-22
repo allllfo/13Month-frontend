@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Tabs } from "flowbite-react";
 import ETFDangerFilter from "../../components/ETF/Filter/ETFDangerFilter";
 import ETFAssetFilter from "../../components/ETF/Filter/ETFAssetFilter";
@@ -7,54 +7,8 @@ import ALLETF from "~/components/ETF/Main/ALLETF";
 import Chart from "./Chart";
 
 const ETFMain = () => {
-  const data = [
-    {
-      id: "series1", // 시리즈 ID
+  const [dangerDegree, setDangerDegree] = useState(0);
 
-      data: [
-        {
-          x: "1",
-          y: 55,
-        },
-        {
-          x: "2",
-          y: 262,
-        },
-        {
-          x: "3",
-          y: 73,
-        },
-        {
-          x: "4",
-          y: 77,
-        },
-        {
-          x: "5",
-          y: 104,
-        },
-        {
-          x: "6",
-          y: 217,
-        },
-        {
-          x: "7",
-          y: 85,
-        },
-        {
-          x: "8",
-          y: 9,
-        },
-        {
-          x: "9",
-          y: 203,
-        },
-        {
-          x: "10",
-          y: 104,
-        },
-      ],
-    },
-  ];
   return (
     <div className="bg-blue-100">
       <div className="bg-white mt-8  mb-2 text-3xl font-extrabold">
