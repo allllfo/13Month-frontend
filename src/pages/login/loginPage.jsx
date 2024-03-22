@@ -66,7 +66,7 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col items-center">
       <div className="mt-20 mb-10" style={{ width: "50%" }}>
-        <img src={logoImg}></img>
+        <img src={logoImg} style={{ cursor: "pointer" }}></img>
       </div>
 
       <div className="text-center">

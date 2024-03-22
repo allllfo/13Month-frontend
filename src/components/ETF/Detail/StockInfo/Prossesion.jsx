@@ -10,8 +10,6 @@ export default function Prossesion() {
     { id: "SK", value: 2 },
   ];
 
-  console.log("Data: ", data);
-
   return (
     <div className="mb-16">
       <p className="font-bold text-2xl">보유비중 TOP 10</p>
@@ -19,6 +17,7 @@ export default function Prossesion() {
       <div className="w-full h-96">
         <ResponsivePie
           data={data}
+          arcLabel={(item) => `${item.value}%`}
           margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
           innerRadius={0.5}
           padAngle={0.7}
