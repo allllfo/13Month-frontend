@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Card } from "flowbite-react";
 import MyResponsiveLine from "~/components/ETF/Main/MyResponsiveLine";
-import riskIconImg1 from "~/assets/images/riskIcons/riskIcon1.png";
-import riskIconImg2 from "~/assets/images/riskIcons/riskIcon2.png";
-import riskIconImg3 from "~/assets/images/riskIcons/riskIcon3.png";
-import riskIconImg4 from "~/assets/images/riskIcons/riskIcon4.png";
-import riskIconImg5 from "~/assets/images/riskIcons/riskIcon5.png";
-import riskIconImg6 from "~/assets/images/riskIcons/riskIcon6.png";
+import riskIconImg1 from "~/assets/images/riskIcons/1.png";
+import riskIconImg2 from "~/assets/images/riskIcons/2.png";
+import riskIconImg3 from "~/assets/images/riskIcons/3.png";
+import riskIconImg4 from "~/assets/images/riskIcons/4.png";
+import riskIconImg5 from "~/assets/images/riskIcons/5.png";
+import riskIconImg6 from "~/assets/images/riskIcons/6.png";
 import axios from "axios";
 
 const ALLETF = () => {
@@ -141,7 +141,7 @@ const ALLETF = () => {
               )}
             </div>
             <div className="flex flex-col ml-3">
-              <div className="w-5 h-5">
+              <div className="w-15 h-10">
                 {item.data.dangerDegree === 1 ? (
                   <img src={riskIconImg1} />
                 ) : item.data.dangerDegree === 2 ? (
