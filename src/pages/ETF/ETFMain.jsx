@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Tabs } from "flowbite-react";
 import ETFDangerFilter from "../../components/ETF/Filter/ETFDangerFilter";
 import ETFAssetFilter from "../../components/ETF/Filter/ETFAssetFilter";
@@ -6,6 +6,7 @@ import MyResponsiveLine from "../../components/ETF/Main/MyResponsiveLine";
 import ALLETF from "~/components/ETF/Main/ALLETF";
 
 const ETFMain = () => {
+  const [dangerDegree, setDangerDegree] = useState(0);
   const data = [
     {
       id: "series1", // 시리즈 ID
