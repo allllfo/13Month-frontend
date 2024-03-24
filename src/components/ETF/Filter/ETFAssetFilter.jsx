@@ -3,14 +3,15 @@ import { Button } from "flowbite-react";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import "react-horizontal-scrolling-menu/dist/styles.css";
 
-const ETFAssetFilter = () => {
+const ETFAssetFilter = ({ onTypeSelect }) => {
   const [selectedKey, setSelectedKey] = useState("");
 
   const handleItemClick = (key) => {
     setSelectedKey((prevSelectedKey) => (prevSelectedKey === key ? "" : key));
+    onTypeSelect(key); // Call the callback function to notify the selected type
   };
 
-  const buttons = [
+  const types = [
     { key: "domestic", text: "국내주식" },
     { key: "foreign", text: "해외주식" },
     { key: "bond", text: "채권" },
@@ -38,15 +39,15 @@ const ETFAssetFilter = () => {
         {" "}
         {/* This wrapper centers the ScrollMenu */}
         <ScrollMenu onWheel={onWheel} style={{ margin: "0 -1rem" }}>
-          {buttons.map((button) => (
+          {types.map((type) => (
             <Button
-              key={button.key}
-              color={selectedKey === button.key ? "blue" : "light"}
+              key={type.key}
+              color={selectedKey === type.key ? "blue" : "light"}
               pill
               className="mx-1"
-              onClick={() => handleItemClick(button.key)}
+              onClick={() => handleItemClick(type.key)}
             >
-              {button.text}
+              {type.text}
             </Button>
           ))}
         </ScrollMenu>
