@@ -6,10 +6,8 @@ export default function PriceTable(props) {
 
   const keys = Object.keys(priceData[0]);
 
-  let month = 0;
-
   return (
-    <div className="mb-36">
+    <div className="mb-36 flex justify-center">
       <table className="table-auto text-center">
         <thead className="h-12 border-b">
           <tr>
