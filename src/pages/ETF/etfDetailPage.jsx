@@ -17,6 +17,8 @@ export default function etfDetailPage() {
   const [currentTab, setCurrentTab] = useState(0);
   const [stockInfo, setStockInfo] = useState();
   const [priceData, setPriceData] = useState([]);
+  const [ratio, setRatio] = useState();
+
   const { code } = useParams();
 
   useEffect(() => {
@@ -27,6 +29,7 @@ export default function etfDetailPage() {
 
     getEtfInfo(code).then((resp) => {
       setStockInfo(resp[0].data);
+      setRatio(resp[0].data.ratio);
     });
   }, []);
 
@@ -34,7 +37,7 @@ export default function etfDetailPage() {
   const detailComponents = [
     <Chart code={code} priceData={priceData} />,
     <DailyPrice code={code} priceData={priceData} />,
-    <StockInfo code={code} stockInfo={stockInfo} />,
+    <StockInfo code={code} stockInfo={stockInfo} ratio={ratio} />,
     <Community code={code} />,
   ];
 

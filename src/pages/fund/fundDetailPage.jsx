@@ -17,12 +17,13 @@ export default function fuindDetailPage() {
   const [currentTab, setCurrentTab] = useState(0);
   const [priceData, setPriceData] = useState([]);
   const [infoData, setInfoData] = useState([]);
+  const [ratio, setRatio] = useState();
 
   const detailTabs = ["차트", "일별 시세", "종목 정보", "커뮤니티"];
   const detailComponents = [
     <Chart code={code} priceData={priceData} isFund={true} />,
     <DailyPrice code={code} priceData={priceData} isFund={true} />,
-    <StockInfo code={code} stockInfo={infoData} isFund={true} />,
+    <StockInfo code={code} stockInfo={infoData} ratio={ratio} isFund={true} />,
     <Community code={code} />,
   ];
 
@@ -33,6 +34,7 @@ export default function fuindDetailPage() {
       setFundInfo(resp);
       setPriceData(resp.basePrice);
       setInfoData(resp.data);
+      setRatio(resp.portfolio["보유종목 Top10"]);
     });
   }, []);
 
