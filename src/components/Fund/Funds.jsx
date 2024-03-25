@@ -14,6 +14,7 @@ export default function Funds(props) {
           title={ele.data.펀드명}
           riskDegree={ele.data.위험등급}
           profit={ele.profit.표}
+          size={ele.data.규모}
         />
       ))}
     </div>

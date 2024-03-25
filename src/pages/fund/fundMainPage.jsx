@@ -11,10 +11,29 @@ export default function fundMainPage() {
   const [funds, setFunds] = useState([[], [], [], [], []]);
   const [currentTab, setCurrentTab] = useState(0);
 
-  const updateFunds = (index, newArray) => {
-    setFunds((prevState) => {
-      const newFunds = [...prevState];
-      newFunds[index] = newArray;
+  const profitPeriod = "3개월";
+
+  const updateFunds = (resp) => {
+    setFunds(() => {
+      const newFunds = [];
+      newFunds[0] = resp;
+
+      newFunds[1] = resp
+        .slice()
+        .sort(
+          (a, b) =>
+            parseFloat(a.profit.표[{ profitPeriod }]) -
+            parseFloat(b.profit.표[{ profitPeriod }])
+        );
+
+      newFunds[2] = resp
+        .slice()
+        .sort(
+          (a, b) =>
+            parseFloat(b.data.규모.slice(0, -2)) -
+            parseFloat(a.data.규모.slice(0, -2))
+        );
+
       return newFunds;
     });
   };
@@ -23,7 +42,7 @@ export default function fundMainPage() {
   useEffect(() => {
     getAllFund().then((resp) => {
       console.log("resp: ", resp);
-      updateFunds(0, resp);
+      updateFunds(resp);
     });
   }, []);
 
