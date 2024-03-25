@@ -14,8 +14,6 @@ export default function DailyPrice(props) {
 
   let formattedData = [];
 
-  console.log("priceData: ", priceData);
-
   for (let i = 0; i < Math.min(size, priceData.length); i++) {
     const ele = priceData[i];
 

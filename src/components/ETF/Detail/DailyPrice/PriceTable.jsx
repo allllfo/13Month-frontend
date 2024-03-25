@@ -12,7 +12,9 @@ export default function PriceTable(props) {
         <thead className="h-12 border-b">
           <tr>
             {keys.map((ele, idx) => (
-              <th className="w-20">{ele}</th>
+              <th key={idx} className="w-20">
+                {ele}
+              </th>
             ))}
           </tr>
         </thead>
@@ -26,7 +28,7 @@ export default function PriceTable(props) {
             }
 
             return (
-              <tr className={style}>
+              <tr key={idx} className={style}>
                 {Object.values(obj).map((ele, idx) => {
                   if (idx == 0) {
                     let dateStyle = "font-xs";
