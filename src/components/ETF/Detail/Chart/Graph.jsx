@@ -22,9 +22,11 @@ export default function Graph(props) {
     const ele = chartData[i];
 
     if (isFund) {
+      const parsedY = parseFloat(ele.기준가.replace(",", ""));
+
       formattedData.push({
         x: ele.기준일,
-        y: ele.기준가,
+        y: parsedY,
       });
 
       continue;
