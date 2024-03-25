@@ -41,12 +41,9 @@ export default function fundMainPage() {
   const detailTabs = ["전체", "수익률", "규모", "관심", "최근"];
   useEffect(() => {
     getAllFund().then((resp) => {
-      console.log("resp: ", resp);
       updateFunds(resp);
     });
   }, []);
-
-  console.log("funds: ", funds[currentTab]);
 
   return (
     <div>
