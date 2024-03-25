@@ -61,7 +61,11 @@ export default function DailyPrice(props) {
         periods={periods}
       />
 
-      {formattedData ? <PriceTable priceData={formattedData} /> : <></>}
+      {formattedData ? (
+        <PriceTable priceData={formattedData} isFund={isFund} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

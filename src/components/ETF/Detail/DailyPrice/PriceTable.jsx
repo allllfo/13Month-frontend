@@ -3,6 +3,7 @@ import moment from "moment";
 
 export default function PriceTable(props) {
   const priceData = props.priceData;
+  const isFund = props.isFund;
 
   const keys = Object.keys(priceData[0]);
 
@@ -43,7 +44,7 @@ export default function PriceTable(props) {
                   if (idx == 1) {
                     return (
                       <td key={idx} className="font-bold">
-                        {Number(ele).toLocaleString()}
+                        {isFund ? ele : Number(ele).toLocaleString()}
                       </td>
                     );
                   }
