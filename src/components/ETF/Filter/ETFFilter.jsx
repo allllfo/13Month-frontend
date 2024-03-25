@@ -7,15 +7,27 @@ const ETFFilter = ({ onTypeSelect, onDangerDegreeChange }) => {
   const [selectedKey, setSelectedKey] = useState("");
 
   const handleItemClick = (key) => {
-    setSelectedKey((prevSelectedKey) => (prevSelectedKey === key ? "" : key));
-    onTypeSelect(selectedKey); // Call the callback function to notify the selected type
+    if (selectedKey === key) {
+      setSelectedKey("");
+      onTypeSelect("");
+    } else {
+      setSelectedKey(key);
+      onTypeSelect(key);
+    }
   };
 
   const [selected, setSelected] = useState(null);
 
   const handleButtonClick = (buttonId) => {
-    setSelected(buttonId);
-    onDangerDegreeChange(buttonId);
+    console.log(buttonId);
+    console.log(selected);
+    if (selected == buttonId) {
+      setSelected("");
+      onDangerDegreeChange("");
+    } else {
+      setSelected(buttonId);
+      onDangerDegreeChange(buttonId);
+    }
   };
 
   const buttons = [
