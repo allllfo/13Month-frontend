@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Tabs } from "flowbite-react";
 import ETFDangerFilter from "../../components/ETF/Filter/ETFDangerFilter";
-import ETFAssetFilter from "../../components/ETF/Filter/ETFAssetFilter";
+import ETFFilter from "../../components/ETF/Filter/ETFFilter";
 
 import ALLETF from "~/components/ETF/Main/ALLETF";
 import HotIssue from "~/components/ETF/Main/HotIssue";
@@ -9,64 +9,15 @@ import HotIssue from "~/components/ETF/Main/HotIssue";
 const ETFMain = () => {
   const [selectedDangerDegree, setSelectedDangerDegree] = useState(null);
 
-  // 위험도 선택 시 호출되는 콜백 함수
   const handleDangerDegreeChange = (dangerDegree) => {
     setSelectedDangerDegree(dangerDegree);
   };
   const [selectedType, setSelectedType] = useState(null);
 
   const handleTypeSelect = (type) => {
+    console.log(type);
     setSelectedType(type);
   };
-
-  const data = [
-    {
-      id: "series1", // 시리즈 ID
-
-      data: [
-        {
-          x: "1",
-          y: 55,
-        },
-        {
-          x: "2",
-          y: 262,
-        },
-        {
-          x: "3",
-          y: 73,
-        },
-        {
-          x: "4",
-          y: 77,
-        },
-        {
-          x: "5",
-          y: 104,
-        },
-        {
-          x: "6",
-          y: 217,
-        },
-        {
-          x: "7",
-          y: 85,
-        },
-        {
-          x: "8",
-          y: 9,
-        },
-        {
-          x: "9",
-          y: 203,
-        },
-        {
-          x: "10",
-          y: 104,
-        },
-      ],
-    },
-  ];
 
   return (
     <div className="bg-blue-100">
@@ -79,16 +30,10 @@ const ETFMain = () => {
       <div className="bg-white">
         <Tabs aria-label="Default tabs" style="default">
           <Tabs.Item active title="전체" className="bg-blue-100">
-            <div className="mb-4">
-              <h1 className="text-center font-bold m  ">유형</h1>
-              <ETFAssetFilter onTypeSelect={handleTypeSelect} />
-            </div>
-            <div className="mb-4">
-              <h1 className="text-center font-bold">위험도</h1>
-              <ETFDangerFilter
-                onDangerDegreeChange={handleDangerDegreeChange}
-              />
-            </div>
+            <ETFFilter
+              onTypeSelect={handleTypeSelect}
+              onDangerDegreeChange={handleDangerDegreeChange}
+            />
             <div className="mb-4">
               <ALLETF
                 selectedDangerDegree={selectedDangerDegree}
@@ -99,7 +44,7 @@ const ETFMain = () => {
           <Tabs.Item title="거래량">
             <div className="mb-4">
               <h1 className="text-center font-bold m  ">유형</h1>
-              <ETFAssetFilter onTypeSelect={handleTypeSelect} />
+              <ETFFilter onTypeSelect={handleTypeSelect} />
             </div>
             <div className="mb-4">
               <h1 className="text-center font-bold">위험도</h1>
@@ -117,7 +62,7 @@ const ETFMain = () => {
           <Tabs.Item title="시가총액">
             <div className="mb-4">
               <h1 className="text-center font-bold m  ">유형</h1>
-              <ETFAssetFilter onTypeSelect={handleTypeSelect} />
+              <ETFFilter onTypeSelect={handleTypeSelect} />
             </div>
             <div className="mb-4">
               <h1 className="text-center font-bold">위험도</h1>
@@ -135,7 +80,7 @@ const ETFMain = () => {
           <Tabs.Item title="관심">
             <div className="mb-4">
               <h1 className="text-center font-bold m  ">유형</h1>
-              <ETFAssetFilter onTypeSelect={handleTypeSelect} />
+              <ETFFilter onTypeSelect={handleTypeSelect} />
             </div>
             <div className="mb-4">
               <h1 className="text-center font-bold">위험도</h1>
@@ -153,7 +98,7 @@ const ETFMain = () => {
           <Tabs.Item title="최근">
             <div className="mb-4">
               <h1 className="text-center font-bold m  ">유형</h1>
-              <ETFAssetFilter onTypeSelect={handleTypeSelect} />
+              <ETFFilter onTypeSelect={handleTypeSelect} />
             </div>
             <div className="mb-4">
               <h1 className="text-center font-bold">위험도</h1>

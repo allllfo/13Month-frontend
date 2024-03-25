@@ -9,7 +9,7 @@ import riskIconImg4 from "~/assets/images/riskIcons/4.png";
 import riskIconImg5 from "~/assets/images/riskIcons/5.png";
 import riskIconImg6 from "~/assets/images/riskIcons/6.png";
 
-const ALLETF = ({ selectedDangerDegree }) => {
+const ALLETF = ({ selectedDangerDegree, selectedType }) => {
   const [etf, setEtf] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,10 +20,27 @@ const ALLETF = ({ selectedDangerDegree }) => {
           "http://localhost:3000/api/etf/overview"
         );
         const data = response.data;
-        const filteredETF = data.filter(
-          (item) => item.data.dangerDegree === selectedDangerDegree
-        );
-        setEtf(filteredETF);
+        let filteredETF = data;
+
+        if (selectedDangerDegree) {
+          console.log(selectedDangerDegree);
+
+          filteredETF = filteredETF.filter(
+            (item) => item.data.dangerDegree == selectedDangerDegree
+          );
+
+          console.log(filteredETF);
+        }
+
+        if (selectedType) {
+          filteredETF = filteredETF.filter((item) =>
+            item.data.category.includes(selectedType)
+          );
+        }
+        // console.log(filteredETF);
+        // setEtf(filteredETF); // result
+        // console.log(etf);
+        return filteredETF;
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -31,8 +48,8 @@ const ALLETF = ({ selectedDangerDegree }) => {
       }
     };
 
-    fetchData();
-  }, [selectedDangerDegree]);
+    fetchData().then((data) => setEtf(data));
+  }, [selectedDangerDegree, selectedType]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -49,8 +66,8 @@ const ALLETF = ({ selectedDangerDegree }) => {
                   {
                     id: "stock",
                     data: item.chart.chart.map((elem) => ({
-                      x: elem.주식영업일자,
-                      y: elem.주식종가,
+                      x: elem.x,
+                      y: elem.y,
                     })),
                   },
                 ]}
@@ -63,9 +80,7 @@ const ALLETF = ({ selectedDangerDegree }) => {
                   alt={`Risk Icon ${item.data.dangerDegree}`}
                 />
               </div>
-              <div className="font-bold text-sm">
-                {item.chart.HTS한글종목명}
-              </div>
+              <div className="font-bold text-sm">{item.chart.hts_kor_isnm}</div>
             </div>
           </div>
         </Card>
