@@ -8,8 +8,10 @@ import riskIconImg3 from "~/assets/images/riskIcons/3.png";
 import riskIconImg4 from "~/assets/images/riskIcons/4.png";
 import riskIconImg5 from "~/assets/images/riskIcons/5.png";
 import riskIconImg6 from "~/assets/images/riskIcons/6.png";
+
 import redLikeImg from "~/assets/images/detail/redLikeIcon.png";
 import blankLikeImg from "~/assets/images/detail/blankLikeIcon.png";
+
 const ALLETF = ({ selectedDangerDegree, selectedType }) => {
   const [etf, setEtf] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
