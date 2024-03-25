@@ -7,6 +7,7 @@ export default function Graph(props) {
   const code = props.code;
   const currentPeriod = props.currentPeriod;
   const chartData = props.chartData;
+  const isFund = props.isFund;
 
   const periodSizes = [7, 30, 90, 180, 365];
   const size = periodSizes[currentPeriod];
@@ -19,6 +20,15 @@ export default function Graph(props) {
     i++
   ) {
     const ele = chartData[i];
+
+    if (isFund) {
+      formattedData.push({
+        x: ele.기준일,
+        y: ele.기준가,
+      });
+
+      continue;
+    }
 
     formattedData.push({
       x: ele.stck_bsop_date,

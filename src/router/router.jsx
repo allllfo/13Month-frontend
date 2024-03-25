@@ -12,6 +12,7 @@ import PreviewSolutionPage from "~/pages/preview/previewSolutionPage";
 import ETFMain from "~/pages/ETF/ETFMain";
 import EtfDetailPage from "~/pages/ETF/etfDetailPage";
 import PreviewResultDetailPage from "~/pages/preview/previewResultDetailPage";
+import FundDetailPage from "~/pages/fund/fundDetailPage";
 
 export const mainRoutes = [
   {
@@ -61,6 +62,10 @@ export const mainRoutes = [
       {
         path: "/etf/detail/:code",
         element: <EtfDetailPage />,
+      },
+      {
+        path: "/fund/detail/:code",
+        element: <FundDetailPage />,
       },
     ],
   },
