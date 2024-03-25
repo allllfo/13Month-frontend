@@ -68,7 +68,7 @@ export default function PreviewResult() {
 
       console.log("세전 월급 :\n", taxBaseMonth.toLocaleString());
       console.log(
-        `예상 납부 세금 :\n월급 * ${simpleTaxRow[1]}%\n(소득 ${simpleTaxRow[0]}만원 이하)`
+        `예상 납부 세금 :\n소득 * ${simpleTaxRow[1]}%\n(소득 ${simpleTaxRow[0]}만원 이하)`
       );
       console.log(
         `납부해야하는 세금 :\n${taxRow[1]}만원 + 소득 * ${taxRow[2]}% \n(소득 ${taxRow[0]}만원 이하)`
