@@ -11,7 +11,6 @@ import { getMyData } from "~/lib/apis/myData";
 export default function PreviewResult() {
   const userState = useSelector((state) => state.user13th);
 
-  const [price, setPrice] = useState("200만");
   const [isReceive, setIsReceive] = useState(true);
 
   const [taxToPaidMessage, setTaxToPaidMessage] = useState("");
@@ -41,7 +40,8 @@ export default function PreviewResult() {
 
   useEffect(() => {
     getMyData(userState.userId).then((resp) => {
-      const taxBaseMonth = resp.nationalTaxService.taxBaseMonth;
+      // 월급 입력받은 값 넣어야함
+      const taxBaseMonth = 4000000;
 
       // 과세표준 (1년)
       const taxBaseYear = taxBaseMonth * 12;
