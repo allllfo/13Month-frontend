@@ -34,6 +34,9 @@ export default function fundMainPage() {
             parseFloat(a.data.규모.slice(0, -2))
         );
 
+      newFunds[3] = [];
+      newFunds[4] = [];
+
       return newFunds;
     });
   };
