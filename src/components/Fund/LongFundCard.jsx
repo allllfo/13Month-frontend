@@ -74,7 +74,7 @@ export default function LongFundCard(props) {
 
   return (
     <div className="border-t pt-3 pb-3 flex justify-between">
-      <div onClick={() => clickCard()}>
+      <div onClick={() => clickCard()} style={{ cursor: "pointer" }}>
         <Risk riskDegree={riskDegree} />
         <p className="text-lg mt-2 font-semibold">{title}</p>
       </div>
@@ -87,10 +87,11 @@ export default function LongFundCard(props) {
             onClick={() => {
               clickLike();
             }}
+            style={{ cursor: "pointer" }}
           />
         </div>
 
-        <div onClick={() => clickCard()}>
+        <div onClick={() => clickCard()} style={{ cursor: "pointer" }}>
           <p className="text-sm text-right">{optionTitle}</p>
           <p className={optionStyle}>{optionValue}</p>
         </div>
