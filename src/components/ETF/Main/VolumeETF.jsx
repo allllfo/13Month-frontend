@@ -3,7 +3,7 @@ import MyResponsiveLine from "~/components/ETF/Main/MyResponsiveLine";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Risk from "~/components/ETF/Risk/Risk";
-
+import { useNavigate } from "react-router";
 import blankLikeIcon from "~/assets/images/detail/blankLikeIcon.png";
 import redLikeIcon from "~/assets/images/detail/redLikeIcon.png";
 
@@ -12,6 +12,7 @@ const VolumeETF = ({ selectedDangerDegree, selectedType }) => {
   const userState = useSelector((state) => state.user13th);
   const [etf, setEtf] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -76,11 +77,18 @@ const VolumeETF = ({ selectedDangerDegree, selectedType }) => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+  const clickCard = (code) => {
+    navigate("/etf/detail/" + code);
+  };
 
   return (
     <div>
       {etf.map((item) => (
-        <div key={item.code}>
+        <div
+          key={item.code}
+          onClick={() => clickCard(item.code)}
+          style={{ cursor: "pointer" }}
+        >
           <div className="border-t pt-4 pb-3 flex justify-between">
             <Risk riskDegree={item.data.dangerDegree} />
             <p className="text-lg mt-2 font-semibold">
@@ -103,8 +111,9 @@ const VolumeETF = ({ selectedDangerDegree, selectedType }) => {
               />
             </div>
             <div className="flex item-center justify-center gap-2">
+              <div className="font-xl font-bold text-red-500">수익률</div>
               <p className="text-lg font-bold text-red-600">
-                {item.chart.profitPercentage}
+                {item.chart.profitPercentage}%
               </p>
               {likedEtfCodes.includes(item.code) ? (
                 <div>

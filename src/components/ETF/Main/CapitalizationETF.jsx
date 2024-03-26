@@ -3,7 +3,7 @@ import MyResponsiveLine from "~/components/ETF/Main/MyResponsiveLine";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Risk from "~/components/ETF/Risk/Risk";
-
+import { useNavigate } from "react-router";
 import blankLikeIcon from "~/assets/images/detail/blankLikeIcon.png";
 import redLikeIcon from "~/assets/images/detail/redLikeIcon.png";
 
@@ -12,6 +12,7 @@ const CapitalizationETF = ({ selectedDangerDegree, selectedType }) => {
   const userState = useSelector((state) => state.user13th);
   const [etf, setEtf] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -77,16 +78,22 @@ const CapitalizationETF = ({ selectedDangerDegree, selectedType }) => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+  const clickCard = (code) => {
+    navigate("/etf/detail/" + code);
+  };
 
   return (
     <div>
       {etf.map((item) => (
-        <div key={item.code}>
+        <div
+          key={item.code}
+          onClick={() => clickCard(item.code)}
+          style={{ cursor: "pointer" }}
+        >
           <div className="border-t pt-4 pb-3 flex justify-between">
             <Risk riskDegree={item.data.dangerDegree} />
             <p className="text-lg mt-2 font-semibold">
               {item.chart.hts_kor_isnm}
-              {/* {item.code} */}
             </p>
           </div>
           <div className="flex flex-row justify-between">
@@ -104,14 +111,15 @@ const CapitalizationETF = ({ selectedDangerDegree, selectedType }) => {
               />
             </div>
             <div className="flex item-center justify-center gap-2">
+              <div className="font-xl font-bold text-red-500">수익률</div>
               <p className="text-lg font-bold text-red-600">
-                {item.chart.profitPercentage}
+                {item.chart.profitPercentage}%
               </p>
               {likedEtfCodes.includes(item.code) ? (
                 <div>
                   <img
                     src={redLikeIcon}
-                    className="h-8"
+                    className="h-8 mb-2"
                     onClick={() => toggleLike(item.code)}
                     alt="Dislike Button"
                   />
@@ -120,10 +128,13 @@ const CapitalizationETF = ({ selectedDangerDegree, selectedType }) => {
                 <div>
                   <img
                     src={blankLikeIcon}
-                    className="h-8"
+                    className="h-8 mb-2"
                     onClick={() => toggleLike(item.code)}
                     alt="Like Button"
                   />
+                  {/* <div className=" font-bold text-red-500">
+                    시가총액 {item.chart.prdy_vol}
+                  </div> */}
                 </div>
               )}
             </div>
