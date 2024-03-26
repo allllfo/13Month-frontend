@@ -7,7 +7,7 @@ import Risk from "~/components/ETF/Risk/Risk";
 import blankLikeIcon from "~/assets/images/detail/blankLikeIcon.png";
 import redLikeIcon from "~/assets/images/detail/redLikeIcon.png";
 
-const VolumeETF = ({ selectedDangerDegree, selectedType }) => {
+const LikedEtf = ({ selectedDangerDegree, selectedType }) => {
   const [likedEtfCodes, setLikedEtfCodes] = useState([]);
   const userState = useSelector((state) => state.user13th);
   const [etf, setEtf] = useState([]);
@@ -28,9 +28,7 @@ const VolumeETF = ({ selectedDangerDegree, selectedType }) => {
           "http://localhost:3000/api/etf/overview"
         );
         const data = response.data;
-        let filteredETF = data.sort(
-          (a, b) => b.chart.hts_avls - a.chart.hts_avls
-        );
+        let filteredETF = data;
 
         if (selectedDangerDegree) {
           filteredETF = filteredETF.filter(
@@ -133,4 +131,4 @@ const VolumeETF = ({ selectedDangerDegree, selectedType }) => {
   );
 };
 
-export default VolumeETF;
+export default LikedEtf;
