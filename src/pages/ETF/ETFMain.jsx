@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Card, Tabs } from "flowbite-react";
-import ETFDangerFilter from "../../components/ETF/Filter/ETFDangerFilter";
+import React, { useState } from "react";
+import { Tabs } from "flowbite-react";
 import ETFFilter from "../../components/ETF/Filter/ETFFilter";
 
 import ALLETF from "~/components/ETF/Main/ALLETF";
