@@ -1,55 +1,51 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 import TopBackBar from "~/components/TopBackBar/TopBackBar";
 import DetailTabBar from "~/components/ETF/Detail/DetailTabBar";
-
-import CommonInfo from "~/components/ETF/Detail/CommonInfo";
-
 import Chart from "~/components/ETF/Detail/Chart/Chart";
 import DailyPrice from "~/components/ETF/Detail/DailyPrice/DailyPrice";
 import StockInfo from "~/components/ETF/Detail/StockInfo/StockInfo";
 import Community from "~/components/ETF/Detail/Community/Community";
-import { useParams } from "react-router";
 
-import { getEtfInfo, getEtfPriceData } from "~/lib/apis/etfDetail";
+import { getFundInfo } from "~/lib/apis/fundDetail";
+import CommonInfo from "~/components/ETF/Detail/CommonInfo";
 
-export default function etfDetailPage() {
-  const [currentTab, setCurrentTab] = useState(0);
-  const [stockInfo, setStockInfo] = useState();
-  const [priceData, setPriceData] = useState([]);
-  const [ratio, setRatio] = useState();
-
+export default function fuindDetailPage() {
   const { code } = useParams();
-
-  useEffect(() => {
-    getEtfPriceData(code).then((resp) => {
-      const prices = resp[0].chart.output2;
-      setPriceData(prices);
-    });
-
-    getEtfInfo(code).then((resp) => {
-      setStockInfo(resp[0].data);
-      setRatio(resp[0].data.ratio);
-    });
-  }, []);
+  const [fundInfo, setFundInfo] = useState();
+  const [currentTab, setCurrentTab] = useState(0);
+  const [priceData, setPriceData] = useState([]);
+  const [infoData, setInfoData] = useState([]);
+  const [ratio, setRatio] = useState();
 
   const detailTabs = ["차트", "일별 시세", "종목 정보", "커뮤니티"];
   const detailComponents = [
-    <Chart code={code} priceData={priceData} />,
-    <DailyPrice code={code} priceData={priceData} />,
-    <StockInfo code={code} stockInfo={stockInfo} ratio={ratio} />,
+    <Chart code={code} priceData={priceData} isFund={true} />,
+    <DailyPrice code={code} priceData={priceData} isFund={true} />,
+    <StockInfo code={code} stockInfo={infoData} ratio={ratio} isFund={true} />,
     <Community code={code} />,
   ];
+
+  useEffect(() => {
+    getFundInfo(code).then((resp) => {
+      setFundInfo(resp);
+      setPriceData(resp.basePrice);
+      setInfoData(resp.data);
+      setRatio(resp.portfolio["보유종목 Top10"]);
+    });
+  }, []);
 
   return (
     <div>
       <TopBackBar />
 
-      {stockInfo ? (
+      {fundInfo ? (
         <CommonInfo
-          code={code}
-          title={stockInfo.basicInfo.종목이름.split(" (")[0]}
-          riskDegree={stockInfo.dangerDegree}
+          code={fundInfo.code}
+          title={fundInfo.data.펀드명.split(" (")[0]}
+          riskDegree={fundInfo.data.위험등급}
+          isFund={true}
         />
       ) : (
         <></>
@@ -61,7 +57,7 @@ export default function etfDetailPage() {
         setCurrentTab={setCurrentTab}
       />
 
-      {stockInfo ? detailComponents[currentTab] : <></>}
+      {fundInfo ? detailComponents[currentTab] : <></>}
     </div>
   );
 }
