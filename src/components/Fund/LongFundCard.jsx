@@ -11,13 +11,14 @@ import { useNavigate } from "react-router";
 
 export default function LongFundCard(props) {
   const userState = useSelector((state) => state.user13th);
-  const title = props.title;
-  const riskDegree = parseInt(props.riskDegree);
-  const profit = props.profit;
-  const size = props.size;
-  const code = props.code;
-  const removeItemFromArray = props.removeItemFromArray;
-  const addItemToArray = props.addItemToArray;
+  const fund = props.fund;
+  const currentTab = props.currentTab;
+
+  const title = fund.data.펀드명;
+  const riskDegree = parseInt(fund.data.위험등급);
+  const profit = fund.profit.표;
+  const code = fund.code;
+  const size = fund.data.규모;
 
   const profitPeriod = "3개월";
 
@@ -29,18 +30,29 @@ export default function LongFundCard(props) {
     heartImg = redLikeIcon;
   }
 
-  let profitStyle = "font-bold text-xl";
-  if (profit[profitPeriod][0] === "-") {
-    profitStyle += " text-blue-500";
+  let optionStyle = "font-bold text-xl text-right";
+
+  let optionTitle;
+  let optionValue;
+
+  if (currentTab === 2) {
+    optionTitle = "규모";
+    optionValue = size;
   } else {
-    profitStyle += " text-red-500";
+    optionTitle = profitPeriod;
+    optionValue = profit[profitPeriod] + "%";
+
+    if (optionValue[0] === "-") {
+      optionStyle += " text-blue-500";
+    } else {
+      optionStyle += " text-red-500";
+    }
   }
 
   useEffect(() => {
     findUserWithNickname(userState.nickname).then((resp) => {
       if (resp.likedFund.includes(code)) {
         setIsLiked(true);
-        addItemToArray(3, code);
       }
     });
   }, []);
@@ -49,13 +61,11 @@ export default function LongFundCard(props) {
     if (isLiked) {
       setIsLiked(false);
       pullLikedFund(userState.userId, code);
-      removeItemFromArray(3, code);
       return;
     }
 
     setIsLiked(true);
     pushLikedFund(userState.userId, code);
-    addItemToArray(3, code);
   };
 
   const clickCard = () => {
@@ -69,7 +79,7 @@ export default function LongFundCard(props) {
         <p className="text-lg mt-2 font-semibold">{title}</p>
       </div>
 
-      <div className="w-16 mr-3">
+      <div className="w-20 mr-3">
         <div className="flex justify-end mb-8">
           <img
             src={heartImg}
@@ -81,8 +91,8 @@ export default function LongFundCard(props) {
         </div>
 
         <div onClick={() => clickCard()}>
-          <p className="text-sm text-right">{profitPeriod}</p>
-          <p className={profitStyle}>{profit[profitPeriod]}%</p>
+          <p className="text-sm text-right">{optionTitle}</p>
+          <p className={optionStyle}>{optionValue}</p>
         </div>
       </div>
     </div>

@@ -46,24 +46,6 @@ export default function fundMainPage() {
     });
   };
 
-  const addItemToArray = (idx, item) => {
-    setFunds((prevFunds) => {
-      const newFunds = [...prevFunds];
-      newFunds[idx].push(item);
-      return newFunds;
-    });
-  };
-
-  const removeItemFromArray = (idx, deleteItemCode) => {
-    setFunds((prevFunds) => {
-      const newFunds = [...prevFunds];
-      newFunds[idx] = newFunds[idx].filter(
-        (item) => item[code] !== deleteItemCode
-      );
-      return newFunds;
-    });
-  };
-
   const detailTabs = ["전체", "수익률", "규모", "관심", "최근"];
   useEffect(() => {
     getAllFund().then((resp) => {
@@ -71,6 +53,21 @@ export default function fundMainPage() {
     });
   }, []);
 
+  useEffect(() => {
+    if (currentTab === 3) {
+      console.log("funds[3] : ", funds[3]);
+      findUserWithNickname(userState.nickname).then((user) => {
+        const likedFund = user.likedFund;
+
+        // setFunds(prev => {
+        //   let updatedFunds = [...prev];
+        //   updateFunds[3] =
+        // })
+
+        console.log("likedFund: ", likedFund);
+      });
+    }
+  }, [currentTab]);
   return (
     <div>
       <TopBackBar />
@@ -84,11 +81,7 @@ export default function fundMainPage() {
       />
 
       {funds ? (
-        <Funds
-          funds={funds[currentTab]}
-          addItemToArray={addItemToArray}
-          removeItemFromArray={removeItemFromArray}
-        />
+        <Funds funds={funds[currentTab]} currentTab={currentTab} />
       ) : (
         <></>
       )}
