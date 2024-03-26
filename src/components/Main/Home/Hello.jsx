@@ -6,8 +6,6 @@ export default function Hello(props) {
   const userState = useSelector((state) => state.user13th);
   const setCurrentTab = props.setCurrentTab;
 
-  console.log("user: ", userState);
-
   return (
     <div className="flex mt-6">
       <div

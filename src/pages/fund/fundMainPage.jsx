@@ -98,7 +98,6 @@ export default function fundMainPage() {
           return user.likedFund;
         })
         .then((likedFund) => {
-          console.log("liked: ", likedFund);
           return getFundInfoWithList(likedFund);
         })
         .then((likedFundInfo) => {
