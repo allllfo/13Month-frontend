@@ -10,7 +10,7 @@ export default function Funds(props) {
   return (
     <div className="mt-2">
       {funds.map((ele, idx) => (
-        <LongFundCard key={idx} fund={ele} currentTab={currentTab} />
+        <LongFundCard key={ele.code} fund={ele} currentTab={currentTab} />
       ))}
     </div>
   );
