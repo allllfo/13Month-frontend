@@ -6,8 +6,12 @@ import DetailTabBar from "~/components/ETF/Detail/DetailTabBar";
 import Funds from "~/components/Fund/Funds";
 
 import { getAllFund } from "~/lib/apis/fund";
+import { useSelector } from "react-redux";
+import { findUserWithNickname } from "~/lib/apis/user";
 
 export default function fundMainPage() {
+  const userState = useSelector((state) => state.user13th);
+
   const [funds, setFunds] = useState([[], [], [], [], []]);
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -35,8 +39,27 @@ export default function fundMainPage() {
         );
 
       newFunds[3] = [];
+
       newFunds[4] = [];
 
+      return newFunds;
+    });
+  };
+
+  const addItemToArray = (idx, item) => {
+    setFunds((prevFunds) => {
+      const newFunds = [...prevFunds];
+      newFunds[idx].push(item);
+      return newFunds;
+    });
+  };
+
+  const removeItemFromArray = (idx, deleteItemCode) => {
+    setFunds((prevFunds) => {
+      const newFunds = [...prevFunds];
+      newFunds[idx] = newFunds[idx].filter(
+        (item) => item[code] !== deleteItemCode
+      );
       return newFunds;
     });
   };
@@ -60,7 +83,15 @@ export default function fundMainPage() {
         setCurrentTab={setCurrentTab}
       />
 
-      {funds ? <Funds funds={funds[currentTab]} /> : <></>}
+      {funds ? (
+        <Funds
+          funds={funds[currentTab]}
+          addItemToArray={addItemToArray}
+          removeItemFromArray={removeItemFromArray}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

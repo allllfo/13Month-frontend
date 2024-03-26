@@ -5,6 +5,8 @@ import LongFundCard from "./LongFundCard";
 
 export default function Funds(props) {
   const funds = props.funds;
+  const removeItemFromArray = props.removeItemFromArray;
+  const addItemToArray = props.addItemToArray;
 
   return (
     <div className="mt-2">
@@ -16,6 +18,8 @@ export default function Funds(props) {
           profit={ele.profit.표}
           size={ele.data.규모}
           code={ele.code}
+          addItemToArray={addItemToArray}
+          removeItemFromArray={removeItemFromArray}
         />
       ))}
     </div>
