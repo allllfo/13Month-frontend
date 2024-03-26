@@ -28,6 +28,7 @@ export default function SimpleFundCard(props) {
     <div
       className="relative flex-shrink-0 w-48 p-4 bg-white rounded-xl ml-4"
       onClick={() => navigate("/fund/detail/" + code)}
+      style={{ cursor: "pointer" }}
     >
       <p>{title}</p>
 

@@ -9,6 +9,7 @@ import { getAllFund } from "~/lib/apis/fund";
 import { useSelector } from "react-redux";
 import { findUserWithNickname } from "~/lib/apis/user";
 import { getFundInfoWithList } from "~/lib/apis/fund";
+import { getRising } from "~/lib/apis/rising";
 
 export default function fundMainPage() {
   const userState = useSelector((state) => state.user13th);
@@ -16,8 +17,12 @@ export default function fundMainPage() {
   const [funds, setFunds] = useState([[], [], [], [], []]);
   const [currentTab, setCurrentTab] = useState(0);
 
+  const [rising, setRising] = useState([]);
+  const [include, setInclude] = useState([]);
+
   const profitPeriod = "3개월";
 
+  // 전체, 거래량, 규모
   const updateFunds = (resp) => {
     setFunds(() => {
       const newFunds = [];
@@ -43,17 +48,49 @@ export default function fundMainPage() {
 
       newFunds[4] = [];
 
+      let allStocks = [];
+      let allResults = [];
+      getRising()
+        .then((rising) => {
+          rising.forEach((stock) => {
+            const name = stock.stbd_nm;
+
+            let results = [];
+
+            newFunds[0].map((ele, idx) => {
+              const portfolio = ele.portfolio["보유종목 Top10"];
+
+              portfolio.some((elem) => {
+                if (elem[0] === name) {
+                  results.push(ele);
+                  return;
+                }
+              });
+            });
+
+            if (results.length > 0) {
+              allStocks.push(name);
+              allResults.push(results);
+            }
+          });
+        })
+        .then(() => {
+          setRising(allStocks);
+          setInclude(allResults);
+        });
+
       return newFunds;
     });
   };
 
   const detailTabs = ["전체", "수익률", "규모", "관심", "최근"];
   useEffect(() => {
-    getAllFund().then((resp) => {
-      updateFunds(resp);
+    getAllFund().then((funds) => {
+      updateFunds(funds);
     });
   }, []);
 
+  // liked
   useEffect(() => {
     if (currentTab === 3) {
       findUserWithNickname(userState.nickname)
@@ -61,7 +98,6 @@ export default function fundMainPage() {
           return user.likedFund;
         })
         .then((likedFund) => {
-          console.log("liked: ", likedFund);
           return getFundInfoWithList(likedFund);
         })
         .then((likedFundInfo) => {
@@ -77,13 +113,29 @@ export default function fundMainPage() {
           console.log("err: ", err);
         });
     }
+
+    // history
+    if (currentTab === 4) {
+      const history = userState.fundHistory;
+      getFundInfoWithList(history).then((historyFundInfo) => {
+        setFunds((prev) => {
+          let updatedFunds = [...prev];
+          updatedFunds[4] = historyFundInfo;
+          return updatedFunds;
+        });
+      });
+    }
   }, [currentTab]);
   return (
     <div>
       <TopBackBar />
 
       {/* 핫이슈 목록 받기로 변경 */}
-      {funds ? <HotFund funds={funds[0]} /> : <></>}
+      {rising.length > 0 ? (
+        <HotFund rising={rising} include={include} />
+      ) : (
+        <></>
+      )}
 
       <DetailTabBar
         detailTabs={detailTabs}

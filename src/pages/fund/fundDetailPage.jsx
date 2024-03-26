@@ -10,14 +10,20 @@ import Community from "~/components/ETF/Detail/Community/Community";
 
 import { getFundInfo } from "~/lib/apis/fundDetail";
 import CommonInfo from "~/components/ETF/Detail/CommonInfo";
+import { pushFundHistory } from "~/store/reducers/user";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function fuindDetailPage() {
+  const userState = useSelector((state) => state.user13th);
+
   const { code } = useParams();
   const [fundInfo, setFundInfo] = useState();
   const [currentTab, setCurrentTab] = useState(0);
   const [priceData, setPriceData] = useState([]);
   const [infoData, setInfoData] = useState([]);
   const [ratio, setRatio] = useState();
+
+  const dispatch = useDispatch();
 
   const detailTabs = ["차트", "일별 시세", "종목 정보", "커뮤니티"];
   const detailComponents = [
@@ -34,6 +40,9 @@ export default function fuindDetailPage() {
       setInfoData(resp.data);
       setRatio(resp.portfolio["보유종목 Top10"]);
     });
+
+    dispatch(pushFundHistory(code));
+    console.log("userState: ", userState);
   }, []);
 
   return (
