@@ -11,3 +11,18 @@ export const getAllFund = async () => {
     console.log(err);
   }
 };
+
+export const getFundWithList = async (likedFund) => {
+  try {
+    const url = "/api/fund/info";
+    const body = {
+      fundCodeList: likedFund,
+    };
+
+    const resp = await axios.post(url);
+
+    return resp.data;
+  } catch (err) {
+    console.log(err);
+  }
+};

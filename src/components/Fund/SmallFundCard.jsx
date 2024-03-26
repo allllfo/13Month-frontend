@@ -1,8 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 export default function SimpleFundCard(props) {
   const userState = useSelector((state) => state.user13th);
+  const navigate = useNavigate();
+
   const fund = props.fund;
   const currentTab = props.currentTab;
 
@@ -22,7 +25,10 @@ export default function SimpleFundCard(props) {
   }
 
   return (
-    <div className="relative flex-shrink-0 w-48 p-4 bg-white rounded-xl ml-4">
+    <div
+      className="relative flex-shrink-0 w-48 p-4 bg-white rounded-xl ml-4"
+      onClick={() => navigate("/fund/detail/" + code)}
+    >
       <p>{title}</p>
 
       <div className="absolute bottom-4 right-4">
