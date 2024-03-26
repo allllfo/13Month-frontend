@@ -12,14 +12,14 @@ export const getAllFund = async () => {
   }
 };
 
-export const getFundWithList = async (likedFund) => {
+export const getFundInfoWithList = async (likedFund) => {
   try {
     const url = "/api/fund/info";
     const body = {
       fundCodeList: likedFund,
     };
 
-    const resp = await axios.post(url);
+    const resp = await axios.post(url, body);
 
     return resp.data;
   } catch (err) {

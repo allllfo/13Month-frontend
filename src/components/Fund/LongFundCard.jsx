@@ -76,10 +76,12 @@ export default function LongFundCard(props) {
     <div className="border-t pt-3 pb-3 flex justify-between">
       <div onClick={() => clickCard()}>
         <Risk riskDegree={riskDegree} />
-        <p className="text-lg mt-2 font-semibold">{title}</p>
+        <p className="text-lg mt-2 font-semibold">
+          {title} {code} {isLiked ? "true" : "false"}
+        </p>
       </div>
 
-      <div className="w-20 mr-3">
+      <div className="w-28 mr-3">
         <div className="flex justify-end mb-8">
           <img
             src={heartImg}

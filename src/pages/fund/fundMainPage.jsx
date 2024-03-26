@@ -8,6 +8,7 @@ import Funds from "~/components/Fund/Funds";
 import { getAllFund } from "~/lib/apis/fund";
 import { useSelector } from "react-redux";
 import { findUserWithNickname } from "~/lib/apis/user";
+import { getFundInfoWithList } from "~/lib/apis/fund";
 
 export default function fundMainPage() {
   const userState = useSelector((state) => state.user13th);
@@ -55,19 +56,22 @@ export default function fundMainPage() {
 
   useEffect(() => {
     if (currentTab === 3) {
-      console.log("funds[3] : ", funds[3]);
       findUserWithNickname(userState.nickname)
         .then((user) => {
           return user.likedFund;
         })
         .then((likedFund) => {
-          // likedFund로 펀드 정보들 받기
+          console.log("liked: ", likedFund);
+          return getFundInfoWithList(likedFund);
         })
         .then((likedFundInfo) => {
-          // setFunds(prev => {
-          //   let updatedFunds = [...prev];
-          //   updateFunds[3] =
-          // })
+          // console.log("likedFund: ", likedFundInfo);
+
+          setFunds((prev) => {
+            let updatedFunds = [...prev];
+            updatedFunds[3] = likedFundInfo;
+            return updatedFunds;
+          });
         })
         .catch((err) => {
           console.log("err: ", err);
