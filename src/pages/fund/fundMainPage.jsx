@@ -54,7 +54,7 @@ export default function fundMainPage() {
         .then((rising) => {
           rising.forEach((stock) => {
             const name = stock.stbd_nm;
-            console.log("name: ", name);
+
             let results = [];
 
             newFunds[0].map((ele, idx) => {
@@ -75,8 +75,6 @@ export default function fundMainPage() {
           });
         })
         .then(() => {
-          console.log("total: ", allStocks);
-          console.log("total: ", allResults);
           setRising(allStocks);
           setInclude(allResults);
         });
@@ -115,6 +113,18 @@ export default function fundMainPage() {
         .catch((err) => {
           console.log("err: ", err);
         });
+    }
+
+    // history
+    if (currentTab === 4) {
+      const history = userState.fundHistory;
+      getFundInfoWithList(history).then((historyFundInfo) => {
+        setFunds((prev) => {
+          let updatedFunds = [...prev];
+          updatedFunds[4] = historyFundInfo;
+          return updatedFunds;
+        });
+      });
     }
   }, [currentTab]);
   return (

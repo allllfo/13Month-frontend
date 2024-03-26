@@ -6,7 +6,6 @@ export const getRising = async () => {
 
     const resp = await axios.get(url);
 
-    console.log("resp: ", resp);
     return resp.data;
   } catch (err) {
     console.log(err);
