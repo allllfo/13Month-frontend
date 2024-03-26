@@ -29,8 +29,6 @@ export default function fuindDetailPage() {
 
   useEffect(() => {
     getFundInfo(code).then((resp) => {
-      console.log(resp);
-
       setFundInfo(resp);
       setPriceData(resp.basePrice);
       setInfoData(resp.data);

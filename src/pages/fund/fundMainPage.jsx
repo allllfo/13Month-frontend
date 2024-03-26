@@ -56,23 +56,30 @@ export default function fundMainPage() {
   useEffect(() => {
     if (currentTab === 3) {
       console.log("funds[3] : ", funds[3]);
-      findUserWithNickname(userState.nickname).then((user) => {
-        const likedFund = user.likedFund;
-
-        // setFunds(prev => {
-        //   let updatedFunds = [...prev];
-        //   updateFunds[3] =
-        // })
-
-        console.log("likedFund: ", likedFund);
-      });
+      findUserWithNickname(userState.nickname)
+        .then((user) => {
+          return user.likedFund;
+        })
+        .then((likedFund) => {
+          // likedFund로 펀드 정보들 받기
+        })
+        .then((likedFundInfo) => {
+          // setFunds(prev => {
+          //   let updatedFunds = [...prev];
+          //   updateFunds[3] =
+          // })
+        })
+        .catch((err) => {
+          console.log("err: ", err);
+        });
     }
   }, [currentTab]);
   return (
     <div>
       <TopBackBar />
 
-      <HotFund />
+      {/* 핫이슈 목록 받기로 변경 */}
+      {funds ? <HotFund funds={funds[0]} /> : <></>}
 
       <DetailTabBar
         detailTabs={detailTabs}
