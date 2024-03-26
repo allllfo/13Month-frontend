@@ -8,9 +8,6 @@ import "moment/locale/ko";
 
 export default function MyPage() {
   const userState = useSelector((state) => state.user13th);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const [isEditing, setIsEditing] = useState(false);
   const [editedUserInfo, setEditedUserInfo] = useState({
     birthday: "",
