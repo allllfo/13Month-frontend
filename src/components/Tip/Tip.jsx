@@ -1,4 +1,3 @@
-import { all } from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { FcAdvertising } from "react-icons/fc";
 
@@ -43,7 +42,7 @@ export default function Tip() {
 
   return (
     <div>
-      {allTips ? (
+      {currentTip != "" ? (
         <div
           className={isHovering ? hoveringStyle : normalStyle}
           onMouseEnter={() => {
