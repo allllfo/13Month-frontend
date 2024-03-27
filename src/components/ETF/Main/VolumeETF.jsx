@@ -55,7 +55,6 @@ const VolumeETF = ({ selectedDangerDegree, selectedType }) => {
 
     fetchData();
     fetchUser();
-    console.log(likedEtfCodes);
   }, [selectedDangerDegree, selectedType]);
 
   const toggleLike = (code) => {

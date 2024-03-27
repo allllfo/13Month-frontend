@@ -7,6 +7,7 @@ import HotIssue from "~/components/ETF/Main/HotIssue";
 import VolumeETF from "~/components/ETF/Main/VolumeETF";
 import CapitalizationETF from "~/components/ETF/Main/CapitalizationETF";
 import LikedEtf from "~/components/ETF/Main/LikedETF";
+import RecentETF from "~/components/ETF/Main/RecentETF";
 
 const ETFMain = () => {
   const [selectedDangerDegree, setSelectedDangerDegree] = useState(null);
@@ -85,7 +86,7 @@ const ETFMain = () => {
               onDangerDegreeChange={handleDangerDegreeChange}
             />
             <div className="mb-4">
-              <ALLETF
+              <RecentETF
                 selectedDangerDegree={selectedDangerDegree}
                 selectedType={selectedType}
               />
