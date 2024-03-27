@@ -8,7 +8,7 @@ export default function Tip() {
   const [allTips, setAllTips] = useState([]);
   const [intervalId, setIntervalId] = useState(null); // intervalId 상태 추가
 
-  const intervalTime = 8000;
+  const intervalTime = 3000;
 
   const [isHovering, setIsHovering] = useState(false);
 
@@ -38,6 +38,10 @@ export default function Tip() {
       setRandomTip();
       startInterval(intervalTime);
     }
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [allTips]);
 
   return (
