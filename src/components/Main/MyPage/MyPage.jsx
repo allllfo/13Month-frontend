@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { Datepicker, TextInput } from "flowbite-react";
-import moment from "moment";
 import "moment/locale/ko";
+import Address from "~/components/Preview/Address";
 
 export default function MyPage() {
   const userState = useSelector((state) => state.user13th);
@@ -14,6 +13,7 @@ export default function MyPage() {
     email: "",
     salary: "",
     address: "",
+    addressDetail: "",
   });
 
   const userId = userState.userId;
@@ -40,6 +40,7 @@ export default function MyPage() {
         birthday: editedUserInfo.birthday,
         salary: editedUserInfo.salary,
         address: editedUserInfo.address,
+        addressDetail: editedUserInfo.addressDetail,
         nickname: nickname,
       });
       setIsEditing(false); // Turn off edit mode
@@ -70,6 +71,13 @@ export default function MyPage() {
 
     fetchData();
   }, []);
+
+  const setAddressObj = (obj) => {
+    // Assuming obj.areaAddress contains address and addressDetail
+    setEditedUserInfo({
+      address: obj.areaAddress,
+    });
+  };
 
   return (
     <div className="flex flex-col items-center justify-center mt-10 text-center mb-20">
@@ -115,7 +123,7 @@ export default function MyPage() {
 
         {isEditing ? (
           <TextInput
-            type="email1"
+            type="email"
             name="email"
             value={editedUserInfo.email}
             placeholder="name@naver.com"
@@ -135,23 +143,41 @@ export default function MyPage() {
             name="salary"
             value={editedUserInfo.salary}
             onChange={handleInputChange}
-            className=" px-2 py-1"
+            className="px-2 py-1"
           />
         ) : (
-          <div>{editedUserInfo.salary}</div>
+          <div>{editedUserInfo.salary}원</div>
         )}
       </div>
 
       <div className="mt-4">
         <div className="font-bold">주소</div>
         {isEditing ? (
-          <TextInput
-            type="text"
-            name="address"
-            value={editedUserInfo.address}
-            onChange={handleInputChange}
-            className=" px-2 py-1"
-          />
+          <>
+            <TextInput
+              id="address"
+              type="text"
+              name="address"
+              placeholder="주소"
+              className="mt-2"
+              value={editedUserInfo.address}
+              onChange={handleInputChange}
+            />
+
+            <TextInput
+              name="addressDetail"
+              id="addressDetail"
+              type="text"
+              value={editedUserInfo.addressDetail}
+              placeholder="상세주소"
+              className="mt-2 mb-2"
+              onChange={handleInputChange}
+            />
+            <Address
+              className="items-end justify-end"
+              setAddressObj={setAddressObj}
+            />
+          </>
         ) : (
           <div>{editedUserInfo.address}</div>
         )}
