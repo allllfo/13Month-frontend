@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import MyResponsiveLine from "~/components/ETF/Main/MyResponsiveLine";
-import axios from "axios";
 import { useSelector } from "react-redux";
-import Risk from "~/components/ETF/Risk/Risk";
 import { useNavigate } from "react-router";
+import axios from "axios";
+import MyResponsiveLine from "~/components/ETF/Main/MyResponsiveLine";
+import Risk from "~/components/ETF/Risk/Risk";
 import blankLikeIcon from "~/assets/images/detail/blankLikeIcon.png";
 import redLikeIcon from "~/assets/images/detail/redLikeIcon.png";
 
@@ -97,7 +97,6 @@ const RecentETF = ({ selectedDangerDegree, selectedType }) => {
                 <Risk riskDegree={item.data.dangerDegree} />
                 <p className="text-lg mt-2 font-semibold">
                   {item.chart.hts_kor_isnm}
-                  {/* {item.code} */}
                 </p>
               </div>
               <div className="flex flex-row justify-between">
