@@ -10,13 +10,18 @@ export default function HotFund(props) {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
+      console.log("hot");
       setIdx((prev) => {
         if (prev + 1 < rising.length) {
           return prev + 1;
         }
         return 0;
       });
-    }, 10000);
+    }, 3000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   return (
