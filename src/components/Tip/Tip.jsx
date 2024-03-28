@@ -7,12 +7,20 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Mousewheel } from "swiper/modules";
 import "swiper/css";
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 export default function Tip() {
   const [allTips, setAllTips] = useState([]);
 
   useEffect(() => {
     getAllTips().then((tipResp) => {
-      setAllTips(tipResp);
+      setAllTips(shuffleArray(tipResp));
     });
   }, []);
 
