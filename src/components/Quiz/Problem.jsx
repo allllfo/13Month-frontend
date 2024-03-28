@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "flowbite-react";
 import { getQuiz } from "~/lib/apis/quiz";
-import BlueButton from "../BlueButton/BlueButton";
 
 //O,X중에 버튼을 클릭이 되면 정답을 띄우고, 현재 퀴즈를 설정해주는 함수를 불러 다른 퀴즈를 넣어준다.
 export default function Problem() {
