@@ -19,6 +19,7 @@ export default function MyPage() {
   const userId = userState.userId;
   const nickname = userState.nickname;
   const profileImageUrl = userState.profileImageUrl;
+  const unit = 10000; // 단위
 
   const toggleEditMode = () => {
     setIsEditing(!isEditing);
@@ -26,10 +27,10 @@ export default function MyPage() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditedUserInfo({
-      ...editedUserInfo,
+    setEditedUserInfo((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
   const saveChanges = async () => {
@@ -38,7 +39,7 @@ export default function MyPage() {
         userId: userId,
         email: editedUserInfo.email,
         birthday: editedUserInfo.birthday,
-        salary: editedUserInfo.salary,
+        salary: editedUserInfo.salary * unit,
         address: editedUserInfo.address,
         addressDetail: editedUserInfo.addressDetail,
         nickname: nickname,
@@ -60,8 +61,9 @@ export default function MyPage() {
         setEditedUserInfo({
           birthday: data.birthday,
           email: data.email,
-          salary: data.salary,
+          salary: data.salary ? data.salary / unit : null,
           address: data.address,
+          addressDetail: data.addressDetail,
         });
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -74,9 +76,10 @@ export default function MyPage() {
 
   const setAddressObj = (obj) => {
     // Assuming obj.areaAddress contains address and addressDetail
-    setEditedUserInfo({
+    setEditedUserInfo((prev) => ({
+      ...prev,
       address: obj.areaAddress,
-    });
+    }));
   };
 
   return (
@@ -91,115 +94,139 @@ export default function MyPage() {
         />
       </div>
 
-      <div className="mt-6">
-        <div className="font-bold">이름</div>
-        <div>{nickname}</div>
-      </div>
+      <div className="w-3/4 flex flex-col gap-5 mt-10">
+        <div className="flex justify-between">
+          <div className="font-bold">이름</div>
+          <div>{nickname}</div>
+        </div>
 
-      <div className="mt-4">
-        <div className="font-bold">생일</div>
+        <div className="flex justify-between">
+          <div className="font-bold">생일</div>
 
-        {isEditing ? (
-          <Datepicker
-            onSelectedDateChanged={(date) => {
-              setEditedUserInfo((prev) => ({
-                ...prev,
-                birthday: date.toLocaleDateString(),
-              }));
-            }}
-            language="kr"
-            className=" px-2 py-1"
-            weekStart={1}
-            // defaultValue={"2024-03-25"}
-            value={editedUserInfo.birthday}
-          />
-        ) : (
-          <div>{editedUserInfo.birthday}</div>
-        )}
-      </div>
+          {isEditing ? (
+            <Datepicker
+              onSelectedDateChanged={(date) => {
+                setEditedUserInfo((prev) => ({
+                  ...prev,
+                  birthday: date.toLocaleDateString(),
+                }));
+              }}
+              language="kr"
+              weekStart={1}
+              // defaultValue={"2024-03-25"}
+              value={editedUserInfo.birthday}
+            />
+          ) : (
+            <div>
+              {editedUserInfo.birthday === null
+                ? "미입력"
+                : editedUserInfo.birthday}
+            </div>
+          )}
+        </div>
 
-      <div className="mt-4">
-        <div className="font-bold">이메일</div>
+        <div className="flex justify-between">
+          <div className="font-bold">이메일</div>
 
-        {isEditing ? (
-          <TextInput
-            type="email"
-            name="email"
-            value={editedUserInfo.email}
-            placeholder="name@naver.com"
-            onChange={handleInputChange}
-            className="px-2 py-1"
-          />
-        ) : (
-          <div>{editedUserInfo.email}</div>
-        )}
-      </div>
-
-      <div className="mt-4">
-        <div className="font-bold">총 급여</div>
-        {isEditing ? (
-          <TextInput
-            type="text"
-            name="salary"
-            value={editedUserInfo.salary}
-            onChange={handleInputChange}
-            className="px-2 py-1"
-          />
-        ) : (
-          <div>{editedUserInfo.salary}원</div>
-        )}
-      </div>
-
-      <div className="mt-4">
-        <div className="font-bold">주소</div>
-        {isEditing ? (
-          <>
+          {isEditing ? (
             <TextInput
-              id="address"
-              type="text"
-              name="address"
-              placeholder="주소"
-              className="mt-2"
-              value={editedUserInfo.address}
+              type="email"
+              name="email"
+              value={editedUserInfo.email}
+              placeholder="name@naver.com"
               onChange={handleInputChange}
             />
+          ) : (
+            <div>
+              {editedUserInfo.email === null ? "미입력" : editedUserInfo.email}
+            </div>
+          )}
+        </div>
 
-            <TextInput
-              name="addressDetail"
-              id="addressDetail"
-              type="text"
-              value={editedUserInfo.addressDetail}
-              placeholder="상세주소"
-              className="mt-2 mb-2"
-              onChange={handleInputChange}
-            />
-            <Address
-              className="items-end justify-end"
-              setAddressObj={setAddressObj}
-            />
-          </>
-        ) : (
-          <div>{editedUserInfo.address}</div>
-        )}
+        <div className="flex justify-between item-center">
+          <div className="font-bold">총 급여</div>
+          {isEditing ? (
+            <div className="flex items-center">
+              <TextInput
+                type="text"
+                name="salary"
+                value={editedUserInfo.salary}
+                onChange={handleInputChange}
+                placeholder="400(단위: 만원)"
+              />
+              <div className=""></div>
+            </div>
+          ) : (
+            <div>
+              {editedUserInfo.salary === null
+                ? "미입력"
+                : editedUserInfo.salary.toLocaleString("kr-Kr") + "만원"}
+            </div>
+          )}
+        </div>
+
+        <div className="flex justify-between items-center">
+          <div className="font-bold whitespace-nowrap">주소</div>
+          {isEditing ? (
+            <div className="flex flex-col">
+              <div className="flex gap-2 items-center">
+                <TextInput
+                  id="address"
+                  type="text"
+                  name="address"
+                  placeholder="주소"
+                  className="mt-2"
+                  value={editedUserInfo.address}
+                  onChange={handleInputChange}
+                />
+                <Address
+                  className="items-end justify-end"
+                  setAddressObj={setAddressObj}
+                />
+              </div>
+              <div>
+                <TextInput
+                  name="addressDetail"
+                  id="addressDetail"
+                  type="text"
+                  value={editedUserInfo.addressDetail}
+                  placeholder="상세주소"
+                  className="mt-2 mb-2"
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="text-right">
+              {editedUserInfo.address === null ? (
+                "미입력"
+              ) : (
+                <>
+                  {editedUserInfo.address} <br /> {editedUserInfo.addressDetail}
+                </>
+              )}
+            </div>
+          )}
+        </div>
       </div>
 
       <div>
         {isEditing ? (
           <button
-            className="mt-8 mr-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
+            className="mt-8 mr-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-[15px]"
             onClick={saveChanges}
           >
             저장
           </button>
         ) : (
           <button
-            className="mt-8 mr-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
+            className="mt-8 mr-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-[15px]"
             onClick={toggleEditMode}
           >
             수정
           </button>
         )}
-        <button className="mt-8 ml-1 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full">
+        <button className="mt-8 ml-1 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-[15px]">
           내 연말정산
         </button>
       </div>
