@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Mousewheel } from "swiper/modules";
 
 export default function HotFund(props) {
   const rising = props.rising;
@@ -17,11 +17,12 @@ export default function HotFund(props) {
       <div>
         <Swiper
           direction={"vertical"}
-          modules={[Autoplay]}
+          modules={[Autoplay, Mousewheel]}
           className="mySwiper"
           style={{ height: "200px" }}
           loop={true}
           spaceBetween={30}
+          mousewheel={true}
           autoplay={{
             delay: 6000,
             disableOnInteraction: false,
