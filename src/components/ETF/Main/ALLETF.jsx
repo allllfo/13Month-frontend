@@ -82,19 +82,21 @@ const ALLETF = ({ selectedDangerDegree, selectedType }) => {
   return (
     <div>
       {etf.map((item) => (
-        <div
-          key={item.code}
-          onClick={() => clickCard(item.code)}
-          style={{ cursor: "pointer" }}
-        >
-          <div className="border-t pt-4 pb-3 flex justify-between">
+        <div key={item.code} style={{ cursor: "pointer" }}>
+          <div
+            className="border-t pt-4 pb-3 flex justify-between"
+            onClick={() => clickCard(item.code)}
+          >
             <Risk riskDegree={item.data.dangerDegree} />
             <p className="text-lg mt-2 font-semibold">
               {item.chart.hts_kor_isnm}
               {/* {item.code} */}
             </p>
           </div>
-          <div className="flex flex-row justify-between">
+          <div
+            className="flex flex-row justify-between"
+            onClick={() => clickCard(item.code)}
+          >
             <div className=" h-20 w-52">
               <MyResponsiveLine
                 data={[
@@ -109,8 +111,16 @@ const ALLETF = ({ selectedDangerDegree, selectedType }) => {
               />
             </div>
             <div className="flex item-center justify-center gap-2">
-              <div className="font-xl font-bold text-red-500">수익률</div>
-              <p className="text-lg font-bold text-red-500">
+              <div
+                className="font-xl font-bold text-red-500"
+                onClick={() => clickCard(item.code)}
+              >
+                수익률
+              </div>
+              <p
+                className="text-lg font-bold text-red-500 "
+                onClick={() => clickCard(item.code)}
+              >
                 {item.chart.profitPercentage}%
               </p>
               {likedEtfCodes.includes(item.code) ? (
