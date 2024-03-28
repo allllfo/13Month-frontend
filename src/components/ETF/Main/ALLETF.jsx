@@ -34,7 +34,7 @@ const ALLETF = ({ selectedDangerDegree, selectedType }) => {
             (item) => item.data.dangerDegree === selectedDangerDegree
           );
         }
-        console.log(selectedDangerDegree);
+        console.log(filteredETF);
 
         if (selectedType) {
           filteredETF = filteredETF.filter((item) =>

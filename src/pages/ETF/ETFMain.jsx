@@ -13,6 +13,7 @@ const ETFMain = () => {
 
   const handleDangerDegreeChange = (dangerDegree) => {
     setSelectedDangerDegree(dangerDegree);
+    console.log(dangerDegree);
   };
   const [selectedType, setSelectedType] = useState(null);
 
