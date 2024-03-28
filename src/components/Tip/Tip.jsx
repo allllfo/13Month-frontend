@@ -3,29 +3,16 @@ import { FcAdvertising } from "react-icons/fc";
 
 import { getAllTips } from "~/lib/apis/tip";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+
 export default function Tip() {
   const [currentTip, setCurrentTip] = useState("");
   const [allTips, setAllTips] = useState([]);
-  const [intervalId, setIntervalId] = useState(null); // intervalId 상태 추가
-
-  const intervalTime = 3000;
-
-  const [isHovering, setIsHovering] = useState(false);
 
   const normalStyle = "rounded-xl p-3 text-center bg-blue-50 ml-1 mr-1";
   const hoveringStyle = "rounded-xl p-3 text-center bg-blue-100 ml-1 mr-1";
-
-  function startInterval(time) {
-    const interval = setInterval(() => {
-      setRandomTip();
-    }, intervalTime);
-    setIntervalId(interval);
-  }
-
-  const setRandomTip = useCallback(() => {
-    const nextTipIdx = Math.floor(Math.random() * allTips.length);
-    setCurrentTip(allTips[nextTipIdx]);
-  }, [allTips]);
 
   useEffect(() => {
     getAllTips().then((tipResp) => {
@@ -33,41 +20,42 @@ export default function Tip() {
     });
   }, []);
 
-  useEffect(() => {
-    if (allTips.length > 0) {
-      setRandomTip();
-      startInterval(intervalTime);
-    }
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [allTips]);
-
   return (
-    <div>
-      {currentTip != "" ? (
-        <div
-          className={isHovering ? hoveringStyle : normalStyle}
-          onMouseEnter={() => {
-            clearInterval(intervalId);
-            setIsHovering(true);
-          }}
-          onMouseLeave={() => {
-            startInterval(intervalTime);
-            setIsHovering(false);
-          }}
-        >
-          <div className="flex gap-2 justify-center">
-            <p className="text-gray-600 mb-1">알고 계셨나요?</p>
-            <FcAdvertising className="h-5 w-5" />
-          </div>
-          <p className="text-sm font-semibold">{currentTip.content}</p>
-          <p className="text-xs">{currentTip.sub}</p>
-        </div>
-      ) : (
-        <></>
-      )}
+    <div className="bg-blue-50 rounded-xl p-2">
+      <div className="flex gap-1 justify-center">
+        <p className="text-gray-600">알고 계셨나요?</p>
+        <FcAdvertising className="h-5 w-5" />
+      </div>
+      <Swiper
+        direction={"vertical"}
+        centeredSlides={true}
+        autoplay={{
+          delay: 8000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        spaceBetween={100}
+        slidesPerView={1}
+        modules={[Autoplay, Pagination]}
+        style={{ height: "110px" }}
+        className="flex item-center"
+      >
+        {allTips.length > 0 ? (
+          allTips.map((ele, idx) => (
+            <SwiperSlide key={idx}>
+              <p className="text-sm font-semibold text-center m-2">
+                {ele.content}
+              </p>
+              <p className="text-xs text-center">{ele.sub}</p>
+            </SwiperSlide>
+          ))
+        ) : (
+          <></>
+        )}
+      </Swiper>
     </div>
   );
 }
