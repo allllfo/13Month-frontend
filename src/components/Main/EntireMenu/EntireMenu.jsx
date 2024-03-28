@@ -35,7 +35,7 @@ export default function EntireMenu(props) {
     },
     {
       title: "연말정산 결과 확인하기",
-      link: "/preview/main",
+      link: "/preview/prev",
       icon: <FcFinePrint className={iconStyle} />,
     },
     {

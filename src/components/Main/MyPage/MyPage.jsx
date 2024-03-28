@@ -4,9 +4,12 @@ import axios from "axios";
 import { Datepicker, TextInput } from "flowbite-react";
 import "moment/locale/ko";
 import Address from "~/components/Preview/Address";
+import { useNavigate } from "react-router";
 
 export default function MyPage() {
   const userState = useSelector((state) => state.user13th);
+  const navigate = useNavigate();
+
   const [isEditing, setIsEditing] = useState(false);
   const [editedUserInfo, setEditedUserInfo] = useState({
     birthday: "",
@@ -226,7 +229,10 @@ export default function MyPage() {
             수정
           </button>
         )}
-        <button className="mt-8 ml-1 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-[15px]">
+        <button
+          className="mt-8 ml-1 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-[15px]"
+          onClick={() => navigate("/preview/prev")}
+        >
           내 연말정산
         </button>
       </div>
