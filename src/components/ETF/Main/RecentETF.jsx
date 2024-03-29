@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import MyResponsiveLine from "~/components/ETF/Main/MyResponsiveLine";
-import axios from "axios";
 import { useSelector } from "react-redux";
-import Risk from "~/components/ETF/Risk/Risk";
 import { useNavigate } from "react-router";
+import axios from "axios";
+import MyResponsiveLine from "~/components/ETF/Main/MyResponsiveLine";
+import Risk from "~/components/ETF/Risk/Risk";
 import blankLikeIcon from "~/assets/images/detail/blankLikeIcon.png";
 import redLikeIcon from "~/assets/images/detail/redLikeIcon.png";
 
-const LikedEtf = ({ selectedDangerDegree, selectedType }) => {
+const RecentETF = ({ selectedDangerDegree, selectedType }) => {
   const [likedEtfCodes, setLikedEtfCodes] = useState([]);
   const userState = useSelector((state) => state.user13th);
   const [etf, setEtf] = useState([]);
@@ -16,7 +16,7 @@ const LikedEtf = ({ selectedDangerDegree, selectedType }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.post("/api/user/find", {
+      const response = await axios.post("http://localhost:3000/api/user/find", {
         nickname: userState.nickname,
       });
       const likeETF = response.data.likedEtf;
@@ -25,7 +25,9 @@ const LikedEtf = ({ selectedDangerDegree, selectedType }) => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/etf/overview");
+        const response = await axios.get(
+          "http://localhost:3000/api/etf/overview"
+        );
         const data = response.data;
         let filteredETF = data;
 
@@ -51,19 +53,18 @@ const LikedEtf = ({ selectedDangerDegree, selectedType }) => {
 
     fetchData();
     fetchUser();
-
   }, [selectedDangerDegree, selectedType]);
 
   const toggleLike = (code) => {
     if (likedEtfCodes.includes(code)) {
       setLikedEtfCodes(likedEtfCodes.filter((c) => c !== code));
-      axios.put("/api/user/dislike/etf", {
+      axios.put("http://localhost:3000/api/user/dislike/etf", {
         userId: userState.userId,
         code: code,
       });
     } else {
       setLikedEtfCodes([...likedEtfCodes, code]);
-      axios.put("/api/user/like/etf", {
+      axios.put("http://localhost:3000/api/user/like/etf", {
         userId: userState.userId,
         code: code,
       });
@@ -77,11 +78,16 @@ const LikedEtf = ({ selectedDangerDegree, selectedType }) => {
     navigate("/etf/detail/" + code);
   };
 
+  console.log(userState.etfHistory);
+
   return (
     <div>
-      {etf.map(
-        (item) =>
-          likedEtfCodes.includes(item.code) && (
+      {userState.etfHistory &&
+        userState.etfHistory.map((code) => {
+          const item = etf.find((etfItem) => etfItem.code === code);
+          if (!item) return null;
+
+          return (
             <div
               key={item.code}
               onClick={() => clickCard(item.code)}
@@ -91,7 +97,6 @@ const LikedEtf = ({ selectedDangerDegree, selectedType }) => {
                 <Risk riskDegree={item.data.dangerDegree} />
                 <p className="text-lg mt-2 font-semibold">
                   {item.chart.hts_kor_isnm}
-                  {/* {item.code} */}
                 </p>
               </div>
               <div className="flex flex-row justify-between">
@@ -135,10 +140,10 @@ const LikedEtf = ({ selectedDangerDegree, selectedType }) => {
                 </div>
               </div>
             </div>
-          )
-      )}
+          );
+        })}
     </div>
   );
 };
 
-export default LikedEtf;
+export default RecentETF;

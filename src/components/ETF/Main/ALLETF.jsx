@@ -14,6 +14,7 @@ const ALLETF = ({ selectedDangerDegree, selectedType }) => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
+  console.log(likedEtfCodes);
   useEffect(() => {
     const fetchUser = async () => {
       const response = await axios.post("/api/user/find", {
