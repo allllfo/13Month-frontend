@@ -138,7 +138,7 @@ export default function LoginPage() {
         </SwiperSlide>
       </Swiper>
 
-      <div className="flex justify-center mt-16">
+      <div className="flex justify-center mt-16" style={{ cursor: "pointer" }}>
         <img className="h-10" src={loginImg} onClick={() => clickLoginBtn()} />
       </div>
     </div>
