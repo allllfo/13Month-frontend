@@ -13,7 +13,7 @@ import img9 from "~/assets/images/findout/9.png";
 const FindOut = () => {
   return (
     <div className="text-gray-600">
-      <div className="mt-8 font-bold text-3xl text-black">
+      <div className="mt-6 font-bold text-3xl text-black">
         연말정산 알아보기 🕵️
       </div>
 
