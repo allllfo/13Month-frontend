@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+
 import {
   setUserId,
   setkakaoToken,
@@ -14,14 +16,53 @@ import {
   findUserWithNickname,
   createUser,
 } from "../../lib/apis/user";
-import { useNavigate } from "react-router";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination, Autoplay, Mousewheel } from "swiper/modules";
+
 import loginImg from "~/assets/images/login/kakao_login_large_wide_2.png";
-import logoImg from "~/assets/images/logo.png";
+
+import Introduce from "~/components/Login/Introduce";
+import previewCapture from "~/assets/images/login/preview.png";
+import fundDetailCapture from "~/assets/images/login/fundDetail.png";
+import guideCapture from "~/assets/images/login/guide.png";
+import quizCapture from "~/assets/images/login/quiz.png";
+import recommendCapture from "~/assets/images/login/recommend.png";
+import Logo from "~/components/Login/Logo";
 
 export default function LoginPage() {
   const userState = useSelector((state) => state.user13th);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const infos = [
+    {
+      title1: "테스트1",
+      title2: "테스트2",
+      subTitle: "서브 테스트",
+      img: previewCapture,
+    },
+    {
+      title1: "테스트1",
+      title2: "테스트2",
+      subTitle: "서브 테스트",
+      img: recommendCapture,
+    },
+    {
+      title1: "테스트1",
+      title2: "테스트2",
+      subTitle: "서브 테스트",
+      img: quizCapture,
+    },
+    {
+      title1: "테스트1",
+      title2: "테스트2",
+      subTitle: "서브 테스트",
+      img: previewCapture,
+    },
+  ];
 
   useEffect(() => {
     if (userState.nickname !== "") {
@@ -64,24 +105,42 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="text-2xl font-bold text-center mt-28">
-        <p>
-          13월에도
-          <br />
-          월급을 받을 수 있다면?
-        </p>
-      </div>
+    <div>
+      <Swiper
+        pagination={{
+          dynamicBullets: true,
+          clickable: true,
+        }}
+        modules={[Pagination, Autoplay, Mousewheel]}
+        className=""
+        style={{ height: "580px" }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        spaceBetween={30}
+        centeredSlides={true}
+        mousewheel={true}
+      >
+        {infos.map((ele, idx) => (
+          <SwiperSlide>
+            <Introduce
+              title1={ele.title1}
+              title2={ele.title2}
+              subTitle={ele.subTitle}
+              img={ele.img}
+            />
+          </SwiperSlide>
+        ))}
 
-      <div className="mt-16">
-        <img src={logoImg} className="w-44"></img>
-      </div>
+        <SwiperSlide>
+          <Logo />
+        </SwiperSlide>
+      </Swiper>
 
-      <img
-        className="h-10 mt-36"
-        src={loginImg}
-        onClick={() => clickLoginBtn()}
-      />
+      <div className="flex justify-center mt-16" style={{ cursor: "pointer" }}>
+        <img className="h-10" src={loginImg} onClick={() => clickLoginBtn()} />
+      </div>
     </div>
   );
 }
