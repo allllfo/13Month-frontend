@@ -19,8 +19,8 @@ const ETFFilter = ({ onTypeSelect, onDangerDegreeChange }) => {
   const [selected, setSelected] = useState(null);
 
   const handleButtonClick = (buttonId) => {
-    console.log(buttonId);
-    console.log(selected);
+    // console.log(buttonId);
+    // console.log(selected);
     if (selected == buttonId) {
       setSelected("");
       onDangerDegreeChange("");

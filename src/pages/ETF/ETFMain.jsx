@@ -14,12 +14,12 @@ const ETFMain = () => {
 
   const handleDangerDegreeChange = (dangerDegree) => {
     setSelectedDangerDegree(dangerDegree);
-    console.log(dangerDegree);
+    // console.log(dangerDegree);
   };
   const [selectedType, setSelectedType] = useState(null);
 
   const handleTypeSelect = (type) => {
-    console.log(type);
+    // console.log(type);
     setSelectedType(type);
   };
 
@@ -28,10 +28,6 @@ const ETFMain = () => {
       <TopBackBar />
 
       <div className="bg-blue-100 rounded-xl">
-        {/* <div className="bg-white mt-2  mb-2 text-3xl font-extrabold">
-          <p className="ml-1">인기 종목 포함 ETF</p>
-        </div> */}
-
         <HotIssue />
 
         <div className="bg-white mt-2">
