@@ -5,7 +5,7 @@ import logoImg from "~/assets/images/logo.png";
 export default function Logo() {
   return (
     <div className="flex flex-col items-center">
-      <div className="text-2xl font-bold text-center mt-28">
+      <div className="text-2xl font-bold text-center mt-32">
         <p>
           13월에도
           <br />
@@ -13,7 +13,7 @@ export default function Logo() {
         </p>
       </div>
 
-      <div className="mt-20">
+      <div className="mt-24">
         <img src={logoImg} className="w-44"></img>
       </div>
     </div>

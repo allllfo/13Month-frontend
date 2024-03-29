@@ -37,6 +37,33 @@ export default function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const infos = [
+    {
+      title1: "테스트1",
+      title2: "테스트2",
+      subTitle: "서브 테스트",
+      img: previewCapture,
+    },
+    {
+      title1: "테스트1",
+      title2: "테스트2",
+      subTitle: "서브 테스트",
+      img: recommendCapture,
+    },
+    {
+      title1: "테스트1",
+      title2: "테스트2",
+      subTitle: "서브 테스트",
+      img: quizCapture,
+    },
+    {
+      title1: "테스트1",
+      title2: "테스트2",
+      subTitle: "서브 테스트",
+      img: previewCapture,
+    },
+  ];
+
   useEffect(() => {
     if (userState.nickname !== "") {
       navigate("/main");
@@ -77,29 +104,6 @@ export default function LoginPage() {
     getCodeWithKakaoLogin();
   };
 
-  const infos = [
-    {
-      title: "테스트",
-      subTitle: "서브 테스트",
-      img: previewCapture,
-    },
-    {
-      title: "테스트2",
-      subTitle: "서브 테스트",
-      img: previewCapture,
-    },
-    {
-      title: "테스트3",
-      subTitle: "서브 테스트",
-      img: previewCapture,
-    },
-    {
-      title: "테스트4",
-      subTitle: "서브 테스트",
-      img: previewCapture,
-    },
-  ];
-
   return (
     <div>
       <Swiper
@@ -121,7 +125,8 @@ export default function LoginPage() {
         {infos.map((ele, idx) => (
           <SwiperSlide>
             <Introduce
-              title={ele.title}
+              title1={ele.title1}
+              title2={ele.title2}
               subTitle={ele.subTitle}
               img={ele.img}
             />
