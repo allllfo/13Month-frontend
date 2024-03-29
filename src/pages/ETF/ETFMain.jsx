@@ -27,14 +27,14 @@ const ETFMain = () => {
     <div>
       <TopBackBar />
 
-      <div className="bg-blue-100">
-        <div className="bg-white mt-2  mb-2 text-3xl font-extrabold">
+      <div className="bg-blue-100 rounded-xl">
+        {/* <div className="bg-white mt-2  mb-2 text-3xl font-extrabold">
           <p className="ml-1">인기 종목 포함 ETF</p>
-        </div>
+        </div> */}
 
         <HotIssue />
 
-        <div className="bg-white">
+        <div className="bg-white mt-2">
           <Tabs aria-label="Default tabs" style="default">
             <Tabs.Item active title="전체" className="bg-blue-100">
               <ETFFilter
