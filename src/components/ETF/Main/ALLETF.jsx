@@ -91,11 +91,8 @@ const ALLETF = ({ selectedDangerDegree, selectedType }) => {
               {/* {item.code} */}
             </p>
           </div>
-          <div
-            className="flex flex-row justify-between"
-            onClick={() => clickCard(item.code)}
-          >
-            <div className=" h-20 w-52">
+          <div className="flex flex-row justify-between">
+            <div className=" h-20 w-52" onClick={() => clickCard(item.code)}>
               <MyResponsiveLine
                 data={[
                   {
