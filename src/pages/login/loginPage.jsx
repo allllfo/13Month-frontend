@@ -24,9 +24,12 @@ import { Pagination, Autoplay, Mousewheel } from "swiper/modules";
 
 import loginImg from "~/assets/images/login/kakao_login_large_wide_2.png";
 
-import Services from "~/components/Login/Services";
-import Recommend from "~/components/Login/Recommend";
-import GuideAndQuiz from "~/components/Login/GuideAndQuiz";
+import Introduce from "~/components/Login/Introduce";
+import previewCapture from "~/assets/images/login/preview.png";
+import fundDetailCapture from "~/assets/images/login/fundDetail.png";
+import guideCapture from "~/assets/images/login/guide.png";
+import quizCapture from "~/assets/images/login/quiz.png";
+import recommendCapture from "~/assets/images/login/recommend.png";
 import Logo from "~/components/Login/Logo";
 
 export default function LoginPage() {
@@ -74,6 +77,29 @@ export default function LoginPage() {
     getCodeWithKakaoLogin();
   };
 
+  const infos = [
+    {
+      title: "테스트",
+      subTitle: "서브 테스트",
+      img: previewCapture,
+    },
+    {
+      title: "테스트2",
+      subTitle: "서브 테스트",
+      img: previewCapture,
+    },
+    {
+      title: "테스트3",
+      subTitle: "서브 테스트",
+      img: previewCapture,
+    },
+    {
+      title: "테스트4",
+      subTitle: "서브 테스트",
+      img: previewCapture,
+    },
+  ];
+
   return (
     <div>
       <Swiper
@@ -92,21 +118,22 @@ export default function LoginPage() {
         centeredSlides={true}
         mousewheel={true}
       >
-        <SwiperSlide>
-          <Services />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Recommend />
-        </SwiperSlide>
-        <SwiperSlide>
-          <GuideAndQuiz />
-        </SwiperSlide>
+        {infos.map((ele, idx) => (
+          <SwiperSlide>
+            <Introduce
+              title={ele.title}
+              subTitle={ele.subTitle}
+              img={ele.img}
+            />
+          </SwiperSlide>
+        ))}
+
         <SwiperSlide>
           <Logo />
         </SwiperSlide>
       </Swiper>
 
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-16">
         <img className="h-10" src={loginImg} onClick={() => clickLoginBtn()} />
       </div>
     </div>
