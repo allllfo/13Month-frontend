@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  Accordion,
-  Checkbox,
-  Label,
-  TextInput,
-  Radio,
-  Card,
-} from "flowbite-react";
+import { Accordion, Checkbox, Label, Radio, Card } from "flowbite-react";
 import houseImg from "~/assets/images/preview/house.png";
 import HouseProgressBar from "./HouseProgressBar";
+import { useSelector } from "react-redux";
 
-const MonthAndHouse = ({ updateTotal, user, myData }) => {
+const MonthAndHouse = ({ updateTotal, myData }) => {
   const [checkLoan, setCheckLoan] = useState(false);
   const [checkMonthly, setCheckMonthly] = useState(false); // 월세 체크
   const [checkYearly, setCheckYearly] = useState(false); // 전세 체크
@@ -19,14 +13,22 @@ const MonthAndHouse = ({ updateTotal, user, myData }) => {
   const [housingDepositResult, setHousingDepositResult] = useState(0); // 청약 공제 금액
   const [loanResult, setLoanResult] = useState(0); // 전세 공제 금액
   const [houseTotalResult, setHouseTotalResult] = useState(0); // 주택 관련 총 공제 금액
-  const [salary, setSalary] = useState(0);
-  const [loan, setLoan] = useState(0);
-  const [housingDeposit, setHousingDeposit] = useState(0);
+  const [loan, setLoan] = useState(0); //대출
+  const [housingDeposit, setHousingDeposit] = useState(0); // 저축연금
+  const yearTax = useSelector((state) => state.yearTax);
 
   //월세 및 전세금 있는 지 여부 체크 버튼 핸들링
-  const handleCheckLoanChange = (event) => {
-    setCheckLoan(event.target.checked);
-    console.log(event.target.checked);
+  const handleCheckLoanChange = (checkLoan) => {
+    console.log(checkLoan);
+    if (checkLoan) {
+      setCheckLoan(false);
+      setMonthResult(0);
+      setHouseTotalResult(0);
+      updateTotal("house", 0);
+      updateTotal("month", 0);
+    } else {
+      setCheckLoan(true);
+    }
   };
 
   //월세/전세 두개중 하나 체크 버튼 핸들링
@@ -49,7 +51,7 @@ const MonthAndHouse = ({ updateTotal, user, myData }) => {
   // 월세 공제 결과 계산 함수
   const monthlyResultCalculate = () => {
     let result = 0;
-    if (salary > 55000000 && salary <= 70000000) {
+    if (yearTax.data.salary > 55000000 && yearTax.data.salary <= 70000000) {
       result = monthlyPay * 10000 * 12 * 0.17;
       if (result > 7500000) {
         result = 7500000;
@@ -58,7 +60,7 @@ const MonthAndHouse = ({ updateTotal, user, myData }) => {
       result = monthlyPay * 10000 * 12 * 0.15;
     }
     setMonthResult(result);
-    updateTotal("house", result);
+    updateTotal("month", result);
   };
 
   //주택 공제 결과 계산 함수
@@ -72,7 +74,7 @@ const MonthAndHouse = ({ updateTotal, user, myData }) => {
     let promiseAmount = promise * 12 * LOAN_PERCENTAGE;
     let result = 0;
 
-    if (salary <= 70000000) {
+    if (yearTax.data.salary <= 70000000) {
       result = Math.min(promiseAmount + loanAmount, MAX_LOAN_AMOUNT);
       setHousingDepositResult(promiseAmount);
       setLoanResult(Math.min(loanAmount, MAX_LOAN_AMOUNT));
@@ -86,13 +88,12 @@ const MonthAndHouse = ({ updateTotal, user, myData }) => {
   };
 
   useEffect(() => {
-    setSalary(user.salary);
-    if (myData.bank) {
-      if (myData.bank.hasHousingDept) {
-        setLoan(myData.bank.housingDeptRepayment);
+    if (myData.주택) {
+      if (myData.주택.전세원리금상환액) {
+        setLoan(myData.주택.전세원리금상환액);
       }
-      if (myData.bank.hasHousingDeposit) {
-        setHousingDeposit(myData.bank.housingDeposit);
+      if (myData.주택.주택청약납입액) {
+        setHousingDeposit(myData.주택.주택청약납입액);
       }
     }
     if (checkMonthly) {
@@ -106,7 +107,7 @@ const MonthAndHouse = ({ updateTotal, user, myData }) => {
     checkYearly,
     housingDepositResult,
     loanResult,
-    user,
+    yearTax,
     myData,
   ]);
 
@@ -128,7 +129,10 @@ const MonthAndHouse = ({ updateTotal, user, myData }) => {
               <div>
                 {checkMonthly && checkLoan ? (
                   <div className="flex items-center ml-2 mb-2">
-                    <p>월세 공제 시, 약 {monthResult}원 돌려받을 수 있어요!</p>
+                    <p>
+                      월세 공제 시,
+                      <br /> 약 {monthResult}원 돌려받을 수 있어요!
+                    </p>
                   </div>
                 ) : null}
                 {checkYearly && checkLoan ? (
@@ -160,8 +164,10 @@ const MonthAndHouse = ({ updateTotal, user, myData }) => {
                     </Label>
                     <Checkbox
                       id="promotion"
-                      checked={checkLoan}
-                      onChange={handleCheckLoanChange}
+                      // checked={checkLoan}
+                      onChange={() => {
+                        handleCheckLoanChange(checkLoan);
+                      }}
                       className="mt-1 w-6 h-6"
                     />
                   </div>
@@ -221,15 +227,3 @@ const MonthAndHouse = ({ updateTotal, user, myData }) => {
 };
 
 export default MonthAndHouse;
-
-/*
- <div className="flex items-center gap-2">
-                            <Radio
-                              id="own"
-                              name="type"
-                              value="own"
-                              onChange={handleRadioChange}
-                            />
-                            <Label htmlFor="own">자가</Label>
-                          </div>
-*/

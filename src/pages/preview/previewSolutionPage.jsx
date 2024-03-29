@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import CardComponent from "~/components/Preview/Card";
-import HousingFundLoan from "~/components/Preview/HousingFundLoan";
 import PersonComponent from "~/components/Preview/Person";
 import SmallBusiness from "~/components/Preview/SmallBusiness";
-import MonthlyRental from "~/components/Preview/MonthlyRental";
 import PendingAndIRP from "~/components/Preview/PendingAndIRP";
 import MonthAndHouse from "~/components/Preview/MonthAndHouse";
 import BlueButton from "~/components/Button/BlueButton";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { getMyData } from "~/lib/apis/myData";
-import { findUserWithNickname } from "~/lib/apis/user";
+import { updateResult } from "~/lib/apis/result";
 
 export default function PreviewSolutionPage() {
   const [total, setTotal] = React.useState({
     person: 0,
     house: 0,
+    month: 0,
     business: 0,
     pending: 0,
     irp: 0,
@@ -22,21 +21,19 @@ export default function PreviewSolutionPage() {
   });
   const [result, setResult] = React.useState(0);
   const userState = useSelector((state) => state.user13th);
-  const [user, setUser] = useState({});
+  const yearTax = useSelector((state) => state.yearTax);
   const [mydata, setMydata] = useState({});
 
-  const nickname = userState.nickname;
-
   useEffect(() => {
-    findUserWithNickname(nickname).then((resp) => {
-      // console.log(resp);
-      setUser(resp);
-    });
     getMyData(userState.userId).then((resp) => {
-      // console.log(resp);
       setMydata(resp);
     });
   }, []);
+
+  useEffect(() => {
+    // totalPeopleNum이 변경될 때마다 totalPrice를 업데이트합니다.
+    calculateTotal();
+  }, [total, calculateTotal]);
 
   function updateTotal(type, value) {
     setTotal((prevTotal) => ({
@@ -53,10 +50,22 @@ export default function PreviewSolutionPage() {
     setResult(totalSum);
   }
 
-  useEffect(() => {
-    // totalPeopleNum이 변경될 때마다 totalPrice를 업데이트합니다.
-    calculateTotal();
-  }, [total, calculateTotal]);
+  const updateResultData = () => {
+    const data = {
+      종합소득공제: {
+        카드공제: total.card,
+        가족공제: total.person,
+        주택공제: total.house,
+      },
+      세금공제: {
+        월세공제: total.month,
+        중소기업감면: total.business,
+        연금공제: total.irp + total.pending,
+      },
+    };
+
+    updateResult(yearTax.resultId, data);
+  };
 
   return (
     <>
@@ -76,13 +85,17 @@ export default function PreviewSolutionPage() {
           </p>
         </div>
       </div>
-      <CardComponent updateTotal={updateTotal} user={user} myData={mydata} />
-      <PersonComponent updateTotal={updateTotal} user={user} myData={mydata} />
-      <MonthAndHouse updateTotal={updateTotal} user={user} myData={mydata} />
-      <SmallBusiness updateTotal={updateTotal} user={user} myData={mydata} />
-      <PendingAndIRP updateTotal={updateTotal} user={user} myData={mydata} />
+      <CardComponent updateTotal={updateTotal} myData={mydata} />
+      <PersonComponent updateTotal={updateTotal} myData={mydata} />
+      <MonthAndHouse updateTotal={updateTotal} myData={mydata} />
+      <SmallBusiness updateTotal={updateTotal} myData={mydata} />
+      <PendingAndIRP updateTotal={updateTotal} myData={mydata} />
       <div className="flex justify-center">
-        <BlueButton text="결과 확인하기" destination="/preview/result/detail" />
+        <BlueButton
+          text="결과 확인하기"
+          destination="/preview/result/detail"
+          onClickAction={updateResultData}
+        />
       </div>
     </>
   );

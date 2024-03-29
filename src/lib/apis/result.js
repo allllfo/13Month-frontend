@@ -26,14 +26,14 @@ export const addResult = async (userId, data) => {
 };
 
 // 연말정산 결과 수정하기
-export const updateResult = async (resultId, data) => {
+export const updateResult = async (resultId, newData) => {
   try {
     const url = "/api/result/" + resultId;
     const body = {
-      data,
+      data: newData,
     };
-
     const resp = await axios.put(url, body);
+    console.log(resp);
     return resp.data;
   } catch (err) {
     console.log(err);
