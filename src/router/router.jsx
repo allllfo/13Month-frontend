@@ -97,7 +97,6 @@ export const mainRoutes = [
         path: "/findout",
         element: <FindOut />,
       },
-
     ],
   },
 ];
