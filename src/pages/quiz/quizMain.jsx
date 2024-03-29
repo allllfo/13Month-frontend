@@ -11,9 +11,9 @@ export default function QuizMain() {
     <>
       <TopBackBar />
 
-      <div className="flex items-center justify-start gap-1 ml-1 mt-4 mb-2">
+      <div className="flex items-center justify-start ml-1 mt-4 mb-2">
         <p className="h2">연말정산 퀴즈</p>
-        <FcMusic size="40" />
+        <FcMusic size="28" className="mb-1" />
       </div>
 
       <div className="w-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 items-center bg-blue-100">
