@@ -22,8 +22,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay, Mousewheel } from "swiper/modules";
 
-import loginImg from "~/assets/images/login/kakao_login_large_wide_2.png";
-
 import Introduce from "~/components/Login/Introduce";
 import previewCapture from "~/assets/images/login/preview.png";
 import fundDetailCapture from "~/assets/images/login/fundDetail.png";
@@ -31,6 +29,8 @@ import guideCapture from "~/assets/images/login/guide.png";
 import quizCapture from "~/assets/images/login/quiz.png";
 import recommendCapture from "~/assets/images/login/recommend.png";
 import Logo from "~/components/Login/Logo";
+
+import loginImg from "~/assets/images/login/kakao_login_large_wide_2.png";
 
 export default function LoginPage() {
   const userState = useSelector((state) => state.user13th);
@@ -67,6 +67,7 @@ export default function LoginPage() {
   useEffect(() => {
     if (userState.nickname !== "") {
       navigate("/main");
+      return;
     }
 
     const code = new URL(window.location.href).searchParams.get("code");
@@ -81,8 +82,8 @@ export default function LoginPage() {
         .then(async (info) => {
           const kakaoProfile = info.kakao_account.profile;
           const foundUser = await findUserWithNickname(kakaoProfile.nickname);
-          let userId = foundUser._id;
 
+          let userId = foundUser._id;
           if (foundUser._id === undefined) {
             const createdUser = await createUser(kakaoProfile.nickname);
             userId = createdUser._id;
@@ -99,10 +100,6 @@ export default function LoginPage() {
         });
     }
   }, []);
-
-  const clickLoginBtn = async () => {
-    getCodeWithKakaoLogin();
-  };
 
   return (
     <div>
@@ -139,7 +136,11 @@ export default function LoginPage() {
       </Swiper>
 
       <div className="flex justify-center mt-16" style={{ cursor: "pointer" }}>
-        <img className="h-10" src={loginImg} onClick={() => clickLoginBtn()} />
+        <img
+          className="h-10"
+          src={loginImg}
+          onClick={() => getCodeWithKakaoLogin()}
+        />
       </div>
     </div>
   );
