@@ -91,19 +91,19 @@ const ALLETF = ({ selectedDangerDegree, selectedType }) => {
         }
 
         return (
-          <div key={item.code} style={{ cursor: "pointer" }}>
+          <div key={item.code} style={{ cursor: "pointer" }} className="pb-2">
             <div
-              className="border-t pt-4 pb-3 flex justify-between"
+              className="border-t pt-4 pb-3 flex justify-between gap-4"
               onClick={() => clickCard(item.code)}
             >
               <Risk riskDegree={item.data.dangerDegree} />
-              <p className="text-lg mt-2 font-semibold">
+              <p className="text-lg font-semibold">
                 {item.chart.hts_kor_isnm}
                 {/* {item.code} */}
               </p>
             </div>
             <div className="flex flex-row justify-between">
-              <div className=" h-20 w-52" onClick={() => clickCard(item.code)}>
+              <div className=" h-16 w-40" onClick={() => clickCard(item.code)}>
                 <MyResponsiveLine
                   data={[
                     {
@@ -135,7 +135,7 @@ const ALLETF = ({ selectedDangerDegree, selectedType }) => {
                 </div>
 
                 {likedEtfCodes.includes(item.code) ? (
-                  <div className="mt-2 flex justify-end">
+                  <div className="mt-4 flex justify-end">
                     <img
                       src={redLikeIcon}
                       className="h-8"
@@ -144,7 +144,7 @@ const ALLETF = ({ selectedDangerDegree, selectedType }) => {
                     />
                   </div>
                 ) : (
-                  <div className="mt-2 flex justify-end">
+                  <div className="mt-4 flex justify-end">
                     <img
                       src={blankLikeIcon}
                       className="h-8"
