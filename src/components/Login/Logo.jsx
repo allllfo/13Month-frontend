@@ -13,7 +13,7 @@ export default function Logo() {
         </p>
       </div>
 
-      <div className="mt-16">
+      <div className="mt-20">
         <img src={logoImg} className="w-44"></img>
       </div>
     </div>

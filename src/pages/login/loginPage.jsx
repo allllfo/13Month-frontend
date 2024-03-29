@@ -79,12 +79,13 @@ export default function LoginPage() {
       <Swiper
         pagination={{
           dynamicBullets: true,
+          clickable: true,
         }}
         modules={[Pagination, Autoplay, Mousewheel]}
-        className="bg-blue-500"
+        className=""
         style={{ height: "580px" }}
         autoplay={{
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         spaceBetween={30}
@@ -94,9 +95,15 @@ export default function LoginPage() {
         <SwiperSlide>
           <Services />
         </SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>
+          <Recommend />
+        </SwiperSlide>
+        <SwiperSlide>
+          <GuideAndQuiz />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Logo />
+        </SwiperSlide>
       </Swiper>
 
       <div className="flex justify-center mt-8">
