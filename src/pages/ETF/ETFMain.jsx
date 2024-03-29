@@ -7,6 +7,7 @@ import HotIssue from "~/components/ETF/Main/HotIssue";
 import VolumeETF from "~/components/ETF/Main/VolumeETF";
 import CapitalizationETF from "~/components/ETF/Main/CapitalizationETF";
 import LikedEtf from "~/components/ETF/Main/LikedETF";
+import RecentETF from "~/components/ETF/Main/RecentETF";
 import TopBackBar from "~/components/TopBackBar/TopBackBar";
 
 const ETFMain = () => {
@@ -73,17 +74,19 @@ const ETFMain = () => {
                 onTypeSelect={handleTypeSelect}
                 onDangerDegreeChange={handleDangerDegreeChange}
               />
-              <div className="mb-4">
-                <LikedEtf
-                  selectedDangerDegree={selectedDangerDegree}
-                  selectedType={selectedType}
-                />
-              </div>
-            </Tabs.Item>
-            <Tabs.Item title="최근">
-              <ETFFilter
-                onTypeSelect={handleTypeSelect}
-                onDangerDegreeChange={handleDangerDegreeChange}
+
+            </div>
+          </Tabs.Item>
+          <Tabs.Item title="최근">
+            <ETFFilter
+              onTypeSelect={handleTypeSelect}
+              onDangerDegreeChange={handleDangerDegreeChange}
+            />
+            <div className="mb-4">
+              <RecentETF
+                selectedDangerDegree={selectedDangerDegree}
+                selectedType={selectedType}
+
               />
               <div className="mb-4">
                 <ALLETF
