@@ -75,21 +75,18 @@ const ETFMain = () => {
                 onDangerDegreeChange={handleDangerDegreeChange}
               />
 
-            </div>
-          </Tabs.Item>
-          <Tabs.Item title="최근">
-            <ETFFilter
-              onTypeSelect={handleTypeSelect}
-              onDangerDegreeChange={handleDangerDegreeChange}
-            />
-            <div className="mb-4">
-              <RecentETF
+              <LikedEtf
                 selectedDangerDegree={selectedDangerDegree}
                 selectedType={selectedType}
-
+              />
+            </Tabs.Item>
+            <Tabs.Item title="최근">
+              <ETFFilter
+                onTypeSelect={handleTypeSelect}
+                onDangerDegreeChange={handleDangerDegreeChange}
               />
               <div className="mb-4">
-                <ALLETF
+                <RecentETF
                   selectedDangerDegree={selectedDangerDegree}
                   selectedType={selectedType}
                 />
