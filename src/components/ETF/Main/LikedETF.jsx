@@ -51,7 +51,7 @@ const LikedEtf = ({ selectedDangerDegree, selectedType }) => {
 
     fetchData();
     fetchUser();
-    console.log(likedEtfCodes);
+    // console.log(likedEtfCodes);
   }, [selectedDangerDegree, selectedType]);
 
   const toggleLike = (code) => {
