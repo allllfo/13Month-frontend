@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+
 import {
   setUserId,
   setkakaoToken,
@@ -14,9 +16,18 @@ import {
   findUserWithNickname,
   createUser,
 } from "../../lib/apis/user";
-import { useNavigate } from "react-router";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination, Autoplay, Mousewheel } from "swiper/modules";
+
 import loginImg from "~/assets/images/login/kakao_login_large_wide_2.png";
-import logoImg from "~/assets/images/logo.png";
+
+import Services from "~/components/Login/Services";
+import Recommend from "~/components/Login/Recommend";
+import GuideAndQuiz from "~/components/Login/GuideAndQuiz";
+import Logo from "~/components/Login/Logo";
 
 export default function LoginPage() {
   const userState = useSelector((state) => state.user13th);
@@ -64,24 +75,33 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="text-2xl font-bold text-center mt-28">
-        <p>
-          13월에도
-          <br />
-          월급을 받을 수 있다면?
-        </p>
-      </div>
+    <div>
+      <Swiper
+        pagination={{
+          dynamicBullets: true,
+        }}
+        modules={[Pagination, Autoplay, Mousewheel]}
+        className="bg-blue-500"
+        style={{ height: "580px" }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        spaceBetween={30}
+        centeredSlides={true}
+        mousewheel={true}
+      >
+        <SwiperSlide>
+          <Services />
+        </SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+      </Swiper>
 
-      <div className="mt-16">
-        <img src={logoImg} className="w-44"></img>
+      <div className="flex justify-center mt-8">
+        <img className="h-10" src={loginImg} onClick={() => clickLoginBtn()} />
       </div>
-
-      <img
-        className="h-10 mt-36"
-        src={loginImg}
-        onClick={() => clickLoginBtn()}
-      />
     </div>
   );
 }
