@@ -3,7 +3,7 @@ import axios from "axios";
 //user의 연말정산 결과 모두 조회
 export const getAllResult = async (userId) => {
   try {
-    const url = "/api/result";
+    const url = "/api/result/user/" + userId;
 
     const resp = await axios.get(url);
     return resp.data;
@@ -15,7 +15,7 @@ export const getAllResult = async (userId) => {
 //user의 연말정산 결과 추가
 export const addResult = async (userId, data) => {
   try {
-    const url = "/api/result/" + userId;
+    const url = "/api/result/user/" + userId;
     const body = { data };
 
     const resp = await axios.post(url, body);
