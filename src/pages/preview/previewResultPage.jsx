@@ -61,7 +61,7 @@ export default function PreviewResult() {
     updateResult(yearTaxState.resultId, {
       낸세금: taxPaid,
     });
-  }, [yearTaxState.salary]);
+  }, [yearTaxState.data.salary]);
 
   return (
     <div className="bg-white h-screen p-4">
