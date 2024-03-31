@@ -120,12 +120,13 @@ export default function LoginPage() {
         mousewheel={true}
       >
         {infos.map((ele, idx) => (
-          <SwiperSlide>
+          <SwiperSlide key={idx}>
             <Introduce
               title1={ele.title1}
               title2={ele.title2}
               subTitle={ele.subTitle}
               img={ele.img}
+              key={idx}
             />
           </SwiperSlide>
         ))}
