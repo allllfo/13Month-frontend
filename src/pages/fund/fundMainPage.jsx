@@ -134,7 +134,7 @@ export default function fundMainPage() {
 
   return (
     <div>
-      <TopBackBar />
+      <TopBackBar title="펀드 추천" />
 
       {include.length > 0 ? (
         <HotFund rising={rising} include={include} />
@@ -142,11 +142,13 @@ export default function fundMainPage() {
         <></>
       )}
 
-      <DetailTabBar
-        detailTabs={detailTabs}
-        currentTab={currentTab}
-        setCurrentTab={setCurrentTab}
-      />
+      <div className="mt-4">
+        <DetailTabBar
+          detailTabs={detailTabs}
+          currentTab={currentTab}
+          setCurrentTab={setCurrentTab}
+        />
+      </div>
 
       {funds ? (
         <Funds funds={funds[currentTab]} currentTab={currentTab} />
