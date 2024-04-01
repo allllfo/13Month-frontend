@@ -111,7 +111,7 @@ export default function LoginPage() {
         }}
         modules={[Pagination, Autoplay, Mousewheel]}
         className=""
-        style={{ height: "520px" }}
+        style={{ height: "540px" }}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
