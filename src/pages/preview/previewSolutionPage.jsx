@@ -8,7 +8,12 @@ import BlueButton from "~/components/Button/BlueButton";
 import { useSelector } from "react-redux";
 import { getMyData } from "~/lib/apis/myData";
 import { updateResult } from "~/lib/apis/result";
-import { getEITC, getTax, getTotalValue } from "~/lib/utils/calculator";
+import {
+  getEITC,
+  getTax,
+  getTaxToPaid,
+  getTotalValue,
+} from "~/lib/utils/calculator";
 import "./previewSolution.css";
 
 export default function PreviewSolutionPage() {
@@ -73,7 +78,8 @@ export default function PreviewSolutionPage() {
     };
     cid.종합소득공제 = getTotalValue(cid) * cidRate;
     const 소득공제 = cid.종합소득공제 + eitc;
-    const 공제후세금 = getTax(salary - 소득공제).taxToPaid;
+    // 총급여 - 근로소득공제 - 각종 소득 공제 혜택 = 과세표준
+    const 공제후세금 = getTaxToPaid(salary - 소득공제); // 산출세액
     const taxD = {
       중소기업감면: total.business,
       월세공제: total.month,
@@ -84,11 +90,11 @@ export default function PreviewSolutionPage() {
       기타: mydata.기부금, // TODO: 기부금 세액공제 계산 필요
     };
     taxD.세금공제 = getTotalValue(taxD);
-    const 낸세금 = getTax(salary).taxPaid; // 예상 납부 세금(낸세금), 내야 하는 세금
-    const 결정세액 = 공제후세금 - taxD.세금공제;
+    const 낸세금 = getTax(salary); // 기납부세금
+    const 결정세액 = 공제후세금 - taxD.세금공제; // 산출 세액 – (세액 감면·공제) = 결정 세액
 
     const returnMoney = 낸세금 - 결정세액;
-
+    // (결정 세액) – (기 납부 세액) = 세금 환급 또는 납부
     const data = {
       총급여: salary,
       근로소득공제: eitc,
