@@ -3,6 +3,9 @@ import moneyBagImg from "~/assets/images/preview/money-bag.png";
 import React, { useEffect, useState } from "react";
 import SavingsCalculator from "~/components/Preview/SavingsCalculator";
 import { useSelector } from "react-redux";
+import GrayButton from "../Button/GrayButton";
+import BlueButton from "../Button/BlueButton";
+import WhiteButton from "../Button/WhiteButton";
 
 export default function PendingAndIRP({ updateTotal, myData }) {
   const yearTaxState = useSelector((state) => state.yearTax);
@@ -103,6 +106,19 @@ export default function PendingAndIRP({ updateTotal, myData }) {
               data={irp}
               rate={rate}
             ></SavingsCalculator>
+
+            <div className="flex items-center justify-center gap-5">
+              <WhiteButton
+                text="ETF
+투자하기"
+                destination="/etf/main"
+              />
+              <WhiteButton
+                text="펀드
+투자하기"
+                destination="/fund/main"
+              />
+            </div>
           </div>
         </Accordion.Content>
       </Accordion.Panel>
