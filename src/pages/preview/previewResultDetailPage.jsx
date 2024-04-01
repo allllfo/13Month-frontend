@@ -6,6 +6,10 @@ import { useParams } from "react-router";
 import BlueButton from "~/components/Button/BlueButton";
 import { getResult } from "~/lib/apis/result";
 
+function transformMoneyFormat(number) {
+  return number.toLocaleString("kr-Kr", { maximumFractionDigits: 0 });
+}
+
 const PreviewResultDetailPage = () => {
   const userState = useSelector((state) => state.user13th);
   const nickname = userState.nickname;
@@ -63,7 +67,7 @@ const PreviewResultDetailPage = () => {
                 >
                   <div className="flex flex-row justify-between w-full text-sm">
                     <p>나의 총급여</p>
-                    <p>{result.총급여.toLocaleString("kr-Kr")}원</p>
+                    <p>{transformMoneyFormat(result.총급여)}원</p>
                   </div>
                 </button>
               </h2>
@@ -105,14 +109,13 @@ const PreviewResultDetailPage = () => {
               >
                 <div className="flex flex-row justify-between w-full text-sm font-semibold text-slate-700">
                   <div>근로소득 공제</div>
-                  <div>{result.근로소득공제.toLocaleString("kr-Kr")}원</div>
+                  <div>{transformMoneyFormat(result.근로소득공제)}원</div>
                 </div>
                 <div>
                   <div className="flex flex-row justify-between w-full text-sm font-semibold text-slate-700">
                     <div>종합소득 공제</div>
                     <div>
-                      {result.종합소득공제.종합소득공제.toLocaleString("kr-Kr")}
-                      원
+                      {transformMoneyFormat(result.종합소득공제.종합소득공제)}원
                     </div>
                   </div>
 
@@ -120,20 +123,20 @@ const PreviewResultDetailPage = () => {
                     <div className="flex flex-row justify-between w-full">
                       <div>카드 공제</div>
                       <div>
-                        {result.종합소득공제.카드공제.toLocaleString("kr-Kr")}원
+                        {transformMoneyFormat(result.종합소득공제.카드공제)}원
                       </div>
                     </div>
                     <div className="flex flex-row justify-between w-full">
                       <div>가족 공제</div>
                       <div>
-                        {result.종합소득공제.가족공제.toLocaleString("kr-Kr")}원
+                        {transformMoneyFormat(result.종합소득공제.가족공제)}원
                       </div>
                     </div>
                     <div className="flex flex-row justify-between w-full">
                       <div>전통시장, 도서, 문화</div>
                       <div>
-                        {result.종합소득공제.전통시장도서문화.toLocaleString(
-                          "kr-Kr"
+                        {transformMoneyFormat(
+                          result.종합소득공제.전통시장도서문화
                         )}
                         원
                       </div>
@@ -141,20 +144,19 @@ const PreviewResultDetailPage = () => {
                     <div className="flex flex-row justify-between w-full">
                       <div>4대 보험</div>
                       <div>
-                        {result.종합소득공제["4대보험"].toLocaleString("kr-Kr")}
-                        원
+                        {transformMoneyFormat(result.종합소득공제["4대보험"])}원
                       </div>
                     </div>
                     <div className="flex flex-row justify-between w-full">
                       <div>주택 공제</div>
                       <div>
-                        {result.종합소득공제.주택공제.toLocaleString("kr-Kr")}원
+                        {transformMoneyFormat(result.종합소득공제.주택공제)}원
                       </div>
                     </div>
                     <div className="flex flex-row justify-between w-full">
                       <div>기타 공제</div>
                       <div>
-                        {result.종합소득공제.기타공제.toLocaleString("kr-Kr")}원
+                        {transformMoneyFormat(result.종합소득공제.기타공제)}원
                       </div>
                     </div>
                   </Card>
@@ -167,14 +169,14 @@ const PreviewResultDetailPage = () => {
                       총 급여 - 소득 공제
                     </div>
                   </div>
-                  <div> {result.공제후세금}원</div>
+                  <div> {transformMoneyFormat(result.공제후세금)}원</div>
                 </div>
 
                 <div>
                   <div className="flex flex-row justify-between w-full text-sm font-semibold text-slate-700">
                     <div>세금 공제</div>
                     <div>
-                      {result.세금공제.세금공제.toLocaleString("kr-Kr")}원
+                      {transformMoneyFormat(result.세금공제.세금공제)}원
                     </div>
                   </div>
 
@@ -182,50 +184,48 @@ const PreviewResultDetailPage = () => {
                     <div className="flex flex-row justify-between w-full">
                       <div>중소기업 감면</div>
                       <div>
-                        {result.세금공제.중소기업감면.toLocaleString("kr-Kr")}원
+                        {transformMoneyFormat(result.세금공제.중소기업감면)}원
                       </div>
                     </div>
                     <div className="flex flex-row justify-between w-full">
                       <div>월세 공제</div>
                       <div>
-                        {result.세금공제.월세공제.toLocaleString("kr-Kr")}원
+                        {transformMoneyFormat(result.세금공제.월세공제)}원
                       </div>
                     </div>
                     <div className="flex flex-row justify-between w-full">
                       <div>연금 공제</div>
                       <div>
-                        {result.세금공제.연금공제.toLocaleString("kr-Kr")}원
+                        {transformMoneyFormat(result.세금공제.연금공제)}원
                       </div>
                     </div>
                     <div className="flex flex-row justify-between w-full">
                       <div>보험료</div>
                       <div>
-                        {result.세금공제.보험료.toLocaleString("kr-Kr")}원
+                        {transformMoneyFormat(result.세금공제.보험료)}원
                       </div>
                     </div>
                     <div className="flex flex-row justify-between w-full">
                       <div>의료비</div>
                       <div>
-                        {result.세금공제.의료비.toLocaleString("kr-Kr")}원
+                        {transformMoneyFormat(result.세금공제.의료비)}원
                       </div>
                     </div>
                     <div className="flex flex-row justify-between w-full">
                       <div>교육비</div>
                       <div>
-                        {result.세금공제.교육비.toLocaleString("kr-Kr")}원
+                        {transformMoneyFormat(result.세금공제.교육비)}원
                       </div>
                     </div>
                     <div className="flex flex-row justify-between w-full">
                       <div>기타</div>
-                      <div>
-                        {result.세금공제.기타.toLocaleString("kr-Kr")}원
-                      </div>
+                      <div>{transformMoneyFormat(result.세금공제.기타)}원</div>
                     </div>
                   </Card>
 
                   <div className="flex flex-row justify-between w-full text-sm font-semibold text-slate-700">
                     <div>먼저 낸 세금</div>
-                    <div>{result.낸세금.toLocaleString("kr-Kr")}원</div>
+                    <div>{transformMoneyFormat(result.낸세금)}원</div>
                   </div>
                 </div>
               </div>
@@ -240,7 +240,7 @@ const PreviewResultDetailPage = () => {
                 >
                   <div className="flex flex-row justify-between w-full text-sm">
                     <p>돌려받는 돈</p>
-                    <p>{result.돌려받는돈.toLocaleString("kr-Kr")}원</p>
+                    <p>{transformMoneyFormat(result.돌려받는돈)}원</p>
                   </div>
                 </button>
               </h2>
