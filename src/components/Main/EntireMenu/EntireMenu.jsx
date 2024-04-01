@@ -8,7 +8,7 @@ import {
   FcBullish,
   FcIdea,
   FcOnlineSupport,
-  FcExport,
+  FcUnlock,
   FcReading,
   FcBriefcase,
   FcHome,
@@ -103,7 +103,7 @@ export default function EntireMenu(props) {
         style={{ cursor: "pointer" }}
         className={divStyle}
       >
-        <FcExport className={iconStyle} />
+        <FcUnlock className={iconStyle} />
         <p className={parStyle}>로그아웃</p>
       </div>
 
