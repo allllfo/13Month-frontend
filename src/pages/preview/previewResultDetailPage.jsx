@@ -205,12 +205,12 @@ const PreviewResultDetailPage = () => {
                         {transformMoneyFormat(result.세금공제.보험료)}원
                       </div>
                     </div>
-                    <div className="flex flex-row justify-between w-full">
+                    {/* <div className="flex flex-row justify-between w-full">
                       <div>의료비</div>
                       <div>
                         {transformMoneyFormat(result.세금공제.의료비)}원
                       </div>
-                    </div>
+                    </div> */}
                     <div className="flex flex-row justify-between w-full">
                       <div>교육비</div>
                       <div>
