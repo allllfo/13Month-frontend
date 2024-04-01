@@ -12,7 +12,7 @@ import {
   setEarnedIncome,
   setResultId,
 } from "~/store/reducers/yearTax";
-import { getTax } from "~/lib/utils/calculator";
+import { getEITC, getTax, getTaxToPaid } from "~/lib/utils/calculator";
 import { addResult, updateResult } from "~/lib/apis/result";
 
 export default function PreviewResult() {
@@ -45,7 +45,14 @@ export default function PreviewResult() {
 
   useEffect(() => {
     const salary = yearTaxState.data.salary; // 총급여
-    const { taxPaid, taxToPaid } = getTax(salary); // 예상 납부 세금(낸세금), 내야 하는 세금
+
+    // 총급여 - 근로소득공제 = 근로소득금액
+    const 근로소득금액 = salary - getEITC(salary);
+    // 근로소득금액 - 각종 소득 공제 혜택 = 과세표준
+    // 소득 공제 안받고 있다고 가정.
+    // 근로소득금액 = 과세표준
+    const taxPaid = getTax(salary); // 기납부세금
+    const taxToPaid = getTaxToPaid(근로소득금액); // 과세표준 * 기본세율 = 산출세액
 
     if (taxToPaid > taxPaid) {
       setIsReceive(false);
