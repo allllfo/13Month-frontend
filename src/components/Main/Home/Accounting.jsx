@@ -15,9 +15,9 @@ export default function Accounting() {
   const divStyle = width + " text-center";
 
   return (
-    <div>
+    <div className="m-5">
       <div className="flex items-center justify-start gap-2 mb-2 ml-1">
-        <p className="h2">계좌개설하기</p>
+        <p className="h2">계좌 개설하기</p>
         <FcExport size="40" />
       </div>
 
