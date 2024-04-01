@@ -86,8 +86,8 @@ export default function PreviewSolutionPage() {
       연금공제: total.irp + total.pending,
       보험료: mydata.보험.보험료,
       // 의료비: mydata.카드.의료비, // TODO: 의료비 세액 공제 계산 필요
-      교육비: (mydata.카드.교육비 * 0.15, 900 * unit), // TODO: 교육비 세액 공제 계산 필요 = ( 초중고 ⇒ 인당 300한도 / 대학생 ⇒ 인당 900한도 )
-      기타: (mydata.기부금 * 0.2, 500 * unit), // TODO: 기부금 세액공제 계산 필요 = 20 % ⇒ 한도 500으로?
+      교육비: Math.min(mydata.카드.교육비 * 0.15, 900 * unit), // TODO: 교육비 세액 공제 계산 필요 = ( 초중고 ⇒ 인당 300한도 / 대학생 ⇒ 인당 900한도 )
+      기타: Math.min(mydata.기부금 * 0.2, 500 * unit), // TODO: 기부금 세액공제 계산 필요 = 20 % ⇒ 한도 500으로?
     };
     taxD.세금공제 = getTotalValue(taxD);
     const 낸세금 = getTax(salary); // 기납부세금
