@@ -7,6 +7,9 @@ import BlueButton from "~/components/Button/BlueButton";
 import { getResult } from "~/lib/apis/result";
 
 function transformMoneyFormat(number) {
+  if (number === undefined || number === null) {
+    return 0;
+  }
   return number.toLocaleString("kr-Kr", { maximumFractionDigits: 0 });
 }
 
@@ -17,6 +20,7 @@ const PreviewResultDetailPage = () => {
   const yearTaxState = useSelector((state) => state.yearTax);
   const [result, setResult] = useState({});
   const { resultId } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (resultId) {
@@ -32,7 +36,7 @@ const PreviewResultDetailPage = () => {
 
   useEffect(() => {
     // 결과가 도착했는지 확인
-    console.log("Result:", result);
+    if (result !== null && Object.keys(result).length !== 0) setIsLoading(true);
   }, [result]);
 
   const toggleAccordion = (accordionId) => {
@@ -49,7 +53,7 @@ const PreviewResultDetailPage = () => {
               {nickname}님의 예상 연말정산 결과 ✨
             </p>
           </div>
-          {Object.keys(result).length !== 0 && (
+          {isLoading && (
             <div
               id="accordion-flush"
               className="w-full"

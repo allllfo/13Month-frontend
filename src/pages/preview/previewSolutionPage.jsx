@@ -4,7 +4,7 @@ import PersonComponent from "~/components/Preview/Person";
 import SmallBusiness from "~/components/Preview/SmallBusiness";
 import PendingAndIRP from "~/components/Preview/PendingAndIRP";
 import MonthAndHouse from "~/components/Preview/MonthAndHouse";
-import BlueButton from "~/components/Button/BlueButton";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getMyData } from "~/lib/apis/myData";
 import { updateResult } from "~/lib/apis/result";
@@ -34,6 +34,7 @@ export default function PreviewSolutionPage() {
   const [mydata, setMydata] = useState({});
   const unit = 10000;
   const [salary, setSalary] = useState(0); // 총급여
+  const navigate = useNavigate(); // useHistory 추가
 
   useEffect(() => {
     getMyData(userState.userId).then((resp) => {
@@ -66,7 +67,7 @@ export default function PreviewSolutionPage() {
     }));
   }
 
-  const updateResultData = () => {
+  const updateResultData = async () => {
     const 전통시장도서문화 = mydata.카드.전통시장비 + mydata.카드.문화생활비;
     const cid = {
       카드공제: total.card,
@@ -104,7 +105,10 @@ export default function PreviewSolutionPage() {
       돌려받는돈: returnMoney,
     };
 
-    updateResult(yearTaxState.resultId, data);
+    updateResult(yearTaxState.resultId, data).then(() => {
+      // 결과 업데이트 후 페이지 이동
+      navigate("/preview/result/detail");
+    });
   };
 
   return (
@@ -134,11 +138,12 @@ export default function PreviewSolutionPage() {
         <PendingAndIRP updateTotal={updateTotal} myData={mydata} />
       </div>
       <div className="flex justify-center">
-        <BlueButton
-          text="결과 확인하기"
-          destination="/preview/result/detail"
-          onClickAction={updateResultData}
-        />
+        <button
+          className="bg-blue-500 text-white text-lg w-full py-3 rounded-[15px] font-semibold"
+          onClick={() => updateResultData()}
+        >
+          결과 확인하기
+        </button>
       </div>
     </>
   );
