@@ -28,6 +28,7 @@ import fundDetailCapture from "~/assets/images/login/fundDetail.png";
 import guideCapture from "~/assets/images/login/guide.png";
 import quizCapture from "~/assets/images/login/quiz.png";
 import recommendCapture from "~/assets/images/login/recommend.png";
+import solutionCapture from "~/assets/images/login/solution.png";
 import Logo from "~/components/Login/Logo";
 
 import loginImg from "~/assets/images/login/kakao_login_large_wide_2.png";
@@ -48,7 +49,7 @@ export default function LoginPage() {
       title1: "13월의 월급을 위한",
       title2: "솔루션 제공",
       subTitle: "",
-      img: previewCapture,
+      img: solutionCapture,
     },
 
     {
