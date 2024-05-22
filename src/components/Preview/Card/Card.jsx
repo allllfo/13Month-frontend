@@ -1,34 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import "./Accordion-custom.css";
 import cardImg from "~/assets/images/preview/card-dynamic-color.png";
-import ProgressBar from "~/components/Preview/ProgressBar";
+import ProgressBar from "~/components/Preview/Card/ProgressBar";
 import { Card, Tooltip } from "flowbite-react";
 import { useSelector } from "react-redux";
+import { LIMITHRESHOLD, UNIT } from "~/constants/Preview";
 
 const CardComponent = ({ updateTotal, myData }) => {
   const yearTaxState = useSelector((state) => state.yearTax);
   const [isAnimationWork, setIsAnimationWork] = useState(false);
-  const [msg1, setMsg1] = useState("");
-  const [msg2, setMsg2] = useState("");
-
+  const [msgGroup, setMsgGroup] = useState({
+    msg1: "",
+    msg2: "",
+  });
   // user data
+  const [assetAmount, setAssetAmount] = useState({
+    creditAmount: 0, //신용카드
+    checkAmount: 0, //체크카드
+    cashAmount: 0, //현금영수증
+    creditDeductionAmount: 0, //신용카드공제액
+    cashDeductionAmount: 0, //현금영수증, 직불, 선불카드 공제액
+  });
   const [salary, setSalary] = useState(0);
-  const [creditAmount, setCreditAmount] = useState(0); // 신용카드
-  const [checkAmount, setCheckAmount] = useState(0); // 체크카드
-  const [cashAmount, setCashAmount] = useState(0); // 현금영수증
-  const [minAmount, setMinAmount] = useState(0); // 최소 공제 기준 금액
-  const [limit, setLimit] = useState(0); // 공제 한도
-  const [creditDeductionAmount, setCreditDeductionAmount] = useState(0); // 신용카드 공제액
-  const [cashDeductionAmount, setCashDeductionAmount] = useState(0); // 현금영수증, 직불, 선불카드 공제액
-
+  const [limitAmount, setLimitAmount] = useState({
+    minAmount: 0, // 최소 공제 기준 금액
+    limit: 0, // 공제 한도
+  });
   const [flag, setFlag] = useState(true);
 
-  const limitThreshold = 70000000; // 공제 한도 기준 급여액
-  const unit = 10000; // 단위
+  const progressBarList = useMemo(() => [
+    {
+      label: "신용카드",
+      amount: assetAmount.creditAmount,
+      color: "#8DB4FF",
+      limit: salary,
+    },
+    {
+      label: "체크카드, 현금, 페이",
+      amount: assetAmount.cashAmount + assetAmount.checkAmount,
+      color: "#FEA6FA",
+      limit: salary,
+    },
+    {
+      label: "현금 및 신용카드 공제",
+      amount: flag
+        ? assetAmount.cashDeductionAmount + assetAmount.creditDeductionAmount
+        : 0,
+      color: "#FFDB97",
+      limit: limitAmount.limit,
+    },
+  ]);
 
   useEffect(() => {
-    setMinAmount(salary * 0.25); // 25%
-    setLimit(salary <= limitThreshold ? 3000000 : 2500000);
+    setLimitAmount((prev) => ({
+      minAmount: salary * 0.25,
+      limit: salary <= LIMITHRESHOLD ? 3000000 : 2500000,
+    }));
   }, [salary]);
 
   useEffect(() => {
@@ -38,68 +65,85 @@ const CardComponent = ({ updateTotal, myData }) => {
   useEffect(() => {
     if (myData) {
       if (myData.카드) {
-        setCheckAmount(myData.카드.체크카드);
-        setCreditAmount(myData.카드.신용카드);
-        setCreditDeductionAmount(myData.카드.신용카드 * 0.15);
-        setCashAmount(myData.카드.현금영수증);
-        setCashDeductionAmount(
-          (myData.카드.체크카드 + myData.카드.현금영수증) * 0.3
-        );
+        setAssetAmount((prev) => ({
+          ...prev,
+          checkAmount: myData.카드.체크카드,
+          creditAmount: myData.카드.신용카드,
+          creditDeductionAmount: myData.카드.신용카드 * 0.15,
+          cashAmount: myData.카드.현금영수증,
+          cashDeductionAmount:
+            (myData.카드.체크카드 + myData.카드.현금영수증) * 0.3,
+        }));
       }
     }
   }, [myData]);
 
   useEffect(() => {
-    updateTotal("card", cashDeductionAmount + creditDeductionAmount);
-  }, [cashDeductionAmount, creditDeductionAmount]);
+    updateTotal(
+      "card",
+      assetAmount.cashDeductionAmount + assetAmount.creditDeductionAmount
+    );
+  }, [assetAmount.cashDeductionAmount, assetAmount.creditDeductionAmount]);
 
   useEffect(() => {
-    if (cashAmount + checkAmount + creditAmount < minAmount) {
+    if (
+      assetAmount.cashAmount +
+        assetAmount.checkAmount +
+        assetAmount.creditAmount <
+      limitAmount.minAmount
+    ) {
       // 최소 공제 기준 금액을 넘지 못했을 경우
-      setMsg1("소비금액이 적어 \n 카드 소득공제를 받을 수 없어요. 😅");
-      setMsg2(
-        `앞으로 지출은 ${minAmount / unit}만원까지 신용카드,
-        그 이상은 체크카드를 써보아요!\n`
-      );
+      setMsgGroup((prev) => ({
+        ...prev,
+        msg1: "소비금액이 적어 \n 카드 소득공제를 받을 수 없어요. 😅",
+        msg2: `앞으로 지출은 ${limitAmount.minAmount / UNIT}만원까지 신용카드,
+        그 이상은 체크카드를 써보아요!\n`,
+      }));
       setFlag(false);
-    } else if (cashDeductionAmount + creditDeductionAmount >= limit) {
+    } else if (
+      assetAmount.cashDeductionAmount + assetAmount.creditDeductionAmount >=
+      limitAmount.limit
+    ) {
       // 공제 한도를 모두 채웠을 경우
-      setMsg1("소비금액이 많아 카드 소득공제를 최대로 받을 수 있어요!");
-      setMsg2(`앞으로 지출은 혜택이 좋은 신용카드를 사용해도 좋아요 😊`);
+      setMsgGroup((prev) => ({
+        ...prev,
+        msg1: "소비금액이 많아 카드 소득공제를 최대로 받을 수 있어요!",
+        msg2: `앞으로 지출은 혜택이 좋은 신용카드를 사용해도 좋아요 😊`,
+      }));
     } else {
-      setMsg1("황금비율로 쓰면 카드 소득 공제를 최대로 받을 수 있어요.");
+      setMsgGroup((prev) => ({
+        ...prev,
+        msg1: "황금비율로 쓰면 카드 소득 공제를 최대로 받을 수 있어요.",
+      }));
       // 최소 공제 기준 이상 공제 한도 미만
-      if (creditAmount < minAmount) {
+      if (assetAmount.creditAmount < limitAmount.minAmount) {
         // 신용카드 사용액이 최소 공제 기준을 넘지 못했을 경우
-        setMsg2(
-          `혜택이 좋은 신용카드를 ${
-            (minAmount - creditAmount) / unit
-          }만원 추가로 사용 후 공제율이 높은 체크카드, 현금을 사용하세요!`
-        );
+        setMsgGroup((prev) => ({
+          ...prev,
+          msg2: `혜택이 좋은 신용카드를 ${
+            (limitAmount.minAmount - assetAmount.creditAmount) / UNIT
+          }만원 추가로 사용 후 공제율이 높은 체크카드, 현금을 사용하세요!`,
+        }));
       } else {
         // 한도까지 체크카드 권유
-        if (cashDeductionAmount < limit) {
-          setMsg2(
-            `체크카드 공제 한도가 ${(
-              (limit - cashDeductionAmount) /
-              unit
-            ).toFixed()}만원 남았어요!`
-          );
+        if (assetAmount.cashDeductionAmount < limitAmount.limit) {
+          setMsgGroup((prev) => ({
+            ...prev,
+            msg2: `체크카드 공제 한도가 ${(
+              (limitAmount.limit - assetAmount.cashDeductionAmount) /
+              UNIT
+            ).toFixed()}만원 남았어요!`,
+          }));
         } else {
           // 한도 다채우면 다시 신용카드
-          setMsg2(`앞으로 지출은 혜택이 좋은 신용카드를 사용해도 좋아요 😊`);
+          setMsgGroup((prev) => ({
+            ...prev,
+            msg2: `앞으로 지출은 혜택이 좋은 신용카드를 사용해도 좋아요 😊`,
+          }));
         }
       }
     }
-  }, [
-    cashAmount,
-    checkAmount,
-    creditAmount,
-    minAmount,
-    cashDeductionAmount,
-    creditDeductionAmount,
-    limit,
-  ]);
+  }, [assetAmount, limitAmount]);
 
   const handleButton = () => {
     const accordionBody = document.getElementById("accordion-color-body-1");
@@ -168,14 +212,14 @@ const CardComponent = ({ updateTotal, myData }) => {
           <div className="p-5 border border-gray-200 rounded-b-xl dark:border-gray-700 dark:bg-gray-900 bg-gray-100">
             <Card>
               <p className="text-center text-pretty	text-start font-bold whitespace-pre-line">
-                {msg1}
+                {msgGroup.msg1}
               </p>
               <div className="flex gap-2 item-center">
                 <p className="text-center text-xs text-start text-pretty text-blue-500 whitespace-pre-line">
-                  {msg2}
+                  {msgGroup.msg2}
                 </p>
 
-                {msg2 ? (
+                {msgGroup.msg2 ? (
                   <Tooltip
                     style="light"
                     placement="top"
@@ -183,8 +227,9 @@ const CardComponent = ({ updateTotal, myData }) => {
                       <div>
                         <p className="text-sm font-bold">💡 TIP</p>
                         <p className="text-xs">
-                          {">"} 급여의 25%인 {minAmount / unit}만원 이상
-                          소비금액부터 카드 소득 공제 대상이에요. <br /> {">"}
+                          {">"} 급여의 25%인 {limitAmount.minAmount / UNIT}만원
+                          이상 소비금액부터 카드 소득 공제 대상이에요. <br />{" "}
+                          {">"}
                           체크카드는 신용카드보다 공제율이 2배 높아요.
                         </p>
                       </div>
@@ -214,57 +259,17 @@ const CardComponent = ({ updateTotal, myData }) => {
                   ""
                 )}
               </div>
-
               <div className="flex flex-col gap-5 items-start">
-                <ProgressBar
-                  amount={creditAmount}
-                  color={"#8DB4FF"}
-                  percentage={(creditAmount * 100) / salary}
-                  isAnimation={isAnimationWork}
-                  limit={salary}
-                />
-
-                <div className="flex items-center justify-center gap-1">
-                  <div className="w-[10px] h-[10px] bg-[#8DB4FF] rounded-sm" />{" "}
-                  <div className="text-[10px]">신용카드</div>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-5 items-start">
-                <ProgressBar
-                  amount={cashAmount + checkAmount}
-                  percentage={((cashAmount + checkAmount) * 100) / salary}
-                  color={"#FEA6FA"}
-                  isAnimation={isAnimationWork}
-                  limit={salary}
-                />
-
-                <div className="flex items-center justify-center gap-1">
-                  <div className="w-[10px] h-[10px] bg-[#FEA6FA] rounded-sm" />{" "}
-                  <div className="text-[10px]">체크카드, 현금, 페이</div>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-5 items-start">
-                <ProgressBar
-                  amount={
-                    flag ? cashDeductionAmount + creditDeductionAmount : 0
-                  }
-                  percentage={
-                    flag
-                      ? ((cashDeductionAmount + creditDeductionAmount) * 100) /
-                        limit
-                      : 0
-                  }
-                  color={"#FFDB97"}
-                  isAnimation={isAnimationWork}
-                  limit={limit}
-                />
-
-                <div className="flex items-center justify-center gap-1">
-                  <div className="w-[10px] h-[10px] bg-[#FFDB97] rounded-sm" />{" "}
-                  <div className="text-[10px]">카드 공제 금액</div>
-                </div>
+                {progressBarList.map((item, index) => (
+                  <ProgressBar
+                    key={index}
+                    label={item.label}
+                    amount={item.amount}
+                    color={item.color}
+                    limit={item.limit}
+                    isAnimationWork={isAnimationWork}
+                  />
+                ))}
               </div>
             </Card>
           </div>
