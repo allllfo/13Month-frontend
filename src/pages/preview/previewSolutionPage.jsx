@@ -3,7 +3,7 @@ import CardComponent from "~/components/Preview/Card";
 import PersonComponent from "~/components/Preview/Person";
 import SmallBusiness from "~/components/Preview/SmallBusiness";
 import PendingAndIRP from "~/components/Preview/PendingAndIRP";
-import MonthAndHouse from "~/components/Preview/MonthAndHouse";
+import MonthAndHouse from "~/components/Preview/MonthAndHouse/MonthAndHouse";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getMyData } from "~/lib/apis/myData";

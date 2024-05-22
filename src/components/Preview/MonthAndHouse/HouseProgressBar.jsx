@@ -41,7 +41,7 @@ const HouseProgressBar = ({ housingDeposit, loanResult }) => {
           fontFamily: "Inter, sans-serif",
         },
         formatter: (val, opt) => {
-          const realValue = ((val * 4000000 * 0.01) / 10000).toFixed(0);
+          const realValue = ((val * totalValue * 0.01) / 10000).toFixed(0);
           return `${realValue}만원`;
         },
       },
@@ -52,7 +52,7 @@ const HouseProgressBar = ({ housingDeposit, loanResult }) => {
       yaxis: {
         labels: {
           formatter: function (value) {
-            const realValue = ((value * 4000000 * 0.01) / 10000).toFixed(0);
+            const realValue = ((value * totalValue * 0.01) / 10000).toFixed(0);
             return `${realValue}만원`;
           },
         },
@@ -60,7 +60,6 @@ const HouseProgressBar = ({ housingDeposit, loanResult }) => {
       xaxis: {
         labels: {
           formatter: function (value) {
-            // console.log(value);
             return value + "만원";
           },
         },
@@ -88,17 +87,6 @@ const HouseProgressBar = ({ housingDeposit, loanResult }) => {
       }
     }
   }, [deposit, loan, remainingPercentage]);
-
-  // if (
-  //   document.getElementById("pie-chart") &&
-  //   typeof ApexCharts !== "undefined"
-  // ) {
-  //   const chart = new ApexCharts(
-  //     document.getElementById("pie-chart"),
-  //     getChartOptions()
-  //   );
-  //   chart.render();
-  // }
 
   return (
     <>
