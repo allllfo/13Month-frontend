@@ -18,6 +18,8 @@ export default defineConfig({
       { find: "~/routers", replacement: "/src/routers" },
       { find: "~/pages", replacement: "/src/pages" },
       { find: "~/store", replacement: "/src/store" },
+      { find: "~/constants", replacement: "/src/constants" },
+      { find: "~/utils", replacement: "/src/utils" },
     ],
   },
 });
