@@ -4,7 +4,7 @@ import LoginPage from "~/pages/login/loginPage";
 import MainPage from "~/pages/main/mainPage";
 import PreviewMain from "~/pages/preview/previewMainPage";
 import MainLayout from "~/pages/layoutPage";
-import HousingFundLoan from "~/components/Preview/HousingFundLoan";
+import HousingFundLoan from "~/components/Preview/MonthAndHouse/HousingFundLoan";
 import DaumPost from "~/components/Preview/Address";
 import PreviewResult from "~/pages/preview/previewResultPage";
 import PreviewLoading from "~/pages/preview/previewLoadingPage";

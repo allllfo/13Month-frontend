@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Accordion } from "flowbite-react";
 import houseImg from "~/assets/images/preview/house.png";
-import HouseProgressBar from "./HouseProgressBar";
+import HouseProgressBar from "./MonthAndHouse/HouseProgressBar";
 import { useSelector } from "react-redux";
 import {
   LOAN_PERCENTAGE,
@@ -9,7 +9,7 @@ import {
   MAX_LOAN_AMOUNT,
 } from "~/constants/Preview/index";
 import { determineMonthResult, getHouseDeduction } from "~/utils/preview";
-import MonthAndHouseCard from "./MonthAndHouseCard";
+import MonthAndHouseCard from "./MonthAndHouse/MonthAndHouseCard";
 
 const MonthAndHouse = ({ updateTotal, myData }) => {
   const [userCheck, setUserCheck] = useState({

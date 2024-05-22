@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PersonComponent from "./Person";
+import PersonComponent from "./Person/Person";
 import PreviewSolutionPage from "~/pages/preview/previewSolutionPage";
 
 function ResultComponent() {
